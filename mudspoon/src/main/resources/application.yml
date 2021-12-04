@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mudspoon_front
+    username: "root"
+    password: "1234"
+  jpa:
+    hibernate:
+      ddl-auto : update
+    database-platform: org.hibernate.dialect.MariaDB103Dialect
+  generate-ddl : true
+  show-sql: true

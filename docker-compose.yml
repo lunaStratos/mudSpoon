@@ -1,0 +1,61 @@
+version: "3.7"
+
+services:
+  web:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/default.conf
+    depends_on:
+      - spring-boot
+
+  database:
+    container_name: database
+    image: mariadb
+    volumes:
+      - ~/docker/mariadb/etc/mysql/conf.d:/etc/mysql/conf.d:ro
+      - ~/docker/mariadb/var/lib/mysql:/var/lib/mysql
+      - ~/docker/mariadb/var/log/maria:/var/log/maria
+    environment:
+      - MYSQL_DATABASE=mudspoon_front
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_ROOT_HOST=%
+    command: [ '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci' ]
+    ports:
+      - 3306:3306
+
+  react:
+    image: node:12-alpine
+    command: sh -c "npm install && npm start"
+    ports:
+      - 3000:3000
+    working_dir: /app
+    volumes:
+      - ./mudspoon-front:/app
+    container_name: mudspoon-front
+    networks:
+      - frontend-network
+
+  spring-boot:
+    build:
+      context: ./mudspoon
+      dockerfile: Dockerfile
+    image: mudspoon
+    ports:
+      - "8080:8080"
+    container_name: mudspoon-backend
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://database:3306/database_name?useUnicode=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1234
+    networks:
+      - backend-network
+      - frontend-network
+#    depends_on:
+#      - database
+
+networks:
+  backend-network:
+  frontend-network:
