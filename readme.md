@@ -17,6 +17,7 @@ zip 파일로 올리면 한거번에 리스트로 보여주며, 압축다운로�
 
 목표기술은 다음과 같습니다.
  - Spring boot, Spring security, Spring batch, nginx
+ - React
  - docker, AWS
  - kotlin 
  - DB: MariaDB(Mysql), MongoDB, JPA, Hibernate
@@ -26,9 +27,11 @@ zip 파일로 올리면 한거번에 리스트로 보여주며, 압축다운로�
 
 각 선택이유
  - 대부분 회사들이 Spring boot + java + Junit, 다만 난 java는 많이 사용해서 간결한 kotlin
+ - Vue.js를 쓸까 하다가 그냥 react 
  - docker나 AWS 는 다뤄보고 싶어서
- - DB: MongoDB는 처음이지?
+ - DB: MongoDB는 처음이지? JPA는 실무에서 써서. 
  - CI/CD : 이게 더 예쁘고 젠킨스 슬슬 죽는 느낌
+ - Dev program : IntelliJ, fork, git, github, VSCode, notepad++, heidiSQL, Datagrip
 
 
 ## 서비스 구성도
