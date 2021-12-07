@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 /**
  * 샘플 Controller
- *
+ * 이거 복사해서 사용할것
  * History:
  *    LunaStratos, 1.0, 2021-12-07 초기작성
  *
@@ -26,10 +26,5 @@ class SampleController {
     @Autowired
     private lateinit var naverApi: NaverApi
 
-    @RequestMapping("/test", method = arrayOf(RequestMethod.GET))
-    @ResponseBody
-    fun test(): String {
-        return "test"
-    }
 
 }

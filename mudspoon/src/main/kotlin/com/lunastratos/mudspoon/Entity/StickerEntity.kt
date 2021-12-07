@@ -5,7 +5,6 @@ import javax.persistence.*
 
 /**
  * 흙수저프랜즈 테이블
- *
  * */
 @Entity
 @Table(name ="t_sticker")

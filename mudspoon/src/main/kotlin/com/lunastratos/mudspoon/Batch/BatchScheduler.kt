@@ -27,8 +27,12 @@ class BatchScheduler {
         logger.debug(msg)
     }
 
-    //60초마다 실행
-    @Scheduled(fixedDelay = 60000)
+    /**
+     * 순위배치
+     * 조회수 기준
+     * 1시간 마다 실행
+     * */
+    @Scheduled(fixedDelay = 60000*60)
     fun testTime(){
 
     }

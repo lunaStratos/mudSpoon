@@ -4,8 +4,7 @@ import java.time.LocalDateTime
 import javax.persistence.*
 
 /**
- * 흙수저프랜즈 테이블
- *
+ * 흙수저프랜즈 리플 테이블
  * */
 @Entity
 @Table(name ="t_sticker_reply")
