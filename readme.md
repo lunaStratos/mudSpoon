@@ -1,4 +1,4 @@
-# MudSpoon Freiends
+# MudSpoon Friends
 
 ## 설명
 
@@ -10,6 +10,8 @@ zip 파일로 올리면 한거번에 리스트로 보여주며, 압축다운로�
 
 이외에도 제가 만들수 있는 기능은 계속 추가할 것입니다.(예: 화장실지도, 유기견 리스트 등)
 
+※ 본 코드는 코로나-19 방역수칙을 준수하며 개발을 하였습니다.
+
 ## 개발스택 및 개발자
 
 - Frontend : LunaStratos
@@ -17,21 +19,23 @@ zip 파일로 올리면 한거번에 리스트로 보여주며, 압축다운로�
 
 목표기술은 다음과 같습니다.
  - Spring boot, Spring security, Spring batch, nginx
- - React
+ - React (redux)
  - docker, AWS
  - kotlin 
  - DB: MariaDB(Mysql), MongoDB, JPA, Hibernate
  - Test : Junit
  - CI/CD : TeamCity 
-
+ - 기타 : NaverMap, 
 
 각 선택이유
  - 대부분 회사들이 Spring boot + java + Junit, 다만 난 java는 많이 사용해서 간결한 kotlin
  - Vue.js를 쓸까 하다가 그냥 react 
+ - 아직은 Redux인거같다. context는 좀 먼 미래. 
  - docker나 AWS 는 다뤄보고 싶어서
  - DB: MongoDB는 처음이지? JPA는 실무에서 써서. 
  - CI/CD : 이게 더 예쁘고 젠킨스 슬슬 죽는 느낌
  - Dev program : IntelliJ, fork, git, github, VSCode, notepad++, heidiSQL, Datagrip
+ - NaverMap : 다른 Api를 이용해서 표현하는 형태로 사용예정 
 
 
 ## 서비스 구성도
