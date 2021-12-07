@@ -32,9 +32,14 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.batch:spring-batch-test")
 
-    //junit
+
+    //WebClient
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
 
     //json
+    implementation("com.googlecode.json-simple:json-simple:1.1.1")
+    implementation("org.json:json:20210307")
+
 
     //
 }
