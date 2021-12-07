@@ -87,31 +87,4 @@ class NaverApi {
         return response
     }
 
-
-    fun testPostApi (clientId:String, state :String) : String? {
-        this.webClient = WebClient.create("https://reqbin.com/echo/post/")
-
-        val response = webClient.post()
-            .uri{uriBuilder -> uriBuilder.path("/json")
-                .queryParam("client_id", 1)
-                .queryParam("state", 2)
-                .build()}
-
-            .retrieve().bodyToMono(String::class.java)
-            .block()
-        return response
-    }
-
-    fun testGetApi (clientId:String, state :String) : String? {
-        this.webClient = WebClient.create("https://httpbin.org/")
-
-        val response = webClient.get()
-            .uri{uriBuilder -> uriBuilder.path("get")
-                .queryParam("ok", 1)
-                .build()
-            }
-            .retrieve().bodyToMono(String::class.java)
-            .block()
-        return response
-    }
 }

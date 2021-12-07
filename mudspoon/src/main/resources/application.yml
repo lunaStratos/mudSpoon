@@ -10,3 +10,9 @@ spring:
     database-platform: org.hibernate.dialect.MariaDB103Dialect
   generate-ddl : true
   show-sql: true
+server:
+  servlet:
+    context-path: /api
+  error:
+
+

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*
  * @author      LunaStratos (LunaStratos@gmail.com)
  */
 @RestController
+@RequestMapping("/Sticker")
 class StickerController {
 
     private val log: Logger = LoggerFactory.getLogger(StickerController::class.java)

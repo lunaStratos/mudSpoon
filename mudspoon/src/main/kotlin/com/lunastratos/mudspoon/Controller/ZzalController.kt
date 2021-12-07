@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.*
  * @version     1.0
  * @author      LunaStratos (LunaStratos@gmail.com)
  */
-@RestController
+@RestController()
+@RequestMapping("/Zzal")
 class ZzalController {
 
     private val log: Logger = LoggerFactory.getLogger(ZzalController::class.java)
@@ -25,7 +26,7 @@ class ZzalController {
     @Autowired
     private lateinit var naverApi: NaverApi
 
-    @RequestMapping("/zz", method = arrayOf(RequestMethod.GET))
+    @RequestMapping("/board", method = arrayOf(RequestMethod.GET))
     @ResponseBody
     fun sticker(): String {
         return "zz"

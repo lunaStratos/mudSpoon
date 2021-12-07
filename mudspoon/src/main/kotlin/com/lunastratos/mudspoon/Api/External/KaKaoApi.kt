@@ -16,16 +16,18 @@ class KaKaoApi {
     /**
      * 각 위치
      * client_id & client_secret & redirectURI
+     *
+     * 설명: https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api
      * */
 
-    private lateinit var webClient: WebClient
+    private var webClient: WebClient = WebClient.create("kauth.kakao.com")
 
     // Redirect URL
     @Value("\${kakaoApi.redirectURI}")
     lateinit var redirectURI :String
 
     // kakaoApi client_id
-    @Value("\${kakaoApi.client_id}")
+    @Value("\${kakaoApi.rest_api_client_id}")
     lateinit var client_id :String
 
     // kakaoApi client_secret
@@ -33,16 +35,15 @@ class KaKaoApi {
     lateinit var client_secret :String
 
     /**
-     * 네이버 로그인 페이지
+     * 카카오 로그인 페이지
      * desc: GET/POST 둘다가능
      * */
     fun getSocialLoginAutherize () : String? {
-        this.webClient = WebClient.create("https://nid.naver.com/oauth2.0")
 
         val response = webClient.get()
-            .uri{uriBuilder -> uriBuilder.path("/authorize")
-                .queryParam("response_type", "code")
+            .uri{uriBuilder -> uriBuilder.path("/oauth/authorize")
                 .queryParam("client_id", client_id)
+                .queryParam("response_type", "code")
                 .queryParam("state",  (Math.random()*10).toInt())
                 .queryParam("redirect_uri", redirectURI)
                 .build()}
@@ -53,27 +54,27 @@ class KaKaoApi {
     }
 
     /**
-     * 네이버 token 페이지
+     * 카카오 token 페이지
      * desc: GET/POST 둘다 가능
      * */
-    fun getSocialLoginToken (code:String, state :String) : String? {
-        this.webClient = WebClient.create("https://nid.naver.com/oauth2.0")
+    fun getSocialLoginToken (code:String) : String? {
 
         val response = webClient.post()
-            .uri{uriBuilder -> uriBuilder.path("/token")
+            .uri{uriBuilder -> uriBuilder.path("/oauth/token")
             .queryParam("grant_type", "authorization_code")
             .queryParam("client_id", client_id)
             .queryParam("client_secret", client_secret)
             .queryParam("code", code)
-            .queryParam("state", state)
+            .queryParam("redirect_uri", redirectURI)
             .build()}
+            .header("Content-Type", "application/x-www-form-urlencoded")
             .retrieve().bodyToMono(String::class.java)
             .block()
         return response
     }
 
     /**
-     * 네이버 token 페이지
+     * 카카오 token 페이지
      * desc: GET/POST 둘다 가능
      * */
     fun getSocialLoginMeInfo (access_token:String) : String? {
@@ -81,36 +82,11 @@ class KaKaoApi {
 
         val response = webClient.post()
             .header("Authorization" , "Bearer ${access_token}")
+            .header("Content-Type", "application/x-www-form-urlencoded;charset=utf-8")
             .retrieve().bodyToMono(String::class.java)
             .block()
         return response
     }
 
 
-    fun testPostApi (clientId:String, state :String) : String? {
-        this.webClient = WebClient.create("https://reqbin.com/echo/post/")
-
-        val response = webClient.post()
-            .uri{uriBuilder -> uriBuilder.path("/json")
-                .queryParam("client_id", 1)
-                .queryParam("state", 2)
-                .build()}
-
-            .retrieve().bodyToMono(String::class.java)
-            .block()
-        return response
-    }
-
-    fun testGetApi (clientId:String, state :String) : String? {
-        this.webClient = WebClient.create("https://httpbin.org/")
-
-        val response = webClient.get()
-            .uri{uriBuilder -> uriBuilder.path("get")
-                .queryParam("ok", 1)
-                .build()
-            }
-            .retrieve().bodyToMono(String::class.java)
-            .block()
-        return response
-    }
 }
