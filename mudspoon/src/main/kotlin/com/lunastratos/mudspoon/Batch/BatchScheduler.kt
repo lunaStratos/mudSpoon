@@ -1,7 +1,9 @@
 package com.lunastratos.mudspoon.Batch
 
 import org.slf4j.LoggerFactory
+import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.scheduling.annotation.Scheduled
+import org.springframework.stereotype.Component
 
 /**
  * Batch 스케쥴러
@@ -14,6 +16,8 @@ import org.springframework.scheduling.annotation.Scheduled
  * @version     1.0
  * @author      LunaStratos (LunaStratos@gmail.com)
  */
+@Component
+@EnableScheduling //스케쥴링
 class BatchScheduler {
 
     //로그찍기
