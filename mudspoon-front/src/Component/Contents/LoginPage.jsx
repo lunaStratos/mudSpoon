@@ -24,9 +24,8 @@ export default () => {
                     <form action="#">
                         <h1>Sign in</h1>
                         <div className="social-container">
-                            <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-                            <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-                            <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+                            <a href="#" className="social"><i className="fab fa-naver-n"></i></a>
+                            <a href="#" className="social"><i className="fab fa-kakao-k"></i></a>
                         </div>
                         <span>or use your account</span>
                         <input type="email" placeholder="Email" />

@@ -1,25 +1,26 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
-import Header from "./Component/Header/Header.jsx";
+import AccountLayout from "./Component/Layout/AccountLayout";
+import PublicLayout from './Component/Layout/PublicLayout';
+import LoginPage from "./Component/Contents/LoginPage";
 import StartPage from "./Component/Contents/StartPage";
-import Footer from './Component/Footer/Footer.jsx';
-import LoginPage from './Component/Contents/LoginPage';
-
 
 function App() {
     return (
         <div className="hero_area">
             
             <BrowserRouter>
-                <Header/>
                 <Routes>
-                    <Route exact path="/" element={<StartPage />} />
+                    <Route path="/*" element={<PublicLayout />} >
+                        <Route exact path="" element={<StartPage />} />
+                    </Route>
+                    <Route path="/Account/*" element={<AccountLayout />} >
+                        <Route path="Login" element={<LoginPage />} />
+                    </Route>
                     {/* Not Found */}
                     <Route render={() => <Navigate  to="/" />} />
-                    <Route exact path="/Login" element={<LoginPage />} />
                 </Routes>
-                <Footer/>
             </BrowserRouter>
             
         </div>
