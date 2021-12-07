@@ -2,6 +2,7 @@ package com.lunastratos.mudspoon.Controller
 
 import com.lunastratos.mudspoon.Api.External.NaverApi
 import com.lunastratos.mudspoon.Repository.TestService
+import com.lunastratos.mudspoon.Service.QTestRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,6 +15,8 @@ class TestController {
 
     @Autowired
     private lateinit var testService: TestService
+    @Autowired
+    private lateinit var qTestService: QTestRepository
 
     @Autowired
     private lateinit var naverApi: NaverApi
@@ -28,6 +31,8 @@ class TestController {
     @ResponseBody
     fun Dbtest(): String {
         val allData = testService.findByAll()
+        val allData2 = qTestService.selectAllTestEntity()
+        println(allData2)
         var value = ""
         allData.map {
             value += " / " + it.testStr + " / " +it.testInt

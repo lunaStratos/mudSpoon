@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
     id("org.springframework.boot") version "2.5.8-SNAPSHOT"
@@ -8,7 +9,14 @@ plugins {
     kotlin("jvm") version "1.5.31"
     kotlin("plugin.spring") version "1.5.31"
     kotlin("plugin.jpa") version "1.5.31"
+    //QueryDSL 추가
+    id("com.ewerk.gradle.plugins.querydsl") version "1.0.10"
+    id("java")
+    kotlin("kapt") version "1.4.10"
+
 }
+
+
 
 group = "com.lunastratos"
 version = "0.0.1-SNAPSHOT"
@@ -42,7 +50,22 @@ dependencies {
     implementation("org.json:json:20210307")
 
 
-    //
+    // QueryDSL1
+    implementation("com.querydsl:querydsl-jpa")
+    kapt("com.querydsl:querydsl-apt::jpa")
+
+    // QueryDSL2
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    annotationProcessor(group = "com.querydsl", name = "querydsl-apt", classifier = "jpa")
+
+    // https://mvnrepository.com/artifact/com.querydsl/querydsl-sql
+    implementation("com.querydsl:querydsl-sql:4.4.0")
+
+}
+
+//QueryDSL4 경로 추가
+sourceSets["main"].withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet::class){
+    kotlin.srcDir("$buildDir/generated/source/kapt/main")
 }
 
 allOpen { // 추가적으로 열어줄 allOpen
