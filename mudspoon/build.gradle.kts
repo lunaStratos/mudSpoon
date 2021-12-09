@@ -66,7 +66,8 @@ dependencies {
     // JWT
     implementation ("io.jsonwebtoken:jjwt:0.9.1")
 
-
+    //Redis
+    implementation ("org.springframework.boot:spring-boot-starter-data-redis")
 }
 
 //QueryDSL4 경로 추가

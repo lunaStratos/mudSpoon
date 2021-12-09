@@ -21,9 +21,13 @@ class JwtTokenProvider(
 
 
     @Value("\${mudSpoon.client_secret}")
-    lateinit var secretKey :String
+    private lateinit var secretKey :String
 
-    private val tokenValidTime = 30 * 60 * 1000L // 토큰 유효 시간 : 30분
+    @Value("\${mudSpoon.access_token_time}")
+    private lateinit var accessTokenValidTime :String
+
+    @Value("\${mudSpoon.refresh_token_time}")
+    private lateinit var refreshTokenValidTime:String
 
     // 비밀키를 Base64로 인코딩해 주었습니다.
     @PostConstruct
@@ -35,30 +39,28 @@ class JwtTokenProvider(
         val now = Date()
         return Jwts.builder()
             .setIssuedAt(now)
-            .setExpiration(Date(now.time + tokenValidTime))
+            .setExpiration(Date(now.time + accessTokenValidTime.toLong()))
             .signWith(SignatureAlgorithm.HS256, secretKey)
             .compact()
     }
 
     // 토큰 만들기
-    fun createToken(authentication: Authentication?): String =
+    fun createToken(email: String?): String =
         Jwts.builder().let {
             val now = Date()
 
             // 전달받은 인증 정보로부터 principal 값을 가져옵니다.
             //val userPrincipal = authentication?.principal as UserPrincipal
-            val userPrincipal = authentication as CustomAuthenticationToken
+            //val userPrincipal = authentication as CustomAuthenticationToken
 
             // 토큰 빌더를 통해서 토큰을 생성해줍니다.
             it.setClaims(
                 // username = id 입니다.(PK)
-                Jwts.claims().setSubject(userPrincipal.name)
-                    .also { claims ->
-                        claims["role"] = userPrincipal.authorities.first()
-                    }
+                Jwts.claims().setSubject(email)
+
             )
                 .setIssuedAt(now)
-                .setExpiration(Date(now.time + tokenValidTime))
+                .setExpiration(Date(now.time + refreshTokenValidTime.toLong()))
                 .signWith(io.jsonwebtoken.SignatureAlgorithm.HS256, secretKey)
                 .compact()
         }!!

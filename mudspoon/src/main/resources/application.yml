@@ -18,6 +18,7 @@ spring:
   output:
     ansi:
       enabled: always
+
 server:
   servlet:
     context-path: /api

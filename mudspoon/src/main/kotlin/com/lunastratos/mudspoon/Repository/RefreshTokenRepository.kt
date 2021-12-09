@@ -1,10 +1,10 @@
 package com.lunastratos.mudspoon.Repository
 
-import com.lunastratos.mudspoon.Entity.RefreshToken
+import com.lunastratos.mudspoon.Entity.RefreshTokenEntity
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.redis.repository.configuration.EnableRedisRepositories
+import org.springframework.data.repository.CrudRepository
 import java.util.*
 
-
-interface RefreshTokenRepository: JpaRepository<RefreshToken?, Long?> {
-    fun findByKey(key: String?): Optional<RefreshToken?>
+interface RefreshTokenRepository: CrudRepository<RefreshTokenEntity, String?> {
 }
