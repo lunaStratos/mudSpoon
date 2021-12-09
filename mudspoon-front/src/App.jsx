@@ -5,6 +5,7 @@ import AccountLayout from "./Component/Layout/AccountLayout";
 import PublicLayout from './Component/Layout/PublicLayout';
 import LoginPage from "./Component/Contents/LoginPage";
 import StartPage from "./Component/Contents/StartPage";
+import MyPage from "./Component/Contents/My/MyPage";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                     </Route>
                     <Route path="/Account/*" element={<AccountLayout />} >
                         <Route path="Login" element={<LoginPage />} />
+                        <Route path="My" element={<MyPage />} />
                     </Route>
                     {/* Not Found */}
                     <Route render={() => <Navigate  to="/" />} />

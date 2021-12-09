@@ -1,7 +1,33 @@
-import React from 'react';
+import axios from 'axios';
+import React, {useState} from 'react';
 import "../../Asset/Css/LoginPage.css";
 
 export default () => {
+
+    const [account, setAccount] = useState({
+        email: "",
+        password: ""
+    })
+
+    /** Email, Password 변경 */
+    const onChange = (e) =>{
+
+        const value = e.target.value;
+        const nameValue = e.target.name;
+  
+        setAccount({
+            ...account, [nameValue]: value
+        });
+
+    } 
+
+    /** 로그인 */
+    const onSignIn = () =>{
+        console.log(account);
+        axios.post("http://localhost:8080/api/auth/SignIn", account).then(response => console.log(response))
+    
+    }
+
     return(
         <div className="LoginPage">
             <div className="container" id="container">
@@ -28,10 +54,10 @@ export default () => {
                             <a href="#" className="social"><i className="fab fa-kakao-k"></i></a>
                         </div>
                         <span>or use your account</span>
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
+                        <input type="email" placeholder="Email" name="email"  onChange={(e) => onChange(e)} />
+                        <input type="password" placeholder="Password" name="password"  onChange={(e) => onChange(e)} />
                         <a href="#">Forgot your password?</a>
-                        <button>Sign In</button>
+                        <button onClick={(e) => onSignIn(e) }>Sign In</button>
                     </form>
                 </div>
                 <div className="overlay-container">

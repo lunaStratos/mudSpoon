@@ -1,8 +1,8 @@
 package com.lunastratos.mudspoon.Controller
 
 import com.lunastratos.mudspoon.Api.External.NaverApi
-import com.lunastratos.mudspoon.Repository.TestService
-import com.lunastratos.mudspoon.Service.QTestRepository
+import com.lunastratos.mudspoon.Service.TestService
+import com.lunastratos.mudspoon.Repository.QTestRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired

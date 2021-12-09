@@ -1,15 +1,21 @@
 package com.lunastratos.mudspoon
 
-import com.lunastratos.mudspoon.Service.TestRepository
+import com.lunastratos.mudspoon.Entity.QUserEntity
+import com.lunastratos.mudspoon.Entity.UserEntity
+import com.lunastratos.mudspoon.Repository.TestRepository
+import com.querydsl.jpa.impl.JPAQueryFactory
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import javax.persistence.EntityManager
 
 @SpringBootTest
-class MudspoonApplicationTests(
-	@Autowired
-	val testRepo: TestRepository
+class MudspoonApplicationTests @Autowired constructor(
+
+	val testRepo: TestRepository,
+	val entityManager: EntityManager,
+	val query: JPAQueryFactory
 ) {
 
 	@Test
@@ -29,5 +35,17 @@ class MudspoonApplicationTests(
 		// then
 		println(all)
 	}
+
+	@Test
+	fun testFindByID() {
+		val userQEM = QUserEntity.userEntity
+		val userEntity : List<UserEntity> = query.selectFrom(userQEM)
+			.where(userQEM.email.eq("test@test.com"), userQEM.password.eq("test"))
+			.fetch()
+
+		// then
+		println(userEntity)
+	}
+
 
 }

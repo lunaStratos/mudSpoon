@@ -1,4 +1,4 @@
-package com.lunastratos.mudspoon.Service
+package com.lunastratos.mudspoon.Repository
 
 import com.lunastratos.mudspoon.Entity.QTestEntity
 import com.lunastratos.mudspoon.Entity.TestEntity

@@ -8,11 +8,25 @@ spring:
     hibernate:
       ddl-auto : update
     database-platform: org.hibernate.dialect.MariaDB103Dialect
+    show-sql: true
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
   generate-ddl : true
   show-sql: true
+  output:
+    ansi:
+      enabled: always
 server:
   servlet:
     context-path: /api
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace
+        SQL: info
 
 
 

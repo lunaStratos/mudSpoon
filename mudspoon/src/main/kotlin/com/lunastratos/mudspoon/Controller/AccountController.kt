@@ -19,12 +19,14 @@ import org.springframework.web.bind.annotation.*
  * @author      LunaStratos (LunaStratos@gmail.com)
  */
 @RestController
-class LoginController {
+@RequestMapping("/Account")
+class AccountController {
 
-    private val log: Logger = LoggerFactory.getLogger(LoginController::class.java)
+    private val log: Logger = LoggerFactory.getLogger(AccountController::class.java)
 
     @Autowired
     private lateinit var naverApi: NaverApi
+
 
 
     /**

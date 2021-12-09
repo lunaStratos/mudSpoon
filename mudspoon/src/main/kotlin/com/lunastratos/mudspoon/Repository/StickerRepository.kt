@@ -1,7 +1,6 @@
-package com.lunastratos.mudspoon.Service
+package com.lunastratos.mudspoon.Repository
 
 import com.lunastratos.mudspoon.Entity.StickerEntity
-import com.lunastratos.mudspoon.Entity.TestEntity
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface StickerRepository : JpaRepository<StickerEntity?, Long?>{
