@@ -34,7 +34,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-batch")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
@@ -48,7 +47,6 @@ dependencies {
     //json
     implementation("com.googlecode.json-simple:json-simple:1.1.1")
     implementation("org.json:json:20210307")
-
 
     // QueryDSL1
     implementation("com.querydsl:querydsl-jpa")
@@ -68,6 +66,10 @@ dependencies {
 
     //Redis
     implementation ("org.springframework.boot:spring-boot-starter-data-redis")
+
+    //MongoDB
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+
 }
 
 //QueryDSL4 경로 추가

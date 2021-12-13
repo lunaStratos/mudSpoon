@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.*
  * @version     1.0
  * @author      LunaStratos (LunaStratos@gmail.com)
  */
-
-
 @RestController
 class IndexController {
 

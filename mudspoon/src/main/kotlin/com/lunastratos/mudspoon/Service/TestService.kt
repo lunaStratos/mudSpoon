@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class TestService {
-    @Autowired
-    private val testRepository: TestRepository? = null
+class TestService  @Autowired constructor(
+    private val testRepository: TestRepository
+){
 
     @Transactional
     fun save(testDto: TestEntity) {

@@ -1,13 +1,14 @@
 package com.lunastratos.mudspoon.Entity
 
+import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime
 import javax.persistence.*
 
 /**
  * 라운지 테이블
+ * DB: 몽고 DB
  * */
-@Entity
-@Table(name ="t_lounge")
+@Document(collection = "t_lounge")
 data class LoungeEntity (
 
     @Id

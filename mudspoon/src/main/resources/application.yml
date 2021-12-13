@@ -18,6 +18,12 @@ spring:
   output:
     ansi:
       enabled: always
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: mudspoon
+
 
 server:
   servlet:
