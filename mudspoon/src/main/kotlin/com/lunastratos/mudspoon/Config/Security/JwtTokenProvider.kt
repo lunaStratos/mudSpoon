@@ -11,7 +11,17 @@ import java.util.*
 import javax.annotation.PostConstruct
 import javax.servlet.http.HttpServletRequest
 
-
+/**
+ * JwtTokenProvider
+ * desc: Spring security - JWT 토큰 관리
+ *
+ * History:
+ *    LunaStratos, 1.0, 2021-12-15 초기작성
+ *
+ * @date        2021-12-07
+ * @version     1.0
+ * @author      LunaStratos (LunaStratos@gmail.com)
+ */
 @Component
 class JwtTokenProvider(
     private val userDetailsService: CustomUserDetailService

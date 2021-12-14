@@ -12,6 +12,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
+
+/**
+ * UserDetailsService
+ * desc: Spring security - DB 접속 서비스
+ *
+ * History:
+ *    LunaStratos, 1.0, 2021-12-15 초기작성
+ *
+ * @date        2021-12-07
+ * @version     1.0
+ * @author      LunaStratos (LunaStratos@gmail.com)
+ */
 @Service
 class CustomUserDetailService(
     private val userRepo: UserRepository,

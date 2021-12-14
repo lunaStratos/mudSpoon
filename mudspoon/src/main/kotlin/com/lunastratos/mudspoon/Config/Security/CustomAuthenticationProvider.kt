@@ -8,6 +8,17 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 
+/**
+ * AuthenticationProvider
+ * desc: Spring security - DB 접속해서 인증 담당
+ *
+ * History:
+ *    LunaStratos, 1.0, 2021-12-15 초기작성
+ *
+ * @date        2021-12-07
+ * @version     1.0
+ * @author      LunaStratos (LunaStratos@gmail.com)
+ */
 @Component
 class CustomAuthenticationProvider(
     private val userDetailsService: CustomUserDetailService,

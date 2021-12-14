@@ -1,6 +1,5 @@
 package com.lunastratos.mudspoon.Config.Security
 
-import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.filter.GenericFilterBean
 import javax.servlet.FilterChain
@@ -8,7 +7,17 @@ import javax.servlet.ServletRequest
 import javax.servlet.ServletResponse
 import javax.servlet.http.HttpServletRequest
 
-
+/**
+ * GenericFilterBean
+ * desc: Spring security - 필터, 처음 접속시 여기
+ *
+ * History:
+ *    LunaStratos, 1.0, 2021-12-15 초기작성
+ *
+ * @date        2021-12-07
+ * @version     1.0
+ * @author      LunaStratos (LunaStratos@gmail.com)
+ */
 class JwtAuthenticationFilter(private val jwtTokenProvider: JwtTokenProvider) : GenericFilterBean() {
 
     override fun doFilter(request: ServletRequest?, response: ServletResponse?, chain: FilterChain?) {

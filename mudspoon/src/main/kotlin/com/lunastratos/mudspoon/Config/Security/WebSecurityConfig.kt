@@ -13,7 +13,17 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
-
+/**
+ * WebSecurityConfigurerAdapter
+ * desc: Spring security - 스프링 시큐리티 종합 관리 툴
+ *
+ * History:
+ *    LunaStratos, 1.0, 2021-12-15 초기작성
+ *
+ * @date        2021-12-07
+ * @version     1.0
+ * @author      LunaStratos (LunaStratos@gmail.com)
+ */
 /**
  * https://deeplify.dev/back-end/spring/configure-spring-security-rest-api
  * https://github.com/HomoEfficio/dev-tips/blob/master/Spring%20Security%EC%9D%98%20%EC%82%AC%EC%9A%A9%EC%9E%90%20%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8%20%EA%B2%80%EC%82%AC.md
@@ -26,18 +36,28 @@ class WebSecurityConfig(
 
 
 
-    // 암호화에 필요한 PasswordEncoder 를 Bean 등록합니다.
+    /**
+     * 암호화 모듈
+     * desc: 암호화에 필요한 PasswordEncoder 를 Bean 등록합니다
+     * */
     @Bean
     fun passwordEncoder(): PasswordEncoder? {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder()
     }
 
-    // authenticationManager를 Bean 등록합니다
+    /**
+     * authenticationManagerBean
+     * desc: authenticationManager를 Bean 등록합니다
+     * */
     @Bean
     override fun authenticationManagerBean(): AuthenticationManager {
         return super.authenticationManagerBean()
     }
 
+    /**
+     * configure
+     * desc: 접속시 URL에 따른 시큐리티 사용여부 구성
+     * */
     override fun configure(http: HttpSecurity?) {
         if (http != null) {
             http.cors()
@@ -57,13 +77,22 @@ class WebSecurityConfig(
         }
     }
 
+    /**
+     * AuthenticationProvider
+     * desc: CustomAuthenticationProvider 사용.
+     * */
     @Bean
     fun authenticationProvider(): AuthenticationProvider? {
         return CustomAuthenticationProvider(customUserDetailService)
     }
 
 
-    // 인증의 저장 관리를 해줄 userDetailsService, passwordEncoder와 함께 등록해줍니다.
+    /**
+     * 1. 기본 로직
+     * 2. implement 받은 것으로 재구성 모듈 사용
+     * 현재 2번 사용중
+     * desc: 인증의 저장 관리를 해줄 userDetailsService, passwordEncoder와 함께 등록해줍니다.
+     * */
     override fun configure(auth: AuthenticationManagerBuilder?) {
         //auth!!.userDetailsService<UserDetailsService>(customUserDetailService).passwordEncoder(passwordEncoder())
         auth!!.authenticationProvider(authenticationProvider());

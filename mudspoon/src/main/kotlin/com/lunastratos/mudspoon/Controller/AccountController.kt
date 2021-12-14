@@ -28,7 +28,6 @@ class AccountController {
     private lateinit var naverApi: NaverApi
 
 
-
     /**
      * 네이버 로그인 창 : 나중에 프론트로 뺌.
      * @param
