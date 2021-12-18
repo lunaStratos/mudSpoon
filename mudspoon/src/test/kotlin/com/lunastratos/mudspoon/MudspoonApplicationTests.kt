@@ -13,7 +13,16 @@ import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.EntityManager
 
-
+/**
+ * Junit 테스트 모듈
+ *
+ * History:
+ *    LunaStratos, 1.0, 2021-12-19 초기작성
+ *
+ * @date        2021-12-07
+ * @version     1.0
+ * @author      LunaStratos (LunaStratos@gmail.com)
+ */
 @SpringBootTest
 class MudspoonApplicationTests @Autowired constructor(
 
