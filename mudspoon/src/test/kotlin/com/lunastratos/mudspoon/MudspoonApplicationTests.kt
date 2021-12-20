@@ -5,6 +5,7 @@ import com.lunastratos.mudspoon.Entity.RefreshTokenEntity
 import com.lunastratos.mudspoon.Repository.LoungeRepository
 import com.lunastratos.mudspoon.Repository.RefreshTokenRepository
 import com.lunastratos.mudspoon.Repository.TestRepository
+import com.lunastratos.mudspoon.Util.BoardPaging
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -65,7 +66,22 @@ class MudspoonApplicationTests @Autowired constructor(
 		)
 			"2021-01-01"
 		loungeRepo.save(insertData)
+	}
 
+	@Test
+	fun BoardTest(){
+
+		val total = 123
+		val nowPage = 12
+		val cntPerPage = 10
+
+		var boardPaging: BoardPaging = BoardPaging(total, nowPage, cntPerPage)
+
+		val getNowPage = boardPaging.startPage
+		val getEndPage = boardPaging.endPage
+		val getStart = boardPaging.start
+
+		println("${getNowPage} ${getEndPage} ${getStart}")
 
 	}
 

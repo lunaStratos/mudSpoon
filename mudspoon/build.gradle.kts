@@ -56,19 +56,23 @@ dependencies {
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     annotationProcessor(group = "com.querydsl", name = "querydsl-apt", classifier = "jpa")
 
-    // https://mvnrepository.com/artifact/com.querydsl/querydsl-sql
+    // QueryDSL3
     implementation("com.querydsl:querydsl-sql:4.4.0")
 
     // Spring Sequrity
     implementation ("org.springframework.boot:spring-boot-starter-security")
+
     // JWT
     implementation ("io.jsonwebtoken:jjwt:0.9.1")
 
-    //Redis
+    // Redis
     implementation ("org.springframework.boot:spring-boot-starter-data-redis")
 
-    //MongoDB
+    // MongoDB
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+
+    // email
+    implementation ("org.springframework.boot:spring-boot-starter-mail")
 
 }
 
