@@ -69,7 +69,6 @@ class AuthController(
     }
 
     /** 등록 */
-    //@Throws(Exception::class)
     @PostMapping("/Register")
     fun Register(@RequestBody param: RegisterEntity): ResponseEntity<*>? {
         if (!userService.selectUserByEmail(param.email!!).isEmpty()) {

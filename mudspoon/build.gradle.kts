@@ -4,19 +4,16 @@ import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 plugins {
     id("org.springframework.boot") version "2.5.8-SNAPSHOT"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    //id("org.jetbrains.kotlin.plugin.jpa") version "1.3.61"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.3.61"
-    kotlin("jvm") version "1.5.31"
-    kotlin("plugin.spring") version "1.5.31"
-    kotlin("plugin.jpa") version "1.5.31"
+    kotlin("jvm") version "1.5.0"
+    kotlin("plugin.spring") version "1.5.0"
+    kotlin("plugin.jpa") version "1.5.0"
     //QueryDSL 추가
     id("com.ewerk.gradle.plugins.querydsl") version "1.0.10"
     id("java")
-    kotlin("kapt") version "1.4.10"
+    kotlin("kapt") version "1.5.0"
 
 }
-
-
 
 group = "com.lunastratos"
 version = "0.0.1-SNAPSHOT"
@@ -26,6 +23,7 @@ repositories {
     mavenCentral()
     maven { url = uri("https://repo.spring.io/milestone") }
     maven { url = uri("https://repo.spring.io/snapshot") }
+    maven { url = uri("https://jitpack.io")}
 }
 
 dependencies {
@@ -59,6 +57,10 @@ dependencies {
     // QueryDSL3
     implementation("com.querydsl:querydsl-sql:4.4.0")
 
+    // QueryDSL - mongoDB
+    implementation("com.querydsl:querydsl-mongodb:4.4.0")
+
+
     // Spring Sequrity
     implementation ("org.springframework.boot:spring-boot-starter-security")
 
@@ -74,6 +76,9 @@ dependencies {
     // email
     implementation ("org.springframework.boot:spring-boot-starter-mail")
 
+    // 한글 형태소 분석기 KOMORAN 의존성 추가
+    //implementation("com.github.shin285:KOMORAN:3.3.4")
+
 }
 
 //QueryDSL4 경로 추가
@@ -82,6 +87,7 @@ sourceSets["main"].withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourc
 }
 
 allOpen { // 추가적으로 열어줄 allOpen
+    annotation("org.springframework.data.mongodb.core.mapping.Document")
     annotation("javax.persistence.Entity")
     annotation("javax.persistence.MappedSuperclass")
     annotation("javax.persistence.Embeddable")

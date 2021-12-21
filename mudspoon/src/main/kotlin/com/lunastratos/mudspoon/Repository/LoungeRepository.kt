@@ -1,7 +1,8 @@
 package com.lunastratos.mudspoon.Repository
 
-import com.lunastratos.mudspoon.Entity.LoungeEntity
+import com.lunastratos.mudspoon.Entity.MongoDB.LoungeEntity
 import org.springframework.data.mongodb.repository.MongoRepository
+import org.springframework.data.querydsl.QuerydslPredicateExecutor
 import org.springframework.stereotype.Repository
 
 /**

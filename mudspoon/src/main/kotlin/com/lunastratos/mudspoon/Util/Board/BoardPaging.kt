@@ -2,6 +2,8 @@ package com.lunastratos.mudspoon.Util
 
 /**
  * 게시판 페이징
+ *
+ * desc: cntPage를 조절하면 된다. 현재는 10페이지씩 출력
  * @version     1.0
  * @author      LunaStratos
  * */
@@ -18,13 +20,13 @@ class BoardPaging {
     var end = 0
     private var cntPage = 10
 
-    constructor(total: Int, nowPage: Int, cntPerPage: Int) {
+    constructor(total: Int, nowPage: Int) {
         this.nowPage = nowPage
-        this.cntPerPage = cntPerPage
+        this.cntPerPage = cntPage
         this.total = total
-        calcLastPage(total, cntPerPage)
+        calcLastPage(total, cntPage)
         calcStartEndPage(nowPage, cntPage)
-        calcStartEnd(nowPage, cntPerPage)
+        calcStartEnd(nowPage, cntPage)
     }
 
     // 제일 마지막 페이지 계산
