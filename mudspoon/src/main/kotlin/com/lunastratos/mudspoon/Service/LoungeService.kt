@@ -23,12 +23,12 @@ class LoungeService @Autowired constructor(
      * @param page :
      * @param title :
      * */
-    fun selectBoardList(page: Int, title:String){
+    fun selectBoardList(page: Int, search:String){
         val allCount = loungeRepo.count().toInt()
         val startEndArray = BoardPaging(allCount, page)
 
         // 검색어 있으면 검색조건 거침
-        if(!title.equals("")){
+        if(!search.equals("")){
 
         }
 

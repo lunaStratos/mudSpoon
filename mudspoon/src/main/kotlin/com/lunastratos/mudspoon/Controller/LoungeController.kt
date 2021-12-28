@@ -3,6 +3,7 @@ package com.lunastratos.mudspoon.Controller
 import com.lunastratos.mudspoon.Api.External.NaverApi
 import com.lunastratos.mudspoon.Entity.MongoDB.LoungeEntity
 import com.lunastratos.mudspoon.Service.LoungeService
+import com.lunastratos.mudspoon.Util.BoardPaging
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,8 +24,8 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/Lounge")
 class LoungeController @Autowired constructor(
-    private val loungeService: LoungeService,
-){
+    private val loungeService: LoungeService
+    ){
 
     private val log: Logger = LoggerFactory.getLogger(LoungeController::class.java)
 
@@ -41,10 +42,16 @@ class LoungeController @Autowired constructor(
     @ResponseBody
     fun List(
         @RequestParam("page",  required = false, defaultValue = "1",) page: Int,
-        @RequestParam("title",  required = false, defaultValue = "",) title: String
+        @RequestParam("search",  required = false, defaultValue = "",) search: String
     ): ResponseEntity<*>? {
 
-        val getBoardList = loungeService.selectBoardList(page, title)
+
+        val startPage = 1
+        val endPage = 1
+        val boardList = {}
+
+
+        val getBoardList = loungeService.selectBoardList(page, search)
 
         return ResponseEntity.ok<Any>("User registered successfully!")
     }

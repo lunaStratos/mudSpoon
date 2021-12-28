@@ -79,6 +79,10 @@ dependencies {
     // 한글 형태소 분석기 KOMORAN 의존성 추가
     //implementation("com.github.shin285:KOMORAN:3.3.4")
 
+    // File extension
+    implementation("commons-io:commons-io:2.11.0")
+
+
 }
 
 //QueryDSL4 경로 추가
