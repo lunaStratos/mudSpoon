@@ -17,23 +17,20 @@ export default () => {
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                  <ul className="navbar-nav">
                     <li className="nav-item active">
-                       <a className="nav-link" href="index.html">Home <span className="sr-only">(current)</span></a>
+                    <Link to=""><a className="nav-link" >Home <span className="sr-only">(current)</span></a></Link>
                     </li>
-                   <li className="nav-item dropdown">
-                       <a className="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span className="nav-label"></span>Pages <span className="caret"></span></a>
-                       <ul className="dropdown-menu">
-                          <li><a href="about.html">About</a></li>
-                          <li><a href="testimonial.html">Testimonial</a></li>
-                       </ul>
+                   
+                    <li className="nav-item">
+                       <Link to="/Sticker"><a className="nav-link">Sticker</a></Link>
                     </li>
                     <li className="nav-item">
-                       <a className="nav-link" href="product.html">Products</a>
+                    <Link to="/Lounge"><a className="nav-link" >Lounge</a></Link>
                     </li>
                     <li className="nav-item">
-                       <a className="nav-link" href="blog_list.html">Blog</a>
+                    <Link to="/Devpia"><a className="nav-link" >Devpia</a></Link>
                     </li>
                     <li className="nav-item">
-                       <a className="nav-link" href="contact.html">Contact</a>
+                       <Link to="/Contact"><a className="nav-link">Contact</a></Link>
                     </li>
                     <li className="nav-item">
                     <Link to="/Account/Login">

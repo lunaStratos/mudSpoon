@@ -1,0 +1,883 @@
+
+/* 04_communication all */
+.communication_all {
+    width: 100%;
+
+    font-size: 14px;
+}
+.communication_all > article {
+    width: 1140px;
+    margin: 0 auto;
+}
+.communication_all > .page_top > div > div {
+    right: -50px;
+}
+.communication_all  > .page_top > div > div > img {
+    height: 380px;
+}
+
+/* ------------------------- */
+/* ------------------------- */
+/* 04_1_communication_news */
+.communication_news > article > .list_write {
+    width: 100%;
+    margin-top: 73px;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.communication_news > article > .list_top {
+    width: 100%;
+    margin-top: 73px;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+
+    border-bottom: 2px solid #333333;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.communication_news > article > .list_top > div > span {
+    color: #2790eb;
+}
+.communication_news > article > .list_top > div:nth-child(2) {
+    display: flex;
+}
+.communication_news > article > .list_top > div:nth-child(2) > input {
+    width: 200px;
+    height: 38px;
+    padding: 10px 10px;
+    box-sizing: border-box;
+
+    border: 1px solid #dddddd;
+
+    font-size: 14px;
+    color: #666666;
+}
+.communication_news > article > .list_top > div:nth-child(2) > button {
+    width: 38px;
+    height: 38px;
+    box-sizing: border-box;
+
+    border: none;
+    background-color: #1174c9;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+}
+
+
+/* ----- */
+.communication_news > article > ul > li {
+    width: 100%;
+}
+.communication_news > article > ul > li > a {
+    width: 100%;
+    height: 300px;
+    padding: 40px 0;
+    box-sizing: border-box;
+
+    border-bottom: 1px solid #dddddd;
+
+    display: flex;
+    position: relative;
+}
+.communication_news > article > ul > li > a > div:nth-child(1) {
+    width: 320px;
+    min-width: 320px;
+    height: 220px;
+    margin-right: 30px;
+    box-sizing: border-box;
+
+    border: 1px solid #dddddd;
+    /* 임시 */
+    background-color: lightgrey;
+}
+.communication_news > article > ul > li > a > div:nth-child(2) {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+
+}
+
+.communication_news > article > ul > li > a > div:nth-child(2) > div:nth-child(1) {
+    width: 100%;
+    margin-bottom: 15px;
+
+    font-size: 12px;
+    color: #666666!important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.communication_news > article > ul > li > a > div:nth-child(2) > div:nth-child(2) {
+    width: 100%;
+    margin-bottom: 25px;
+
+    font-size: 17px;
+    color: #222222!important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-top:2px;
+}
+.communication_news > article > ul > li > a > div:nth-child(2) > div:nth-child(3) {
+    width: 90%;
+    color: #666666!important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word;
+    line-height: 1.2em;
+
+}
+
+.communication_news > article > ul > li > a > #option_btn {
+    position: absolute;
+    top: 20px;
+    right: 0;
+}
+
+/* 타이틀 */
+.communication_news > article > .list_title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    position: relative;
+}
+.communication_news > article > .list_title >  div:nth-child(1) >textarea{
+    width: 90%;
+    min-height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    resize: none;
+}
+
+.communication_news > article > .list_title > div:nth-child(1) > ul {
+    margin: 0 10px;
+    display: flex;
+}
+.communication_news > article > .list_title > div:nth-child(1) > div > img {
+    margin: 0 10px;
+}
+.communication_news > article > .list_title > div:nth-child(1) > ul > li {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #666666;
+}
+.communication_news > article > .list_title > div:nth-child(2) {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.communication_news > article > .list_title > div:nth-child(2) > button {
+    margin-left: 20px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+
+    border: none;
+    border-radius: 5px;
+    background-color: #1174c9;
+
+    color: #ffffff;
+}
+/* 타이틀 */
+
+/* 글쓰기 */
+.communication_news > article > .list_write {
+    margin-top: 20px;
+    margin-top: 100px;
+    display: flex;
+    position: relative;
+}
+.communication_news > article > .list_write >  div:nth-child(1) >textarea{
+    width: 90%;
+    min-height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    resize: none;
+}
+
+.communication_news > article > .list_write > div:nth-child(1) > ul {
+    margin: 0 10px;
+    display: flex;
+}
+.communication_news > article > .list_write > div:nth-child(1) > div > img {
+    margin: 0 10px;
+}
+.communication_news > article > .list_write > div:nth-child(1) > ul > li {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #666666;
+}
+.communication_news > article > .list_write > div:nth-child(2) {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.communication_news > article > .list_write > div:nth-child(2) > button {
+    margin-left: 20px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+
+    border: none;
+    border-radius: 5px;
+    background-color: #1174c9;
+
+    color: #ffffff;
+}
+/* 글쓰기 */
+
+
+/* ----- */
+.communication_news > article > .list_bottom {
+    margin-top: 20px;
+    margin-bottom: 160px;
+
+    display: flex;
+    position: relative;
+}
+.communication_news > article > .list_bottom > div:nth-child(1) {
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.communication_news > article > .list_bottom > div:nth-child(1) > ul {
+    margin: 0 10px;
+    display: flex;
+}
+.communication_news > article > .list_bottom > div:nth-child(1) > div > img {
+    margin: 0 10px;
+}
+.communication_news > article > .list_bottom > div:nth-child(1) > ul > li {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #666666;
+}
+.communication_news > article > .list_bottom > div:nth-child(2) {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.communication_news > article > .list_bottom > div:nth-child(2) > button {
+    margin-left: 20px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+
+    border: none;
+    border-radius: 5px;
+    background-color: #1174c9;
+
+    color: #ffffff;
+}
+
+
+/* ------------------------- */
+/* 04_1_communication_news - pop-up */
+
+/* #pop-up_post */
+#pop-up_post {
+    width: 90%;
+    max-width: 720px;
+    max-height: 90%;
+    overflow: scroll;
+
+    border: 1px solid #dddddd;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 2px 1px rgba(150, 150, 150, 0.3);
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 999;
+}
+#pop-up_post > div:nth-child(1) {
+    width: 100%;
+    padding: 20px 20px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #dddddd;
+    background-color: #f5f5f5;
+
+    font-size: 20px;
+    color: #000000;
+}
+#pop-up_post > ul {
+    padding: 20px 20px;
+    box-sizing: border-box;
+}
+#pop-up_post > ul > li {
+    margin-bottom: 20px;
+
+    display: flex;
+}
+#pop-up_post > ul > li > div {
+    width: 15%;
+
+    font-size: 15px;
+    color: #666666;
+}
+#pop-up_post > ul > li > input {
+    width: 85%;
+    min-width: 85%;
+    max-width: 85%;
+
+    border: 1px solid #dddddd;
+    font-size: 15px;
+}
+#pop-up_post > .btn_wrap {
+    padding: 0 20px 20px 20px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+}
+#pop-up_post > .btn_wrap > button {
+    margin: 0 10px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+
+    border: none;
+    border-radius: 5px;
+}
+#pop-up_post > .btn_wrap > button:nth-child(1) {
+    background-color: #1174c9;
+    color: #ffffff;
+}
+#pop-up_post > .btn_wrap > button:nth-child(2) {
+    background-color: #e8eff9;
+    color: #333333;
+}
+#pop-up_post #post_content {
+    height: 300px;
+    max-height: 300px;
+    overflow: scroll;
+}
+
+
+/* pop-up_login */
+#pop-up_login {
+    width: 95%;
+    max-width: 440px;
+
+    border: 1px solid #dddddd;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 2px 1px rgba(150, 150, 150, 0.3);
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1000;
+}
+#pop-up_login > div:nth-child(1) {
+    width: 100%;
+    padding: 18px 18px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #dddddd;
+    background-color: #f5f5f5;
+}
+#pop-up_login > div:nth-child(2) {
+    width: 100%;
+    padding: 20px 18px 0 18px;
+
+    text-align: center;
+    color: #2790eb;
+}
+#pop-up_login > ul {
+    width: 100%;
+    padding: 20px 18px 20px 18px;
+    box-sizing: border-box;
+}
+#pop-up_login > ul > li {
+    width: 100%;
+    margin-bottom: 10px;
+
+    display: flex;
+    align-items: center;
+}
+#pop-up_login > ul > li > div {
+    width: 20%;
+
+    font-size: 15px;
+    color: #666666;
+}
+#pop-up_login > ul > li > input {
+    width: 80%;
+    height: 35px;
+    padding: 10px 10px;
+    box-sizing: border-box;
+
+    border: 1px solid #dddddd;
+    font-size: 15px;
+    color: #666666;
+}
+#pop-up_login > .btn_wrap {
+    padding: 0 18px 20px 18px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+}
+#pop-up_login > .btn_wrap > button {
+    margin: 0 10px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+
+    border: none;
+    border-radius: 5px;
+}
+#pop-up_login > .btn_wrap > button:nth-child(1) {
+    background-color: #1174c9;
+    color: #ffffff;
+}
+#pop-up_login > .btn_wrap > button:nth-child(2) {
+    background-color: #e8eff9;
+    color: #333333;
+}
+
+
+/* ------------------------- */
+/* ------------------------- */
+/* 04_2_communication_news_view */
+.communication_news_view > article > .tit {
+    width: 100%;
+    margin: 70px 0 55px 0;
+}
+.communication_news_view > article > .tit > div:nth-child(1) {
+    width: 100%;
+    margin-bottom: 15px;
+
+    font-size: 20px;
+    color: #333333;
+    word-break: keep-all;
+}
+.communication_news_view > article > .tit > div:nth-child(2) {
+    width: 100%;
+
+    font-size: 14px;
+    color: #bbbbbb;
+    word-break: keep-all;
+}
+.communication_news_view > article > .con {
+    width: 100%;
+    padding-bottom: 80px;
+    box-sizing: border-box;
+
+    border-bottom: 2px solid #333333;
+}
+.communication_news_view > article > .btn {
+    width: 100%;
+    margin: 20px 0 200px 0;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: flex-end;
+}
+.communication_news_view > article > .btn > button {
+    padding: 10px 30px;
+    box-sizing: border-box;
+
+    border: none;
+    border-radius: 5px;
+    background-color: #1174c9;
+    color: #ffffff;
+}
+.communication_news_view > article > .writing_btn {
+    width: 100%;
+    margin-bottom: 200px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+.communication_news_view > article > .writing_btn > button {
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    background-color: #1174c9;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 23px;
+}
+
+/* ------------------------- */
+/* ------------------------- */
+/* 04_3_communication_ContactUs */
+.communication_ContactUs > article {
+    width: 100%;
+    max-width: 590px;
+}
+.communication_ContactUs span {
+    color: #2790eb!important;
+}
+/* top */
+.communication_ContactUs > article > .top_wrap {
+    width: 100%;
+    padding-bottom: 60px;
+    box-sizing: border-box;
+
+    border-bottom: 1px solid #dddddd;
+}
+.communication_ContactUs > article > .top_wrap > div:first-child {
+    width: 100%;
+    margin-bottom: 12px;
+    text-align: right;
+    font-size: 15px;
+
+}
+.communication_ContactUs > article > .top_wrap input {
+    padding: 10px 10px;
+    height: 32px;
+    border: 1px solid #dddddd;
+    box-sizing: border-box;
+}
+.communication_ContactUs > article > .top_wrap > ul {
+    width: 100%;
+
+}
+.communication_ContactUs > article > .top_wrap > ul > li {
+    width: 100%;
+    margin-bottom: 10px;
+
+    display: flex;
+    font-size: 14px;
+    color: #666666;
+}
+.communication_ContactUs > article > .top_wrap > ul > li > div:nth-child(2) {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #666666;
+}
+.communication_ContactUs > article > .top_wrap > ul > li > div:nth-child(1) {
+    width: 15%;
+}
+
+.communication_ContactUs > article > .top_wrap > ul > li:nth-child(1) > div > input {width: 100%;}
+.communication_ContactUs > article > .top_wrap > ul > li:nth-child(2) > div > input {width: 100%;}
+.communication_ContactUs > article > .top_wrap > ul > li:nth-child(3) > div > input {width: 30%;}
+.communication_ContactUs > article > .top_wrap > ul > li:nth-child(4) > div > input {width: 30%;}
+.communication_ContactUs > article > .top_wrap > ul > li:nth-child(5) > div > input {width: 48%;}
+.communication_ContactUs > article > .top_wrap > ul > li:nth-child(6) > div > textarea {
+    width: 100%; height: 330px; max-height: 330px; overflow: scroll;
+    border: 1px solid #dddddd;
+}
+.communication_ContactUs > article > .top_wrap > ul > li:nth-child(6) > div > textarea {
+    outline: none;
+}
+
+
+/* middle */
+.communication_ContactUs > article > .middle_wrap {
+    width: 100%;
+    padding: 60px 0 150px 0;
+    box-sizing: border-box;
+}
+.communication_ContactUs > article > .middle_wrap > div:first-child {
+    font-size: 15px;
+    color: #666666;
+}
+.communication_ContactUs > article > .middle_wrap > table {
+    width: 100%;
+    margin: 10px 0 20px 0;
+    border: 1px solid #dddddd;
+
+    font-size: 15px;
+    color: #666666;
+    text-align: center;
+
+}
+.communication_ContactUs > article > .middle_wrap > table tr {
+    border: 1px solid #dddddd;
+}
+.communication_ContactUs > article > .middle_wrap > table th {
+    padding: 10px 0;
+    background-color: #f3f3f3;
+    border: 1px solid #dddddd;
+}
+.communication_ContactUs > article > .middle_wrap > table td {
+    padding: 10px 0;
+    border: 1px solid #dddddd;
+    vertical-align: middle;
+}
+/* ------ */
+.communication_ContactUs > article > .middle_wrap > ul {
+    width: 100%;
+    margin-bottom: 50px;
+}
+.communication_ContactUs > article > .middle_wrap > ul > li {
+    margin-bottom: 7px;
+    padding-left: 20px;
+    box-sizing: border-box;
+
+    background-position: left 10px center;
+    background-repeat: no-repeat;
+    background-size: 4px;
+
+    font-size: 14px;
+    color: #666666;
+}
+/* ------ */
+.communication_ContactUs > article > .middle_wrap > .btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.communication_ContactUs > article > .middle_wrap > .btn > button {
+    padding: 10px 20px;
+    box-sizing: border-box;
+
+    border: none;
+    border-radius: 5px;
+    background-color: #1174c9;
+
+    color: #ffffff;
+}
+
+
+
+
+
+
+
+
+/* -----------태블릿----------- */
+@media only screen and ( max-width: 1140px ) {
+
+    /* 04_communication all */
+    .communication_all > article {
+        width: 100%;
+        padding: 0 4%;
+        box-sizing: border-box;
+    }
+
+    /* ------------------------- */
+    /* 04_1_communication_news */
+    .communication_news > article > ul > li > a {
+        height: 178px;
+        padding: 20px 0;
+    }
+    .communication_news > article > ul > li > a > div:nth-child(1) {
+        width: 200px;
+        min-width: 200px;
+        height: 138px;
+    }
+    .communication_news > article > ul > li > a > div:nth-child(2) {
+        height: 138px;
+    }
+    .communication_news > article > ul > li > a > #option_btn > img{
+        width: 25px;
+    }
+    /* ------ */
+    .communication_news > article > .list_bottom {
+        flex-direction: column;
+        align-items: center;
+    }
+    .communication_news > article > .list_bottom > div:nth-child(1) {
+        width: 100%;
+        margin-bottom: 50px;
+        position: unset;
+        transform: translate(0,0);
+    }
+    .communication_news > article > .list_bottom > div:nth-child(2) {
+        justify-content: center;
+    }
+    .communication_news > article > ul > li > a > div:nth-child(2) > div:nth-child(2) {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    .communication_news > article > ul > li > a > div:nth-child(2) > div:nth-child(3) {
+        font-size: 14px;
+    }
+
+}
+
+
+
+
+
+
+/* -----------모바일----------- */
+@media only screen and ( max-width: 620px ) {
+
+    /* ------------------------- */
+    /* 04_1_communication_news */
+    .communication_news > article > .list_top {
+        padding-bottom: 10px;
+    }
+    .communication_news > article > .list_top > div:nth-child(2) > input {
+        width: 140px;
+        height: 30px;
+    }
+    .communication_news > article > .list_top > div:nth-child(2) > button {
+        width: 30px;
+        height: 30px;
+
+        background-size: 18px;
+    }
+    /* ----- */
+    .communication_news > article > ul > li > a {
+        height: 140px;
+    }
+    .communication_news > article > ul > li > a > div:nth-child(1) {
+        width: 120px;
+        min-width: 120px;
+        height: 90px;
+        margin-right: 10px;
+    }
+    .communication_news > article > ul > li > a > div:nth-child(2) {
+        height: 92px;
+    }
+    .communication_news > article > ul > li > a > div:nth-child(2) > div:nth-child(1) {
+        font-size: 9px;
+        margin-bottom: 10px;
+    }
+    .communication_news > article > ul > li > a > div:nth-child(2) > div:nth-child(2) {
+        font-size: 14px;
+        margin-bottom: 7px;
+    }
+    .communication_news > article > ul > li > a > div:nth-child(2) > div:nth-child(3) {
+        font-size: 12px;
+    }
+
+    /* ----- */
+    .communication_news > article > ul > li > a > #option_btn {
+        top: 10px;
+    }
+    .communication_news > article > ul > li > a > #option_btn > img {
+        width: 20px;
+    }
+
+    /* ----- */
+    .communication_news > article > .list_bottom {
+        margin-top: 10px;
+        margin-bottom: 60px;
+    }
+    .communication_news > article > .list_bottom > div:nth-child(1) > ul {
+        margin: 0 5px;
+    }
+    .communication_news > article > .list_bottom > div:nth-child(1) > div > img {
+        margin: 0 5px;
+    }
+    .communication_news > article > .list_bottom > div:nth-child(1) > ul > li {
+        font-size: 11px;
+    }
+    .communication_news > article > .list_bottom > div:nth-child(2) > button {
+        padding: 8px 15px;
+        font-size: 13px;
+    }
+
+    /* ------------------------- */
+    /* 04_1_communication_news - pop-up */
+    #pop-up_post > div:nth-child(1) {
+        font-size: 16px;
+    }
+    #pop-up_post > ul > li > div {
+        font-size: 12px;
+    }
+
+    /* pop-up_login */
+    #pop-up_login > ul > li > div {
+        font-size: 12px;
+    }
+
+    /* ------------------------- */
+    /* 04_2_communication_news_view */
+    .communication_news_view > article > .tit {
+        margin: 40px 0 30px 0;
+    }
+    .communication_news_view > article > .tit > div:nth-child(1) {
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+    .communication_news_view > article > .tit > div:nth-child(2) {
+        font-size: 11px;
+    }
+    .communication_news_view > article > .con {
+        padding-bottom: 40px;
+    }
+
+    .communication_news_view > article > .btn {
+        margin: 10px 0 80px 0;
+    }
+
+    /* ------------------------- */
+    /* 04_3_communication_ContactUs */
+    .communication_ContactUs > article > .top_wrap {
+        padding-bottom: 30px;
+    }
+    .communication_ContactUs > article > .top_wrap > div:first-child {
+        font-size: 13px;
+    }
+    .communication_ContactUs > article > .top_wrap input {
+        height: 28px;
+        padding: 5px 5px;
+        font-size: 13px;
+    }
+    .communication_ContactUs > article > .top_wrap > ul > li > div:nth-child(1) {
+        width: 25%;
+        font-size: 13px;
+    }
+    /* ----- */
+    .communication_ContactUs > article > .middle_wrap {
+        padding: 30px 0 70px 0;
+    }
+    .communication_ContactUs > article > .middle_wrap > div:first-child {
+        font-size: 14px;
+    }
+    .communication_ContactUs > article > .middle_wrap > table {
+        margin: 10px 0 10px 0;
+        font-size: 13px;
+    }
+    .communication_ContactUs > article > .middle_wrap > ul {
+        margin-bottom: 15px;
+    }
+    .communication_ContactUs > article > .middle_wrap > ul > li {
+        background-position: left 10px top 5px;
+        font-size: 14px;
+    }
+    .communication_ContactUs > article > .middle_wrap > .btn > button {
+        font-size: 15px;
+    }
+
+
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default (params) => {
     return(
@@ -8,7 +9,7 @@ export default (params) => {
                <div className="col-md-4">
                    <div className="full">
                       <div className="logo_footer">
-                        <a href="#"><img width="210" src={require("../../Asset/Image/logo.png").default} alt="#" /></a>
+                        <Link to="/"><img width="210" src={require("../../Asset/Image/logo.png").default} alt="#" /></Link>
                       </div>
                       <div className="information_f">
                         <p><strong>ADDRESS:</strong> 28 White tower, Street Name New York City, USA</p>
@@ -25,12 +26,11 @@ export default (params) => {
                      <div className="widget_menu">
                         <h3>Menu</h3>
                         <ul>
-                           <li><a href="#">Home</a></li>
-                           <li><a href="#">About</a></li>
-                           <li><a href="#">Services</a></li>
-                           <li><a href="#">Testimonial</a></li>
-                           <li><a href="#">Blog</a></li>
-                           <li><a href="#">Contact</a></li>
+                           <li><Link to="/">Home</Link></li>
+                           <li><Link to="/Zzal">ZZal</Link></li>
+                           <li><Link to="/Devpia">DEV Pia</Link></li>
+                           <li><Link to="/Lounge">Lounge</Link></li>
+                           <li><Link to="/Contact">Contact</Link></li>
                         </ul>
                      </div>
                   </div>
@@ -38,12 +38,12 @@ export default (params) => {
                      <div className="widget_menu">
                         <h3>Account</h3>
                         <ul>
-                           <li><a href="#">Account</a></li>
-                           <li><a href="#">Checkout</a></li>
-                           <li><a href="#">Login</a></li>
-                           <li><a href="#">Register</a></li>
-                           <li><a href="#">Shopping</a></li>
-                           <li><a href="#">Widget</a></li>
+                           <li><Link to="#">Account</Link></li>
+                           <li><Link to="#">Checkout</Link></li>
+                           <li><Link to="#">Login</Link></li>
+                           <li><Link to="#">Register</Link></li>
+                           <li><Link to="#">Shopping</Link></li>
+                           <li><Link to="#">Widget</Link></li>
                         </ul>
                      </div>
                   </div>

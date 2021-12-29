@@ -1,9 +1,12 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import StartPage from "../Contents/StartPage";
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
 
+/**
+ * [일반 페이지 레이어]
+ * desc: Header 와 Footer 사용 
+ */
 export default () => {
 
 

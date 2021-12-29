@@ -570,10 +570,10 @@ a:focus {
 .why_section .box {
     text-align: center;
     margin-top: 45px;
-    background-color: #002c3e;
+    background-color: #ececec;
     padding: 45px 50px;
     border-radius: 5px;
-    color: #ffffff;
+    color: #000000;
 }
 
 .detail-box h5 {
