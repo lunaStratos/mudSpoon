@@ -1,5 +1,6 @@
 package com.lunastratos.mudspoon.Repository
 
+import com.lunastratos.mudspoon.Entity.QStickerEntity
 import com.lunastratos.mudspoon.Entity.QTestEntity
 import com.lunastratos.mudspoon.Entity.StickerEntity
 import com.lunastratos.mudspoon.Entity.TestEntity

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 @Service
 class LoungeService @Autowired constructor(
     private val loungeRepo: LoungeRepository,
-    private val QLungeRepository: QLoungeRepository
+    private val QLungeRepo: QLoungeRepository
 ){
 
    fun save(entity: LoungeEntity){
@@ -20,6 +20,8 @@ class LoungeService @Autowired constructor(
     /**
      * 게시판 리스트
      *
+     * QueryDsl을 이용해서
+     *
      * @param page :
      * @param title :
      * */
@@ -27,12 +29,16 @@ class LoungeService @Autowired constructor(
         val allCount = loungeRepo.count().toInt()
         val startEndArray = BoardPaging(allCount, page)
 
+        var response: List<LoungeEntity>
+
         // 검색어 있으면 검색조건 거침
         if(!search.equals("")){
+            val start = startEndArray.startPage
+            response = QLungeRepo.selectBoardList(start.toLong())
 
+        }else{
+            val start = startEndArray.startPage
+            response = QLungeRepo.selectBoardSearchList(start.toLong(), search)
         }
-
-
-
     }
 }

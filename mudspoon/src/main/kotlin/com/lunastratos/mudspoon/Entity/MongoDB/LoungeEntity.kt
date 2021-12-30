@@ -11,6 +11,8 @@ import javax.persistence.*
  * DB: 몽고 DB
  * @Entity를 써야 QueryDSL에서 인식
  * */
+@Entity
+@QueryEntity
 @Document(collection = "t_lounge")
 data class LoungeEntity (
 

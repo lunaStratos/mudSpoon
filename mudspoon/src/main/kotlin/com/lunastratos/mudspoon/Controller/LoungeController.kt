@@ -41,19 +41,17 @@ class LoungeController @Autowired constructor(
     @RequestMapping("/List/{page}/{search}", method = arrayOf(RequestMethod.GET))
     @ResponseBody
     fun List(
-        @RequestParam("page",  required = false, defaultValue = "1",) page: Int,
-        @RequestParam("search",  required = false, defaultValue = "",) search: String
+        @RequestParam("page",  required = false, defaultValue = "1") page: Int,
+        @RequestParam("search",  required = false, defaultValue = "") search: String
     ): ResponseEntity<*>? {
 
-
-        val startPage = 1
-        val endPage = 1
-        val boardList = {}
-
+        var startPage = 1
+        var endPage = 1
+        var boardList = {}
 
         val getBoardList = loungeService.selectBoardList(page, search)
 
-        return ResponseEntity.ok<Any>("User registered successfully!")
+        return ResponseEntity.ok<Any>(getBoardList)
     }
 
     /**
