@@ -14,6 +14,7 @@ class QLoungeRepository  (
     fun selectBoardList(startPage: Long): List<LoungeEntity> {
         val item = QLoungeEntity.loungeEntity
         val res : List<LoungeEntity> = jpaQueryFactory.selectFrom(item)
+            .orderBy(item.id.asc())
             .limit(startPage).offset(10)
             .fetch()
         return res
@@ -22,6 +23,7 @@ class QLoungeRepository  (
         val item = QLoungeEntity.loungeEntity
         val res : List<LoungeEntity> = jpaQueryFactory.selectFrom(item)
             .where(item.auther.like(search).or(item.contents.like(search)))
+            .orderBy(item.id.asc())
             .limit(startPage).offset(10)
             .fetch()
         return res
