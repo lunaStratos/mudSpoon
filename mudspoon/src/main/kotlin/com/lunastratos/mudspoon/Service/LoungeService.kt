@@ -1,6 +1,6 @@
 package com.lunastratos.mudspoon.Service
 
-import com.lunastratos.mudspoon.Entity.MongoDB.LoungeEntity
+import com.lunastratos.mudspoon.Entity.LoungeEntity
 import com.lunastratos.mudspoon.Repository.LoungeRepository
 import com.lunastratos.mudspoon.Repository.QLoungeRepository
 import com.lunastratos.mudspoon.Util.BoardPaging
@@ -25,7 +25,7 @@ class LoungeService @Autowired constructor(
      * @param page :
      * @param title :
      * */
-    fun selectBoardList(page: Int, search:String){
+    fun selectBoardList(page: Int, search:String) : List<LoungeEntity> {
         val allCount = loungeRepo.count().toInt()
         val startEndArray = BoardPaging(allCount, page)
 
@@ -34,11 +34,12 @@ class LoungeService @Autowired constructor(
         // 검색어 있으면 검색조건 거침
         if(!search.equals("")){
             val start = startEndArray.startPage
-            response = QLungeRepo.selectBoardList(start.toLong())
-
+            response = QLungeRepo.selectBoardSearchList(start.toLong(), search)
         }else{
             val start = startEndArray.startPage
-            response = QLungeRepo.selectBoardSearchList(start.toLong(), search)
+            response = QLungeRepo.selectBoardList(start.toLong())
         }
+
+        return response
     }
 }

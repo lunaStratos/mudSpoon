@@ -1,5 +1,7 @@
 package com.lunastratos.mudspoon.Util
 
+import org.json.JSONObject
+
 /**
  * 일반 유틸
  * 일반 유틸 로직 담당
@@ -11,9 +13,15 @@ package com.lunastratos.mudspoon.Util
  * @version     1.0
  * @author      LunaStratos (LunaStratos@gmail.com)
  */
-class CommonUil {
+class CommonUtil {
 
     fun test() : String{
         return "test"
+    }
+
+    fun getResultJson() : JSONObject{
+        var result = JSONObject()
+        result.put("status" , 1000)
+        return result
     }
 }

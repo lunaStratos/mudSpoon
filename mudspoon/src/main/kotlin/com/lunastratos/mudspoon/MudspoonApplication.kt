@@ -6,7 +6,7 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.PropertySource
 
 //(exclude = [DataSourceAutoConfiguration::class])
-@SpringBootApplication(exclude = [DataSourceAutoConfiguration::class])
+@SpringBootApplication
 @PropertySource("classpath:/common.properties")
 class MudspoonApplication
 

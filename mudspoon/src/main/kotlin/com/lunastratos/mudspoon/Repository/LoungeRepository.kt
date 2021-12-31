@@ -1,6 +1,7 @@
 package com.lunastratos.mudspoon.Repository
 
-import com.lunastratos.mudspoon.Entity.MongoDB.LoungeEntity
+import com.lunastratos.mudspoon.Entity.LoungeEntity
+import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.data.querydsl.QuerydslPredicateExecutor
 import org.springframework.stereotype.Repository
@@ -19,4 +20,4 @@ import org.springframework.stereotype.Repository
  */
 
 @Repository
-interface LoungeRepository : MongoRepository<LoungeEntity, Long>
+interface LoungeRepository : JpaRepository<LoungeEntity, Long>

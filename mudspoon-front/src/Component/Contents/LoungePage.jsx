@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{useState, useEffect}from 'react';
 import {Link } from 'react-router-dom';
 import styled from 'styled-components';
 import "../../Asset/Css/zzal.css";
+import loungeAPi from "../Api/LoungeApi";
 
 const MyBlock = styled.div`
     .wrapper-class{
@@ -19,7 +20,44 @@ const MyBlock = styled.div`
 
 export default function (props) {
 
+    const [contents, setContents] = useState("");
+    const [data, setData] = useState([]);
+
+    // 글 변경 
+    function doWrite(e){
+        const text = e.target.value;
+        setContents(text);
+    }
+
+
+    /**
+     * [글쓰기]
+     */
+    async function doSubmit (e){
+        const response = await loungeAPi.doSubmitApi(contents);
+        if(response.data.status === 1000){
+            alert("글쓰기가 완료되었습니다.");
+            setContents("");
+        }
+    }
+
+    async function getReadList () {
+        const response = await loungeAPi.getListApi("1", "");
+        console.log(response);
+        if(response.data.status === 1000){
+            setData(response.data.list);
+        }
+        
+    }
+
     const useSelectStyle = {"user-select": "auto"}
+
+    useEffect( async() => {
+       await getReadList();
+        return () => {
+            
+        }
+    }, []);
 
     return (
         <div>
@@ -36,7 +74,7 @@ export default function (props) {
                         </div>
                         <div className="list_write">
                             <div>
-                                <textarea>글쓰기 내용 채우기</textarea>
+                                <textarea placeholder='글쓰기 내용 채우기' onChange={(e) => doWrite(e)}></textarea>
                             </div>
                         </div>
                         <div className="list_write" style={useSelectStyle}>
@@ -51,7 +89,7 @@ export default function (props) {
                             </div>
 
                             <div style={useSelectStyle}>
-                            <button style={useSelectStyle}>글쓰기!</button>
+                            <button style={useSelectStyle} onClick={(e) => doSubmit()}>글쓰기!</button>
                             </div>
                         </div>
 
@@ -67,18 +105,20 @@ export default function (props) {
                         {/* <!-- 게시물 map  --> */}
 
                         <ul style={useSelectStyle}>
-                            <li style={useSelectStyle} >
-                                <Link to="#"  style={useSelectStyle}>
-                                    <div style={useSelectStyle}><img src="" alt="" style={useSelectStyle}/></div>
-                                    <div style={useSelectStyle}>
-                                        <div style={useSelectStyle}>asd</div>
-                                        <div style={useSelectStyle}>asd</div>
-                                        <div style={useSelectStyle}>asd</div>
-                                    </div>
-                                    
-                                </Link>
-                            </li>
-
+                            {
+                                data.map(item => (
+                                    <li style={useSelectStyle} >
+                                    <Link to="#"  style={useSelectStyle}>
+                                        <div style={useSelectStyle}><img src="" alt="" style={useSelectStyle}/></div>
+                                        <div style={useSelectStyle}>
+                                            <div style={useSelectStyle}>{item.auther}</div>
+                                            <div style={useSelectStyle}>{item.contents}</div>
+                                            <div style={useSelectStyle}>{item.createAt}</div>
+                                        </div>
+                                    </Link>
+                                     </li>
+                                ))
+                            }
                         </ul>
 
 

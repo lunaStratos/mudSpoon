@@ -1,9 +1,10 @@
 package com.lunastratos.mudspoon.Controller
 
 import com.lunastratos.mudspoon.Api.External.NaverApi
-import com.lunastratos.mudspoon.Entity.MongoDB.LoungeEntity
+import com.lunastratos.mudspoon.Entity.LoungeEntity
 import com.lunastratos.mudspoon.Service.LoungeService
-import com.lunastratos.mudspoon.Util.BoardPaging
+import com.lunastratos.mudspoon.Util.CommonUtil
+import org.json.JSONObject
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.*
  * @author      LunaStratos (LunaStratos@gmail.com)
  */
 @RestController
-@RequestMapping("/Lounge")
+@RequestMapping("/lounge")
 class LoungeController @Autowired constructor(
     private val loungeService: LoungeService
     ){
@@ -38,20 +39,23 @@ class LoungeController @Autowired constructor(
      * @param page Int
      * @param title String
      * */
-    @RequestMapping("/List/{page}/{search}", method = arrayOf(RequestMethod.GET))
+    @RequestMapping("/list/{page}", method = arrayOf(RequestMethod.GET))
     @ResponseBody
-    fun List(
-        @RequestParam("page",  required = false, defaultValue = "1") page: Int,
-        @RequestParam("search",  required = false, defaultValue = "") search: String
+    fun list(
+        @PathVariable("page",  required = true) page: String,
+        @RequestParam("search",  required = true, defaultValue = "") search: String
     ): ResponseEntity<*>? {
 
+        println("${page} ${search}")
         var startPage = 1
         var endPage = 1
         var boardList = {}
 
-        val getBoardList = loungeService.selectBoardList(page, search)
+        val getBoardList = loungeService.selectBoardList(page.toInt(), search)
+        var result = CommonUtil().getResultJson()
+        result.put("list", getBoardList)
 
-        return ResponseEntity.ok<Any>(getBoardList)
+        return ResponseEntity.ok<Any>(result.toString())
     }
 
     /**
@@ -59,13 +63,25 @@ class LoungeController @Autowired constructor(
      *
      * @param
      * */
-    @RequestMapping("/write", method = arrayOf(RequestMethod.GET))
+    @RequestMapping("/write", method = arrayOf(RequestMethod.POST), produces = arrayOf("application/json"))
     @ResponseBody
-    fun write(@RequestParam loungeEntity: LoungeEntity): String {
+    fun write(
+        @RequestBody payLoad: String
+    ): ResponseEntity<*>? {
+        var param = JSONObject(payLoad)
+        val contents = param.get("contents") as String
+        println("contents ${contents}")
+
+        var loungeEntity = LoungeEntity()
+        loungeEntity.auther = "asdf"
+        loungeEntity.contents = contents
+        loungeEntity.id = 23
 
         loungeService.save(loungeEntity)
 
-        return "ok"
+        var result = CommonUtil().getResultJson()
+
+        return ResponseEntity.ok<Any>(result.toString())
     }
 
 }
