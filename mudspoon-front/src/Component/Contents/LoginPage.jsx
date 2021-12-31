@@ -1,8 +1,12 @@
 import axios from 'axios';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import "../../Asset/Css/LoginPage.css";
+import LoginApi from "../Api/LoginApi";
+import {Cookies,useCookies} from "react-cookie";
 
 export default () => {
+
+    const [cookies, setCookie] = useCookies(['token']);
 
     const [account, setAccount] = useState({
         email: "",
@@ -22,11 +26,44 @@ export default () => {
     } 
 
     /** 로그인 */
-    const onSignIn = () =>{
-        console.log(account);
-        axios.post("http://localhost:8080/api/auth/SignIn", account).then(response => console.log(response))
-    
+    const onSignIn = async() =>{
+        const response = await LoginApi.doLogin(account);
+        if(response.data.status === 1000){
+
+            setCookie("token", {
+                accessToken: response.data.accessToken , 
+                refreshToken: response.data.refreshToken
+            });
+        }
+        
     }
+
+    useEffect(async () => {
+        console.log(cookies);
+
+        if (cookies !== undefined) {
+            console.log("okj");
+
+            const response = await LoginApi.doRefreshToken(cookies.token)
+    
+            switch(response.data.status){
+                case 1000: // 로그인 성공
+                    // 특별히 할게없음
+                break;
+
+                case 1010: // 로그인 성공 => 재갱신 
+                setCookie("token", {
+                    accessToken: response.data.accessToken , 
+                    refreshToken: response.data.refreshToken
+                });
+                break;
+            }
+        }
+
+        return () => {
+            
+        }
+    }, []);
 
     return(
         <div className="LoginPage">

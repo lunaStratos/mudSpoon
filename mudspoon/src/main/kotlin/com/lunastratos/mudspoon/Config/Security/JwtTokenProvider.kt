@@ -67,7 +67,6 @@ class JwtTokenProvider(
             it.setClaims(
                 // username = id 입니다.(PK)
                 Jwts.claims().setSubject(email)
-
             )
                 .setIssuedAt(now)
                 .setExpiration(Date(now.time + refreshTokenValidTime.toLong()))

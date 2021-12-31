@@ -70,7 +70,7 @@ class WebSecurityConfig(
                     .authenticationEntryPoint(RestAuthenticationEntryPoint())
                 .and()
                     .authorizeRequests()
-                    .antMatchers("api/Account/My/**").hasRole("USER") // 프로필 부분 체크
+                    .antMatchers("api/account/my/**").hasRole("USER") // 프로필 부분 체크
                     .anyRequest().permitAll()               // 나머지 요청 ok
                 .and()
                     .addFilterBefore(JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter::class.java )

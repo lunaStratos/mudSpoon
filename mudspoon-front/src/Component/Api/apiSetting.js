@@ -50,3 +50,14 @@ loungeApi.interceptors.response.use(rp_onFulfilled, rp_onRejected);
 });
 stickerApi.interceptors.request.use(rq_onFulfilled, rq_onRejected);
 stickerApi.interceptors.response.use(rp_onFulfilled, rp_onRejected);
+
+/**
+ * 로그인 APi
+ */
+ export const loginApi = axios.create({
+    baseURL: `/api/account`,
+    headers: headers,
+    withCredentials: false,
+});
+loginApi.interceptors.request.use(rq_onFulfilled, rq_onRejected);
+loginApi.interceptors.response.use(rp_onFulfilled, rp_onRejected);

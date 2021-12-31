@@ -22,6 +22,10 @@ export default function (props) {
 
     const [contents, setContents] = useState("");
     const [data, setData] = useState([]);
+    const [nowPage, setNowPage] = useState({
+        page: 1,
+        search :""
+    });
 
     // 글 변경 
     function doWrite(e){
@@ -38,12 +42,17 @@ export default function (props) {
         if(response.data.status === 1000){
             alert("글쓰기가 완료되었습니다.");
             setContents("");
+            
+            // 리플래시
+            await getReadList();
+            //페이지 업 
+            window.scrollTo(0, 0);
         }
     }
 
+    //글 읽기
     async function getReadList () {
-        const response = await loungeAPi.getListApi("1", "");
-        console.log(response);
+        const response = await loungeAPi.getListApi(nowPage);
         if(response.data.status === 1000){
             setData(response.data.list);
         }

@@ -7,8 +7,7 @@ import com.lunastratos.mudspoon.Entity.RoleType
 import com.lunastratos.mudspoon.Entity.UserEntity
 import com.lunastratos.mudspoon.Service.RedisService
 import com.lunastratos.mudspoon.Service.UserService
-import org.bson.json.JsonObject
-import org.json.simple.JSONObject
+import com.lunastratos.mudspoon.Util.CommonUtil
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.*
 
 
 @RestController
-@RequestMapping("/Auth")
+@RequestMapping("/account")
 class AuthController(
     private val authenticationManager: AuthenticationManager,
     private val tokenProvider: JwtTokenProvider,
@@ -31,10 +30,14 @@ class AuthController(
 ) {
     private val log: Logger = LoggerFactory.getLogger(AuthController::class.java)
 
-    //@Throws(Exception::class)
-    @PostMapping("/SignIn")
-    fun SignIn(@RequestBody authReqModel: AuthEntity): String {
-            try {
+    /**
+     * 로그인
+     * */
+    @PostMapping("/login")
+    fun SignIn(@RequestBody authReqModel: AuthEntity): ResponseEntity<*>? {
+        var result = CommonUtil().getResultJson()
+
+        try {
                 val email = authReqModel.email
                 val prin = UsernamePasswordAuthenticationToken(
                     email,
@@ -57,24 +60,30 @@ class AuthController(
 
                 redisService.setDataExpired(email, refreshToken)
 
+                result.put("accessToken", accessToken)
+                result.put("refreshToken", refreshToken)
 
-                var json = JSONObject()
-                json.put("accessToken", accessToken)
-                json.put("refreshToken", refreshToken)
-                return json.toJSONString()
+                return ResponseEntity.ok<Any>(result.toString())
+
             }catch (e:BadCredentialsException){
-                return e.message +""
+                result.put("status", 9000)
+                return ResponseEntity.ok<Any>(result.toString())
             }
 
     }
 
-    /** 등록 */
-    @PostMapping("/Register")
+    /**
+     * 회원가입
+     * */
+    @PostMapping("/register")
     fun Register(@RequestBody param: RegisterEntity): ResponseEntity<*>? {
+        var result = CommonUtil().getResultJson()
+        
         if (!userService.selectUserByEmail(param.email!!).isEmpty()) {
+            result.put("status", 9000)
             return ResponseEntity
                 .badRequest()
-                .body<Any>("Error: Email is already in use!")
+                .body<Any>(result.toString())
         }
 
         val createUser = UserEntity(
@@ -86,76 +95,101 @@ class AuthController(
             null,
             null
         )
-
+        
+        // 회원가입
         userService.save(createUser)
 
-        return ResponseEntity.ok<Any>("User registered successfully!")
+        return ResponseEntity.ok<Any>(result.toString())
     }
 
     /**
-     * 확인 테스트
+     * 상태 확인 테스트
+     * 맞는지 아닌지 보는 기능
      * */
-    @PostMapping("/info")
-    fun getInfo(@RequestHeader(value = "Authorization") authorization: String ): String {
+    @PostMapping("/tokenCheck")
+    fun getInfo(@RequestHeader(value = "Authorization") authorization: String ): ResponseEntity<*>? {
+
+        var result = CommonUtil().getResultJson()
         println(authorization)
-        val token = tokenProvider.resolveTokenInfo(authorization)
-        val details = tokenProvider.getUserId(token)
-        println(details)
-        return ""
+        try {
+            val token = tokenProvider.resolveTokenInfo(authorization)
+            val details = tokenProvider.getUserId(token)
+            println(details)
+            return  ResponseEntity.ok<Any>(result.toString())
+        }catch (e:Exception){
+            result.put("status", 5000)
+            result.put("message", "토큰에러")
+
+            return  ResponseEntity
+                .badRequest()
+                .body<Any>(result.toString())
+        }
+
 
 
     }
 
     /**
-     * 확인 테스트
+     * 리플레시 토큰
      * */
-    @PostMapping("/RefreshToken")
-    fun RefreshToken(@RequestHeader(value = "Authorization") authorization: String,
-                     @RequestHeader(value = "Refresh-Token") refresh: String): String {
+    @PostMapping("/refreshToken")
+    fun refreshToken(@RequestHeader(value = "Authorization") authorization: String,
+                     @RequestHeader(value = "RefreshToken") refresh: String): ResponseEntity<*>? {
+        val result = CommonUtil().getResultJson()
+
+        println("authorization ${authorization}")
+        println("refresh ${refresh}")
 
         val accessToken = tokenProvider.resolveTokenInfo(authorization)
-        val refreshToken = refresh
+        val refreshToken = tokenProvider.resolveTokenInfo(refresh)
 
         // 엑세스 토큰으로 검사
         val getTokenEmail = tokenProvider.getUserId(accessToken)
         val getTokenLife = tokenProvider.validateToken(accessToken)
+
         println(getTokenEmail)
         println(getTokenLife)
 
         //이메일로 리플레시 토큰 얻어오기
         val redisRefreshToken = redisService.getData(getTokenEmail)!!
+        println("redisRefreshToken ${redisRefreshToken} ${redisRefreshToken.equals(refreshToken)}")
 
-        //토큰이 살아있는가?
+        //토큰이 살아있는가? => 정상로그인
         if(getTokenLife){
-            return "엑세스토큰 안죽음"
+            return ResponseEntity.ok<Any>(result.toString())
         }
 
-        //리플레시토큰이 없는가?
+        //리플레시토큰이 없는가? => 재로그인
         if(redisRefreshToken.isEmpty()){
-            return "님토큰없음"
+            result.put("status", 5000)
+            return ResponseEntity.ok<Any>(result.toString())
         }
 
-        //리플레시토큰이 같지 않은가?
+        //리플레시토큰이 같지 않은가? => 재로그인
         if(!redisRefreshToken.equals(refreshToken)){
-            return "토큰이 안같은데?"
+            result.put("status", 5000)
+            return ResponseEntity.ok<Any>(result.toString())
         }
 
-
-        //RefreshToken 생성후 저장
+        //RefreshToken 생성후 Redis에 저장
         val newRefreshToken = tokenProvider.createRefreshToken()
         val newAccessToken = tokenProvider.createToken(getTokenEmail)
         redisService.setDataExpired(getTokenEmail, newRefreshToken)
 
-        return ""
+        result.put("status" , 1010) // 재갱신
+        result.put("accessToken" , newAccessToken)
+        result.put("refreshToken" , newRefreshToken)
 
+        return ResponseEntity.ok<Any>(result.toString())
 
     }
 
 
     /**
-     * 확인 테스트
+     * [로그아웃]
+     * 토큰 삭제
      * */
-    @PostMapping("/Logout")
+    @PostMapping("/logout")
     fun Logout(@RequestHeader(value = "Authorization") authorization: String ): String {
         println(authorization)
         val token = tokenProvider.resolveTokenInfo(authorization)

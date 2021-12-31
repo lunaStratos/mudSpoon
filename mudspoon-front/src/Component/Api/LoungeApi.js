@@ -6,7 +6,7 @@ export default class LoungeApi {
     /**
      * 라운지 - LIST
      * */
-    static getListApi = async (page, search)=>{
+    static getListApi = async ({page, search})=>{
 
         const params = {
             "page"         : page,
