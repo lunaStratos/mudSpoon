@@ -3,8 +3,12 @@ import React, {useState, useEffect} from 'react';
 import "../../Asset/Css/LoginPage.css";
 import LoginApi from "../Api/LoginApi";
 import {Cookies,useCookies} from "react-cookie";
+import {useNavigate  } from "react-router-dom";
 
 export default () => {
+
+    const navigate = useNavigate();
+
 
     const [cookies, setCookie] = useCookies(['token']);
 
@@ -34,6 +38,8 @@ export default () => {
                 accessToken: response.data.accessToken , 
                 refreshToken: response.data.refreshToken
             });
+            navigate("/");
+
         }
         
     }
