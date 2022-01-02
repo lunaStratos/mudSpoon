@@ -32,6 +32,7 @@ class AuthController(
 
     /**
      * 로그인
+     * desc: 로그인 post 시 작동
      * */
     @PostMapping("/login")
     fun SignIn(@RequestBody authReqModel: AuthEntity): ResponseEntity<*>? {
@@ -74,6 +75,7 @@ class AuthController(
 
     /**
      * 회원가입
+     * desc: post, 등록시작동
      * */
     @PostMapping("/register")
     fun Register(@RequestBody param: RegisterEntity): ResponseEntity<*>? {
@@ -84,6 +86,14 @@ class AuthController(
             return ResponseEntity
                 .badRequest()
                 .body<Any>(result.toString())
+        }
+
+        val isExist =  userService.isExist(param.email)
+
+        // 이미 존재하는 아이디
+        if(isExist > 0){
+            result.put("status", 2000)
+            return ResponseEntity.ok<Any>(result.toString())
         }
 
         val createUser = UserEntity(
@@ -101,6 +111,25 @@ class AuthController(
 
         return ResponseEntity.ok<Any>(result.toString())
     }
+
+    /**
+     * 회원가입시 이미 가입된 아이디 체크
+     * */
+    @PostMapping("/register/isExsit")
+    fun isExist(@RequestBody email: String): ResponseEntity<*>? {
+        var result = CommonUtil().getResultJson()
+
+        val isExist =  userService.isExist(email)
+
+        // 이미 존재하는 아이디
+        if(isExist > 0){
+            result.put("status", 2000)
+            return ResponseEntity.ok<Any>(result.toString())
+        }
+
+        return ResponseEntity.ok<Any>(result.toString())
+    }
+
 
     /**
      * 상태 확인 테스트

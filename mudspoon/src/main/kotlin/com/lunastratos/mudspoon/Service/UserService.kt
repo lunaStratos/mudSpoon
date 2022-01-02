@@ -19,6 +19,10 @@ class UserService @Autowired constructor (
         return qUserRepo.selectUserByEmail(email)
     }
 
+    fun isExist(email:String):Long {
+        return qUserRepo.isExist(email)
+    }
+
     fun save(userEntity: UserEntity){
         userRepo.save(userEntity)
     }

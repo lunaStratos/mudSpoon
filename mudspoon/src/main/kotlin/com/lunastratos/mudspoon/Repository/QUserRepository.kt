@@ -30,4 +30,12 @@ class QUserRepository (
         return userEntity
     }
 
+    fun isExist(email:String) : Long {
+        val userQEM = QUserEntity.userEntity
+        val value = query.selectFrom(userQEM).where(
+            userQEM.email.eq(email)
+        ).fetchCount()
+        return value
+    }
+
 }
