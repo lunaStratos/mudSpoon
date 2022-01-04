@@ -1119,3 +1119,772 @@ form input[type="submit"]:focus {
     font-size: 15px;
     font-weight: 400;
 }
+
+/* ============================================= 별도 CSS =================================================== */
+
+/* ########## all page 모든 페이지 공통 ########## */
+body{ line-height: 1.3; }
+
+section { width: 100%; }
+article { width: 100%; }
+
+.main_page { padding: 0; background: linear-gradient( to right, #3600c4, #1e057c ); }
+.map_page { padding: 0; }
+.sub_page { min-height: 100vh; padding-top: 0px; font-size: 13px; background-color: #f3f3f3; }
+
+
+/*##############################*/
+/*text style*/
+.purple_txt { color: #5623d7; }
+.yellow_txt { color: #ffd71c; }
+.red_txt { color: #e62b51; }
+.blue_txt { color: #1976f4; }
+.skyblue_txt { color: #27d9ff; }
+.black_txt { color: #000000; }
+
+
+/*##############################*/
+/*board style*/
+ul.board_style { width: 100%; text-align: center; }
+ul.board_style > li { width: 100%;  border-bottom: 1px solid #dddddd; display: flex; align-items: center; background-color: #ffffff; }
+ul.board_style > li:nth-child(2n-1) { background-color: #f9f9f9; }
+ul.board_style > li > div { padding: 15px 0; }
+ul.board_style > li.head { background-color: #333333; color: #ffffff; }
+ul.board_style.txtover > li > div { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+.page_number_wrap { width: 100%; display: flex; justify-content: center; }
+.page_number_wrap > ul { margin-top: 30px; display: flex; align-items: center; text-align: center; font-weight: bolder; }
+.page_number_wrap > ul > li { margin: 0 2px; padding: 0 6px; cursor: pointer; }
+.page_number_wrap > ul > li:hover { color: #5623d7; }
+
+
+/*##############################*/
+/*search_container*/
+.search_container { background-color: #ebebeb; }
+.search_container > .center_inner { padding: 25px 0; position: relative; }
+.search_container .mobile_more_btn { display: none; }
+
+/*search_list*/
+.search_container ul.search_list { display: flex; align-items: center; color: #333333; }
+.search_container ul.search_list > li > div:nth-child(1) { margin-bottom: 10px; font-size: 15px; }
+/*search_A*/
+.search_container ul.search_A > li { margin-right: 60px; }
+/*search_B*/
+.search_container ul.search_B > li { margin-right: 10px; }
+
+/*input,select style*/
+.search_container input { width: 200px; height: 34px; padding: 5px 10px; border-radius: 0; border: 1px solid #cccccc; }
+.search_container input:focus { outline: none; }
+.search_container select { width: 200px; height: 34px; border-radius: 0; border: 1px solid #cccccc; }
+
+/*input + btn*/
+.search_container .input_btn_set { width: 300px; background-color: #ffffff; border: 1px solid #cccccc; display: flex; align-items: center; }
+.search_container .input_btn_set > input { width: 100%; height: 100%; background: none; border: none; }
+.search_container .input_btn_set > button { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; }
+.search_container .input_btn_set > button img { width: 80%; }
+
+/*input + btn + option*/
+.search_container .input_option_set { width: 200px; position: relative; }
+.search_container .input_option_set > .input_wrap { width: 100%; background-color: #ffffff; border: 1px solid #cccccc; display: flex; align-items: center; }
+.search_container .input_option_set > .input_wrap > input { width: 100%; height: 100%; background: none; border: none; }
+.search_container .input_option_set > .input_wrap > button { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; }
+.search_container .input_option_set > .input_wrap > button > img { width: 14px; }
+.search_container .input_option_set > .option_wrap { z-index: 8; opacity: 0; visibility: hidden; width: 100%; max-height: 400px; overflow-y: scroll; background-color: #ffffff; position: absolute; top: 100%; left: 0; border: 1px solid #cccccc; }
+.search_container .input_option_set > .option_wrap > li { width: 100%; padding: 10px; cursor: pointer; }
+.search_container .input_option_set > .option_wrap > li:hover { background-color: #f1f1f1;}
+.search_container .input_option_set > .option_wrap.on { opacity: 1; visibility: visible;}
+
+
+/*##############################*/
+/* 임시 footer 가리기 */
+.map_page + footer { display: none!important; }
+.sub_page + footer { display: none!important; }
+
+
+
+
+/* ########## main ########## */
+/* .main_page { padding: 0; } */
+.main_center_inner { width: 100%; max-width: 1160px; margin: 0 auto; }
+
+/* article title style */
+.main_title_wrap { width: 100%; text-align: center; color: #ffffff; line-height: 1.6; }
+.main_title_wrap h2 { margin-bottom: 35px; font-size: 30px; font-weight: bold; }
+
+/* button style */
+.main_button_wrap { display: flex; align-items: center; justify-content: center; }
+.main_button_wrap > a { margin: 0 15px; padding: 15px 45px; border-radius: 30px; display: block; background-color: #ffffff; font-weight: bold; color: #460490; }
+
+
+/* ########## */
+/* Main_statistics_bar */
+.Main_statistics_bar { width: 100%; position: fixed; bottom: 0; left: 0; z-index: 9; }
+.Main_statistics_bar .statistics_container { width: 100%; overflow: hidden; background-color: #ffffff; }
+.Main_statistics_bar .statistics_container > ul { display: flex; border-bottom: 2px solid #3102b6; border-top: 2px solid #3102b6; font-size: 14px; font-weight: bold;  }
+.Main_statistics_bar .statistics_container > ul > li { width: 195px; min-width: 195px; height: 90px; padding: 5px 15px; border-right: 2px solid #3102b6; background-color: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.Main_statistics_bar .statistics_container > ul > li > div { width: 100%; display: flex; align-items: center; }
+.Main_statistics_bar .statistics_container > ul > li .red { color: #ff0000; }
+
+.Main_statistics_bar .statistics_container > ul > li .country_wrap { margin-bottom: 10px; }
+.Main_statistics_bar .statistics_container > ul > li .country_wrap > div:nth-child(1) { width: 40%; max-width: 46px; margin-right: 10px; }
+.Main_statistics_bar .statistics_container > ul > li .country_wrap img { width: 100%; }
+.Main_statistics_bar .statistics_container > ul > li .info_wrap { justify-content: space-between; }
+
+
+/* Main coin */
+.Main_coin { padding: 100px 0 50px 0; }
+.Main_coin .coin_img_wrap { width: 100%; display: flex; align-items: center; justify-content: center; }
+
+
+/* Main land */
+.Main_land { padding: 100px 0 50px 0; }
+.land_img_wrap { width: 100%; display: flex; align-items: center; justify-content: center; }
+
+/* Main video */
+.Main_video { padding: 90px 0; background-color: rgba(0, 0, 0, 0.3); }
+.Main_video .video_wrap { width: 100%; padding-bottom: 56.25%; overflow: hidden; position: relative; }
+.Main_video .video_wrap > iframe { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
+.Main_video .video_wrap > img { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
+
+
+/* Main investment */
+.Main_investment { padding: 155px 0 100px 0; }
+.Main_investment .main_title_wrap { margin-bottom: 90px; }
+.Main_investment ul { display: flex; }
+.Main_investment ul > li { width: 25%; max-width: 25%; padding: 0 10px; color: #ffffff; text-align: center; }
+.Main_investment ul > li > img { width: 100%; margin-bottom: 10px; }
+.Main_investment ul > li > div:nth-child(2) { margin-bottom: 20px; font-size: 17px; font-weight: bold; color: #61f9ff; }
+.Main_investment ul > li > div:nth-child(3) { font-size: 13px; line-height: 1.5; }
+
+
+
+/* Main plan  */
+.Main_plan { padding: 100px 0 300px 0; }
+.Main_plan .main_title_wrap { margin-bottom: 80px; }
+.Main_plan img { width: 100%; }
+
+
+
+
+/* ########## sub all 서브페이지 공통 ########## */
+.bak_center_inner { width: 100%; max-width: 1460px; margin: 0 auto;}
+.center_inner { width: 100%; max-width: 1280px; margin: 0 auto; }
+
+
+/*sub top title*/
+.sub_top_title { background-color: #ffffff; }
+.sub_top_title  > .center_inner { padding: 15px 0; font-size: 20px; font-weight: bold; }
+.sub_top_title  > .center_inner > div { display: flex; align-items: center; justify-content: space-between; }
+
+
+/* ########## map ########## */
+.map_menu_set { font-size: 13px; font-weight: bold; }
+.map_menu_set .map_fixed_box { background-color: rgba(255,255,255,0.8); border-radius: 10px; border: 1px solid #999999; }
+
+
+/* info search container */
+.map_menu_set .info_search_container { display: flex; flex-direction: column; align-items: flex-end; position: fixed; top: 80px; right: 10px; z-index: 9; }
+
+/*mobile*/
+.land_detail_container .mobile_more_btn { display: none; }
+
+
+/* info search container : search box */
+.map_menu_set .search_box { min-width: 320px; margin-bottom: 5px; padding: 10px 10px; }
+.map_menu_set .search_box > div { width: 100%; display: flex; }
+.map_menu_set .search_box > div > div { background-color: #ffffff; border: 1px solid #cccccc; }
+
+.map_menu_set .search_box .gps_wrap { padding: 4px; display: flex; align-items: center; justify-content: center; }
+
+.map_menu_set .search_box .search_wrap { width: 100%; display: flex; align-items: center; position: relative; }
+.map_menu_set .search_box .search_wrap input { width: 100%; height: 100%; padding: 5px 5px; border: none; background: none; }
+.map_menu_set .search_box .search_wrap input:focus { outline: none; }
+.map_menu_set .search_box .search_wrap button { padding: 5px; }
+
+.map_menu_set .search_box .search_wrap .search_list { width: 100%; position: absolute; top: 100%; left: 50%; transform: translate(-50%,0); background-color: #ffffff; border-bottom: 1px solid #cccccc; border-left: 1px solid #cccccc; border-right: 1px solid #cccccc; }
+.map_menu_set .search_box .search_wrap .search_list ul { width: 100%; }
+.map_menu_set .search_box .search_wrap .search_list ul li { width: 100%; max-height: 300px; overflow-y: scroll; padding: 5px 5px; cursor: pointer; }
+.map_menu_set .search_box .search_wrap .search_list ul li:hover { background-color: #f1f1f1; }
+
+
+/* info search container : info box */
+.map_menu_set .info_box { min-width: 320px; padding: 0 15px; transition: 0.5s; }
+.map_menu_set .info_box > ul { width: 100%; }
+.map_menu_set .info_box > ul > li { width: 100%; border-bottom: 1px solid #bcbcbc; }
+.map_menu_set .info_box > ul > li:last-child { border-bottom: none; }
+.map_menu_set .info_box > ul > li .title_wrap { width: 100%; padding: 10px 0; display: flex; justify-content: space-between; align-items: center; }
+.map_menu_set .info_box > ul > li .title_wrap > div { display: flex; align-items: center; }
+.map_menu_set .info_box > ul > li .title_wrap .tit img { width: 28px; margin-right: 10px; }
+.map_menu_set .info_box .short_mode_btn { cursor: pointer; }
+.map_menu_set .info_box .short_mode_btn > .expand { display: none; }
+.map_menu_set .info_box .short_mode_btn > .contract { display: block;}
+/*text color*/
+.map_menu_set .info_box .purple { color: #5623d7; }
+
+
+/*info search container : info box - land_info_wrap*/
+.map_menu_set .info_box .land_info_wrap { width: 100%; }
+.map_menu_set .info_box .land_info_wrap > ul { width: 100%; line-height: 1.5; border-radius: 10px; overflow: hidden; border: 1px solid #999999; }
+.map_menu_set .info_box .land_info_wrap > ul > li { width: 100%; padding: 10px; }
+/*칸별 스타일*/
+.map_menu_set .info_box .land_info_wrap .land_info_A > div:nth-child(1) { font-weight: bold; }
+.map_menu_set .info_box .land_info_wrap .land_info_B { background-color: #a4a4a4; }
+.map_menu_set .info_box .land_info_wrap .land_info_B > div { display: flex; align-items: center; justify-content: space-between; }
+.map_menu_set .info_box .land_info_wrap .land_info_B span { font-size: 16px;  font-weight: bold; }
+.map_menu_set .info_box .land_info_wrap .land_info_C { background-color: #575757; color: #ffffff; }
+.map_menu_set .info_box .land_info_wrap .land_info_C > div { display: flex; align-items: center; justify-content: space-between; }
+.map_menu_set .info_box .land_info_wrap .land_info_C span { font-size: 16px; font-weight: bold; color: #ffd71c; }
+/*button*/
+.map_menu_set .info_box .land_info_wrap .land_btn_wrap { width: 100%; margin-top: 10px; }
+.map_menu_set .info_box .land_info_wrap .land_btn_wrap > div { margin-bottom: 10px; }
+.map_menu_set .info_box .land_info_wrap .land_btn_wrap button { padding: 10px 0; border-radius: 20px; font-size: 14px; color: #ffffff; text-align: center; }
+/*button size*/
+.map_menu_set .info_box .land_info_wrap .land_btn_wrap > div { display: flex; align-items: center; justify-content: space-between; }
+.map_menu_set .info_box .land_info_wrap .land_btn_wrap .twoBtn > button { width: 48%; }
+.map_menu_set .info_box .land_info_wrap .land_btn_wrap .oneBtn > button { width: 100%; }
+/*button color*/
+.map_menu_set .info_box .land_info_wrap .land_btn_wrap .btn_color_A { background-color: #3a40b1; }
+.map_menu_set .info_box .land_info_wrap .land_btn_wrap .btn_color_B { background-color: #6d72d5; }
+.map_menu_set .info_box .land_info_wrap .land_btn_wrap .btn_color_C { background-color: #333333; }
+.map_menu_set .info_box .land_info_wrap .land_btn_wrap button:hover { opacity: 0.8; transition: 0.3s; }
+
+
+/*CLEAR button*/
+.map_menu_set .info_box .clear_btn { cursor: pointer; }
+.map_menu_set .info_box .clear_hide.on { display: none; }
+.map_menu_set .info_box  .wish_btn_wrap { cursor: pointer; }
+
+/* info box / infoBoxShortMode : 간략 표시 */
+.map_menu_set .info_box.short { min-width: 120px; transition: 0.5s; }
+.map_menu_set .info_box.short .short_hide { display: none; transition: 0.5s; }
+.map_menu_set .info_box.short .short_mode_btn > .expand { display: block; }
+.map_menu_set .info_box.short .short_mode_btn > .contract { display: none;}
+
+
+/* mode container */
+.map_menu_set .view_mode_container { position: fixed; top: 80px; left: 10px; z-index: 8; display: flex; align-items: center; }
+.map_menu_set .view_mode_container > div { width: 55px; height: 55px; padding: 5px 5px; cursor: pointer; }
+.map_menu_set .view_mode_container > div > img { width: 100%; }
+
+
+/* zoom container */
+.map_menu_set .zoom_container { position: fixed; bottom: 50px; right: 10px; z-index: 8; display: flex; flex-direction: column; }
+.map_menu_set .zoom_container > div { width: 55px; height: 55px; padding: 12px 12px; cursor: pointer; }
+.map_menu_set .zoom_container > div > img { width: 100%; }
+
+
+
+/* ########## LAND Detail ########## */
+.land_detail_container, .land_detail_list_container { font-size: 12px; font-weight: bold; }
+.land_detail_container > .bak_center_inner { padding: 60px 0 40px 0; background-color: #ebebeb; }
+.land_detail_container > .bak_center_inner > .center_inner .land_info_set { margin-bottom: 55px; display: flex; justify-content: space-between }
+.land_detail_container > .bak_center_inner > .center_inner .land_info_set > div { width: 30%; }
+.land_detail_container > .bak_center_inner > .center_inner .land_bid_list_box { width: 100%; }
+
+.land_detail_container button:hover { opacity: 0.8; transition: 0.3s; }
+
+/*text style*/
+.land_detail_container h3 { margin-bottom: 10px; font-size: 14px; font-weight: bolder; }
+.land_detail_container b { font-weight: bolder; }
+.land_detail_list_container b { font-weight: bolder; }
+.land_detail_container strong { font-size: 16px; font-weight: bolder; }
+
+
+/*top title > land_detail_share_wrap*/
+.land_detail_share_wrap { display: flex; align-items: center; }
+.land_detail_share_wrap .bookmark { width: 28px; margin-right: 20px; cursor: pointer; }
+.land_detail_share_wrap .bookmark > img { width: 100%; }
+.land_detail_share_wrap .sns_share { width: 28px; position: relative; }
+.land_detail_share_wrap .sns_share .sns_share_open_btn { width: 100%; cursor: pointer; }
+.bookmark_img.hide { display: none;}
+/*sns_share_popup*/
+.land_detail_share_wrap .sns_share .sns_share_popup { position: absolute; top: 100%; right: 0; z-index: 20; }
+.land_detail_share_wrap .sns_share .sns_share_popup > div { padding: 25px 20px; position: relative; border-radius: 10px; background-color: #ffffff; border: 1px solid #cccccc; }
+.land_detail_share_wrap .sns_share .sns_share_popup > div .close_btn { width: 15px; position: absolute; top: 10px; right: 10px; cursor: pointer; }
+.land_detail_share_wrap .sns_share .sns_share_popup > div .close_btn > img { width: 100%; }
+.land_detail_share_wrap .sns_share .sns_share_popup > div ul { display: flex; align-items: center; }
+.land_detail_share_wrap .sns_share .sns_share_popup > div ul > li { margin: 0 5px; display: flex; align-items: center; cursor: pointer; }
+.land_detail_share_wrap .sns_share .sns_share_popup > div ul > li:hover { opacity: 0.8; transition: 0.3s; }
+.land_detail_share_wrap .sns_share .sns_share_popup > div ul > li img { width: 55px; }
+.land_detail_share_wrap .sns_share .sns_share_popup.hide { display: none; }
+
+
+/*map_photo_wrap*/
+.land_detail_container .map_photo_box { width: 100%; margin-bottom: 45px; }
+.land_detail_container .map_photo_box .map_photo { width: 100%; margin-bottom: 10px; padding-bottom: 65%; position: relative; overflow: hidden; background-color: #a1a1a1; }
+.land_detail_container .map_photo_box .map_photo > .photo { width: 100%; height: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 1; }
+.land_detail_container .map_photo_box .map_photo > .level_flag_icon { width: 45px; height: 56px; position: absolute; top: 12px; left: 12px; z-index: 2; background-repeat: no-repeat; background-size: 100%; background-position: top center; }
+/*btn*/
+.land_detail_container .map_photo_box .btn_wrap { width: 100%; display: flex; align-items: center; justify-content: space-between; }
+.land_detail_container .map_photo_box .btn_wrap > button { width: 48%; padding: 8px 0; border-radius: 15px; color: #ffffff; background-color: #000000; }
+
+
+/*block_level_wrap*/
+.land_detail_container .block_level_box { width: 100%; }
+.land_detail_container .block_level_box .level_wrap { width: 100%; background-color: #ffffff; border: 1px solid #dddddd; }
+.land_detail_container .block_level_box .level_wrap ul { padding: 10px; display: flex; align-items: center; justify-content: space-between; }
+.land_detail_container .block_level_box .level_wrap ul > li { width: 15%; padding: 50px 2px 10px 2px; text-align: center; position: relative; }
+.land_detail_container .block_level_box .level_wrap ul > li > .level { width: 100%; padding: 5px 1px; position: absolute; top: 0; left: 0; background-color: rgba(255,255,255,0.5); }
+.land_detail_container .block_level_box .level_wrap ul > li > .number { font-size: 16px; font-weight: bold; color: #ffffff; }
+/*bak color*/
+.land_detail_container .block_level_box .level_wrap ul > li.color_yellow { background-color: #f5cc10; }
+.land_detail_container .block_level_box .level_wrap ul > li.color_mustard { background-color: #ceb12c; }
+.land_detail_container .block_level_box .level_wrap ul > li.color_gray { background-color: #aaaaaa; }
+.land_detail_container .block_level_box .level_wrap ul > li.color_purple { background-color: #8165ea; }
+
+
+/*info_table_wrap*/
+.land_detail_container .land_info_table_box { width: 100%; margin-bottom: 10px; }
+.land_detail_container .land_info_table_box ul { width: 100%; border-top: 1px solid #dddddd; border-left: 1px solid #dddddd; background-color: #ffffff; }
+.land_detail_container .land_info_table_box ul > li { width: 100%; display: flex; }
+.land_detail_container .land_info_table_box ul > li > div { padding: 15px 20px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; }
+.land_detail_container .land_info_table_box ul > li > div:nth-child(1) { width: 35%; display: flex; align-items: center; }
+.land_detail_container .land_info_table_box ul > li > div:nth-child(2) { width: 65%; }
+/*land_title*/
+.land_detail_container .land_info_table_box ul > li .land_title { display: flex; align-items: center; justify-content: space-between; }
+.land_detail_container .land_info_table_box ul > li .land_title > .rename_btn { cursor: pointer; }
+
+
+/*block_price_box*/
+.land_detail_container .block_price_box { width: 100%; padding: 15px 20px; }
+.land_detail_container .block_price_box ul { width: 100%; }
+.land_detail_container .block_price_box ul > li { width: 100%; display: flex; align-items: center; }
+.land_detail_container .block_price_box ul > li > div:nth-child(1) { width: 40%; }
+.land_detail_container .block_price_box ul > li > div:nth-child(2) { width: 30%; text-align: right; }
+.land_detail_container .block_price_box ul > li > div:nth-child(3) { width: 30%; text-align: right; }
+/*block_price_wrap style*/
+.land_detail_container .block_price_box.bak_A { margin-bottom: 10px; color: #444444; background-color: #ffffff; border: 1px solid #dddddd; }
+.land_detail_container .block_price_box.bak_B { color: #ffffff; background-color: #333333; border: 1px solid #000000; }
+
+
+/*lode_info_box*/
+.land_detail_container .lode_info_box { width: 100%; margin-bottom: 25px; border-bottom: 1px solid #dddddd; }
+/*lode_info_table_wrap*/
+.land_detail_container .lode_info_box .lode_info_table_wrap { width: 100%; margin-bottom: 30px; background-color: #ffffff; border-top: 1px solid #dddddd; border-left: 1px solid #dddddd; }
+.land_detail_container .lode_info_box .lode_info_table_wrap > li { width: 100%; display: flex; border-bottom: 1px solid #dddddd; }
+.land_detail_container .lode_info_box .lode_info_table_wrap > li > div { padding: 25px 18px; display: flex; align-items: center; border-right: 1px solid #dddddd; }
+.land_detail_container .lode_info_box .lode_info_table_wrap > li > div:nth-child(1) { width: 30%; }
+.land_detail_container .lode_info_box .lode_info_table_wrap > li > div:nth-child(2) { width: 70%; }
+.land_detail_container .lode_info_box .lode_info_table_wrap > li > div > img { width: 48px; margin-right: 15px; }
+/*image*/
+.land_detail_container .lode_info_box .lode_info_table_wrap .profile_img { width: 42px; height: 42px; margin-right: 15px; border-radius: 50%; background-color: #dddddd; overflow: hidden;  }
+.land_detail_container .lode_info_box .lode_info_table_wrap .profile_img > img { width: 100%; }
+.land_detail_container .lode_info_box .lode_info_table_wrap .country_img { width: 42px; margin-right: 15px; }
+.land_detail_container .lode_info_box .lode_info_table_wrap .country_img > img { width: 100%; border: 1px solid #dddddd; }
+.land_detail_container .lode_info_box .lode_info_table_wrap .chat_img { width: 42px; margin-right: 15px; }
+.land_detail_container .lode_info_box .lode_info_table_wrap .chat_img > img { width: 100%; }
+/*owned_coin_wrap*/
+.land_detail_container .lode_info_box .owned_coin_wrap { width: 100%; margin-bottom: 30px; font-size: 14px; display: flex; align-items: center; justify-content: space-between; }
+.land_detail_container .lode_info_box .owned_coin_wrap .coin { font-size: 20px; font-weight: bolder; color: #5623d7; }
+.land_detail_container .lode_info_box .owned_coin_wrap button { padding: 5px 10px; border-radius: 14px; background-color: #888888; color: #ffffff; }
+
+
+/*button_box*/
+.land_detail_container .button_box { display: flex; align-items: center; justify-content: space-between; }
+.land_detail_container .button_box button { padding: 15px 0; border-radius: 30px; font-size: 16px; }
+.land_detail_container .button_box.button_box_1 button { width: 100%; }
+.land_detail_container .button_box.button_box_2 button { width: 48%; }
+/*button color*/
+.land_detail_container .button_box button.btn_color_A { background-color: #3a40b1; color: #ffffff; }
+.land_detail_container .button_box button.btn_color_B { background-color: #6d72d5; color: #ffffff; }
+.land_detail_container .button_box button.btn_color_C { background-color: #ce2a2a; color: #ffffff; }
+.land_detail_container .button_box button.btn_color_off { background-color: #adadad; color: #5e5e5e;}
+.land_detail_container .button_box button.btn_color_off:hover { opacity: 1; }
+
+/*land_bid_list_box*/
+.land_detail_container .land_bid_list_box .tit_wrap { margin-bottom: 10px; display: flex; align-items: center; }
+.land_detail_container .land_bid_list_box .tit_wrap > h3 { margin-bottom: 0px; margin-right: 20px; }
+.land_detail_container .land_bid_list_box .tit_wrap img { width: 12px; }
+.land_detail_container .land_bid_list_box .more_btn_wrap { margin-top: 20px; display: flex; align-items: center; justify-content: center; }
+/*land_bid_list*/
+.land_detail_container .land_bid_list > li:nth-child(2n+1) { background-color: #f9f9f9; }
+.land_detail_container .land_bid_list > li.head { background-color: #333333; }
+.land_detail_container .land_bid_list > li > div { padding: 10px 0; }
+.land_detail_container .land_bid_list > li > div:nth-child(1) { width: 18%; }
+.land_detail_container .land_bid_list > li > div:nth-child(2) { width: 18%; }
+.land_detail_container .land_bid_list > li > div:nth-child(3) { width: 18%; }
+.land_detail_container .land_bid_list > li > div:nth-child(4) { width: 18%; }
+.land_detail_container .land_bid_list > li > div:nth-child(5) { width: 18%; }
+.land_detail_container .land_bid_list > li > div:nth-child(6) { width: 10%; display: flex; align-items: center; justify-content: left; }
+.land_detail_container .land_bid_list > li > div > button { min-width: 80px; padding: 8px 14px; border-radius: 15px; color: #ffffff; }
+.land_detail_container .land_bid_list > li > div > button.btn_color_A { background-color: #3a40b1; }
+.land_detail_container .land_bid_list > li > div > button.btn_color_B { background-color: #888888; }
+
+
+/*land_list_container*/
+.land_detail_list_container > .center_inner { padding: 40px 0 70px 0; }
+.land_detail_list_container .more_btn_wrap { margin-top: 20px; display: flex; align-items: center; justify-content: center; }
+/*land_list*/
+.land_detail_list_container .land_list > li:nth-child(2n+1) { background-color: #f9f9f9; }
+.land_detail_list_container .land_list > li.head { background-color: #333333; }
+.land_detail_list_container .land_list > li > div:nth-child(1) { width: 16%; }
+.land_detail_list_container .land_list > li > div:nth-child(2) { width: 8%; }
+.land_detail_list_container .land_list > li > div:nth-child(3) { width: 18%; }
+.land_detail_list_container .land_list > li > div:nth-child(4) { width: 34%; }
+.land_detail_list_container .land_list > li > div:nth-child(5) { width: 12%; }
+.land_detail_list_container .land_list > li > div:nth-child(6) { width: 12%; }
+
+
+
+/* ########## Market Place ########## */
+.Market_place { font-weight: bold; }
+.Market_place button:hover { opacity: 0.8; transition: 0.3s;}
+.Market_place .red_txt { color: #e62b51; }
+.Market_place .blue_txt { color: #1976f4; }
+
+
+/*marketplace_list_container*/
+.marketplace_list_container { padding: 50px 0 100px 0; }
+/*title*/
+.marketplace_list_container .tit_wrap { margin-bottom: 10px; font-size: 15px; font-weight: bolder; }
+
+
+/*marketplace_list_container - list */
+.marketplace_list_container .board_style > li > div { padding: 6px 0; }
+.marketplace_list_container .board_style > li > div:nth-child(1) { width: 5%; }
+.marketplace_list_container .board_style > li > div:nth-child(2) { width: 15%; }
+.marketplace_list_container .board_style > li > div:nth-child(3) { width: 10%; }
+.marketplace_list_container .board_style > li > div:nth-child(4) { width: 5%; }
+.marketplace_list_container .board_style > li > div:nth-child(5) { width: 5%; }
+.marketplace_list_container .board_style > li > div:nth-child(6) { width: 10%; }
+.marketplace_list_container .board_style > li > div:nth-child(7) { width: 14%; }
+.marketplace_list_container .board_style > li > div:nth-child(8) { width: 14%; }
+.marketplace_list_container .board_style > li > div:nth-child(9) { width: 12%; }
+.marketplace_list_container .board_style > li > div:nth-child(10) { width: 10%; }
+/*flag*/
+.marketplace_list_container .board_style > li .flag { width: 30px; }
+/*button*/
+.marketplace_list_container .board_style .btn_wrap { display: flex; }
+.marketplace_list_container .board_style button { width: 100%; margin: 0 5px; padding: 5px 0; border-radius: 15px; font-size: 12px; color: #ffffff; }
+.marketplace_list_container .board_style button.btn_color_A { background-color: #3a40b1; }
+
+
+
+/* ########## Land Owned,Wish Land ########## */
+/*photo_list_page*/
+.photo_list_page .search_container { width: 100%; }
+.photo_list_page .photo_list_container { padding: 55px 0 150px 0; }
+.photo_list_container .tit_wrap { padding: 8px; font-size: 15px; font-weight: bolder; }
+
+/*photo_list_box*/
+.photo_list_page .photo_list_box { width: 100%; display: flex; flex-wrap: wrap; }
+.photo_list_page .photo_list_box > li { width: 33.3%; min-width: 33.3%; padding: 8px; }
+.photo_list_page .photo_list_box > li > div { width: 100%; padding: 7px 7px 0 7px; background-color: #ffffff; border: 1px solid #dddddd; }
+
+
+/*photo_list_box > image_wrap*/
+.photo_list_page .photo_list_box > li .image_wrap { width: 100%; padding-bottom: 65%; position: relative; overflow: hidden; background-color: #a1a1a1; }
+.photo_list_page .photo_list_box > li .image_wrap .land_image { z-index: 1; width: 100%; height: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+/*sale_text*/
+.photo_list_page .photo_list_box > li .image_wrap .sale_text { z-index: 2; padding: 6px 10px; border-radius: 5px; position: absolute; top: 13px; left: 13px; color: #ffffff; font-size: 12px; font-weight: bold; line-height: 1; }
+.photo_list_page .photo_list_box > li .image_wrap .sale_text.text_for_sale { background-color: #3a40b1; }
+.photo_list_page .photo_list_box > li .image_wrap .sale_text.text_sold { background-color: #ed600a; }
+.photo_list_page .photo_list_box > li .image_wrap .sale_text.text_not_for_sale { background-color: #000000; }
+/*level_flag_icon*/
+.photo_list_page .photo_list_box > li .image_wrap .level_flag_icon { z-index: 2; position: absolute; top: 44px; left: 13px; }
+/*wish_wrap*/
+.photo_list_page .photo_list_box > li .image_wrap .wish_wrap { z-index: 2; position: absolute; top: 13px; right: 13px; }
+.photo_list_page .photo_list_box > li .image_wrap .wish_wrap > div { width: 30px; cursor: pointer; }
+.photo_list_page .photo_list_box > li .image_wrap .wish_wrap > div:nth-child(1) { margin-bottom: 1px; }
+.photo_list_page .photo_list_box > li .image_wrap .wish_wrap > div > img { width: 100%; }
+
+
+/*photo_list_box > info_wrap*/
+.photo_list_page .photo_list_box > li .info_wrap { width: 100%; padding: 0 10px; }
+.photo_list_page .photo_list_box > li .info_wrap > div { width: 100%; border-bottom: 1px solid #dddddd; }
+.photo_list_page .photo_list_box > li .info_wrap > div:last-child { border-bottom: none; }
+/*title*/
+.photo_list_page .photo_list_box > li .info_wrap .title { max-width: 100%; padding: 15px 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: 900; }
+/*country*/
+.photo_list_page .photo_list_box > li .info_wrap .country { padding: 10px 0; display: flex; justify-content: space-between; align-items: center; }
+.photo_list_page .photo_list_box > li .info_wrap .country > .country_icon { display: flex; align-items: center; }
+.photo_list_page .photo_list_box > li .info_wrap .country > .country_icon > img { width: 34px; margin-right: 10px; }
+.photo_list_page .photo_list_box > li .info_wrap .country > .gps_icon { width: 22px; cursor: pointer; }
+.photo_list_page .photo_list_box > li .info_wrap .country > .gps_icon > img { width: 100%;}
+/*price*/
+.photo_list_page .photo_list_box > li .info_wrap .price { padding: 10px 0; display: flex; font-weight: bold; }
+.photo_list_page .photo_list_box > li .info_wrap .price > div { width:33.3%; min-width: 33.3%; display: flex; align-items: center;  }
+.photo_list_page .photo_list_box > li .info_wrap .price > div > img { width: 27px; margin-right: 10px; }
+.photo_list_page .photo_list_box > li .info_wrap .price > div:nth-child(2) { color: #1976f4; }
+.photo_list_page .photo_list_box > li .info_wrap .price > div:nth-child(3) { color: #5623d7; }
+
+
+
+
+
+
+
+
+
+
+
+@media all and (max-width:1279px) {
+    /* ########## sub all 서브페이지 공통 ########## */
+    /*.center_inner { padding-left: 4%!important; padding-right: 4%!important; }*/
+}
+
+@media all and (max-width:1159px) {
+    /* ########## all page 모든 페이지 공통 ########## */
+    .sub_page { padding-top: 40px; }
+
+
+
+    /*##############################*/
+    /*search_container*/
+    .search_container > .center_inner { padding: 25px 4% 15px 4%; }
+    .search_container .mobile_more_btn { width: 20px; display: block; position: absolute; top: 25px; right: 10px; cursor: pointer; transition: 0.3s; }
+    .search_container .mobile_more_btn > img { width: 100%; }
+    .search_container .mobile_more_btn.fold { transform: rotate(180deg); transition: 0.3s; }
+
+    /*search_list*/
+    .search_container ul.search_list { flex-wrap: wrap; }
+    .search_container ul.search_list > li { margin: 0 0 20px 0; }
+    .search_container ul.search_list > li > div:nth-child(1) { margin-bottom: 5px; font-size: 13px; }
+    .search_container ul.search_list .search_mobile_hide.on { display: none; }
+    /*search_A*/
+    .search_container ul.search_A > li:nth-child(1) { width: 50%; padding-right: 5px; margin-right: 10%; }
+    .search_container ul.search_A > li:nth-child(2) { width: 50%; padding-right: 5px; }
+    .search_container ul.search_A > li:nth-child(3) { width: 50%; padding-left: 5px; }
+    .search_container ul.search_A > li:nth-child(4) { width: 100%; }
+    /*search_B*/
+    .search_container ul.search_B > li:nth-child(1) { width: 50%; margin-right: 40%; }
+    .search_container ul.search_B > li:nth-child(2) { width: 33.3%; padding-right: 5px; }
+    .search_container ul.search_B > li:nth-child(3) { width: 33.3%; padding-right: 5px; }
+    .search_container ul.search_B > li:nth-child(4) { width: 33.3%; padding-right: 5px; }
+    .search_container ul.search_B > li:nth-child(5) { width: 100%; }
+
+    /*input,select style*/
+    .search_container input { width: 100%; max-width: 250px; }
+    .search_container select { width: 100%; max-width: 250px; }
+
+    /*input + btn*/
+    .search_container .input_btn_set { width: 100%; max-width: 400px; }
+    .search_container .input_btn_set > input { max-width: 100%; }
+
+    /*input + btn + option*/
+    .search_container .input_option_set { width: 100%; max-width: 300px; }
+
+
+
+    /* ########## main ########## */
+    .main_center_inner { padding-left: 4%!important; padding-right: 4%!important; }
+
+
+
+    /* ########## sub all 서브페이지 공통 ########## */
+    /*sub top title*/
+    .sub_top_title  > .center_inner { padding: 10px 4%; font-size: 18px; }
+
+
+
+    /* ########## map ########## */
+    /* info search container */
+    .map_menu_set .info_search_container { top: 0; right: 0; background-color: lightpink; }
+
+
+    /* info search container : search box */
+    .map_menu_set .search_box { width: 100vw; margin-bottom: 0; border-radius: 0; border: 1px solid #bababa; position: fixed; top: 40px; right: 0; z-index: 9; }
+    .map_menu_set .search_box > div { height: 30px; }
+
+    .map_menu_set .search_box .gps_wrap > img { width: 80% }
+    .map_menu_set .search_box .search_wrap button > img { width: 100% }
+
+
+    /* info search container : info box */
+    .map_menu_set .info_box { max-height: 70%; overflow-y: scroll; border-radius: 3px; border: 1px solid #bababa; position: fixed; top: 95px; right: 0; z-index: 9; }
+
+
+    /* mode container */
+    .map_menu_set .view_mode_container { top: 95px; left: 7px; flex-direction: column; }
+    .map_menu_set .view_mode_container > div { width: 30px; height: 30px; border-radius: 3px; border: 1px solid #bababa; }
+
+
+    /* zoom container */
+    .map_menu_set .zoom_container { display: none; }
+
+
+
+    /* ########## LAND Detail ########## */
+    /*.land_detail_container { word-break: break-all!important; }*/
+    .land_detail_container > .bak_center_inner { padding: 10px 0 30px 0; }
+    .land_detail_container > .bak_center_inner > .center_inner .land_info_set { margin-bottom: 50px; flex-direction: column; justify-content: center; }
+    .land_detail_container > .bak_center_inner > .center_inner .land_info_set > div { width: 100%; }
+    /*mobile*/
+    .land_detail_container .mobile_more_btn { width: 20px; min-width: 20px; margin-left: 5px; display: block; }
+    .land_detail_container .mobile_more_btn > img { width: 100%; }
+
+    /*top title > land_detail_share_wrap*/
+    .land_detail_share_wrap .bookmark { width: 23px; }
+    .land_detail_share_wrap .sns_share { width: 21px; }
+
+    /*map_photo_wrap*/
+    .land_detail_container .map_photo_box { margin-bottom: 20px; padding: 0 4%; }
+
+    /*block_level_wrap*/
+    .land_detail_container .block_level_box { padding: 0 4% 10px 4%; border-bottom: 1px solid #cccccc; }
+    .land_detail_container h3 { margin-bottom: 0; }
+    .land_detail_container .block_level_box .tit_wrap { padding: 10px 0 0 0; display: flex; align-items: center; justify-content: space-between; }
+    .land_detail_container .block_level_box .mobile_hide_level { display: none; }
+    .land_detail_container .block_level_box .mobile_hide_level.on { display: block; }
+
+    /*info_table_wrap*/
+    .land_detail_container .land_info_table_box { display: flex; margin-bottom: 0; padding: 10px 4%; border-bottom: 1px solid #cccccc; }
+    .land_detail_container .mobile_hide_info { display: none!important; }
+    .land_detail_container .mobile_hide_info.on { display: flex!important; }
+    .land_detail_container .land_info_table_box .mobile_more_btn { margin-top: 20px; }
+
+    /*block_price_box*/
+    .land_detail_container .block_price_set { display: flex; padding: 10px 4%; border-bottom: 1px solid #cccccc; }
+    .land_detail_container .block_price_set > div:nth-child(1) { width: 100%;}
+    .land_detail_container .block_price_box ul > li > div:nth-child(1) { width: 30%; }
+    .land_detail_container .block_price_box ul > li > div:nth-child(2) { width: 30%; }
+    .land_detail_container .block_price_box ul > li > div:nth-child(3) { width: 40%;}
+    .land_detail_container .block_price_set .mobile_hide_price { display: none; }
+    .land_detail_container .block_price_set .mobile_hide_price.on { display: block; }
+    .land_detail_container .block_price_set .mobile_more_btn { margin-top: 30px;}
+
+    /*lode_info_box*/
+    .land_detail_container .lode_info_box { margin-bottom: 0; border-bottom: none; }
+    .land_detail_container .lode_info_box h3 { padding: 10px 4% 10px 4%; }
+    .land_detail_container .lode_info_box .lode_info_table_set { display: flex; padding: 0 4% 10px 4%; border-bottom: 1px solid #cccccc; }
+    .land_detail_container .lode_info_box .lode_info_table_wrap { margin-bottom: 0;}
+    .land_detail_container .lode_info_box .mobile_hide_lode_info { display: none!important; }
+    .land_detail_container .lode_info_box .mobile_hide_lode_info.on { display: flex!important; }
+    .land_detail_container .lode_info_box .lode_info_table_wrap > li > div { padding: 10px 15px; word-break: break-all; }
+    /*owned_coin*/
+    .land_detail_container .lode_info_box .owned_coin_wrap { margin-bottom: 0; padding: 10px 4%; border-bottom: 1px solid #cccccc; justify-content: center; }
+    .land_detail_container .lode_info_box .owned_coin_wrap .coin { margin: 0 10px; font-size: 16px; }
+    .land_detail_container .lode_info_box .mobile_more_btn { margin-top: 30px;}
+
+    /*button_box*/
+    .land_detail_container .button_box { padding: 10px 4%; }
+
+    /*land_bid_list_box*/
+    .land_detail_container .land_bid_list > li div { word-break: break-all; }
+    .land_detail_container .land_bid_list > li.head div { word-break: keep-all; }
+    .land_detail_container .land_bid_list > li > div { padding: 8px 2px;}
+    .land_detail_container .land_bid_list > li > div:nth-child(1) { width: 16%; }
+    .land_detail_container .land_bid_list > li > div:nth-child(2) { width: 16%; }
+    .land_detail_container .land_bid_list > li > div:nth-child(3) { width: 16%; }
+    .land_detail_container .land_bid_list > li > div:nth-child(4) { width: 16%; }
+    .land_detail_container .land_bid_list > li > div:nth-child(5) { width: 16%; }
+    .land_detail_container .land_bid_list > li > div:nth-child(6) { width: 20%; justify-content: center; }
+    .land_detail_container .land_bid_list > li > div > button { min-width: 50px; padding: 5px 5px; font-size: 8px;}
+
+    /*land_list_container*/
+    .land_detail_list_container .land_list > li > div { word-break: break-all;}
+
+
+
+    /* ########## Market Place ########## */
+    .marketplace_list_container { padding: 20px 0 50px 0;}
+
+
+
+    /* ########## Land Owned,Wish Land ########## */
+    /*photo_list_box*/
+    .photo_list_page .photo_list_container { padding: 20px 0 50px 0; }
+    .photo_list_page .photo_list_box > li { width: 50%; min-width: 50%; }
+}
+
+@media all and (max-width:720px) {
+
+}
+
+@media all and (max-width:540px) {
+    /* ########## sub all 서브페이지 공통 ########## */
+    /*sub top title*/
+    .sub_top_title  > .center_inner { font-size: 16px; }
+
+
+
+    /* ########## LAND Detail ########## */
+    .land_detail_container > .bak_center_inner > .center_inner .land_info_set { margin-bottom: 30px;}
+    /*mobile*/
+    .land_detail_container .mobile_more_btn { width: 15px; min-width: 15px; }
+
+    /*top title > land_detail_share_wrap*/
+    .land_detail_share_wrap .bookmark { width: 20px; margin-right: 10px; }
+    .land_detail_share_wrap .sns_share { width: 20px; }
+
+
+    /*info_table_wrap*/
+    .land_detail_container .land_info_table_box ul > li > div { padding: 10px 8px; }
+    .land_detail_container .land_info_table_box .mobile_more_btn { margin-top: 15px; }
+
+    /*block_price_box*/
+    .land_detail_container .block_price_box { padding: 10px 5px;}
+    .land_detail_container .block_price_box ul > li > div:nth-child(1) { width: 35%; }
+    .land_detail_container .block_price_box ul > li > div:nth-child(2) { width: 35%; }
+    .land_detail_container .block_price_box ul > li > div:nth-child(3) { width: 30%;}
+    .land_detail_container .block_price_box ul > li > div strong { font-size: 13px;}
+
+    /*lode_info_box*/
+    .land_detail_container .lode_info_box .lode_info_table_wrap > li > div { padding: 10px 5px; }
+    .land_detail_container .lode_info_box .lode_info_table_wrap .profile_img { width: 30px; min-width: 30px; height: 30px; }
+    .land_detail_container .lode_info_box .lode_info_table_wrap .country_img { width: 30px; min-width: 30px; }
+    .land_detail_container .lode_info_box .lode_info_table_wrap .chat_img { width: 30px; min-width: 30px;}
+    /*owned_coin*/
+    .land_detail_container .lode_info_box .owned_coin_wrap { font-size: 9px;}
+    .land_detail_container .lode_info_box .owned_coin_wrap .coin { font-size: 14px;}
+    .land_detail_container .lode_info_box .owned_coin_wrap button { font-size: 9px;}
+    .land_detail_container .lode_info_box .mobile_more_btn { margin-top: 23px; }
+
+    /*button_box*/
+    .land_detail_container .button_box button { padding: 10px 0; font-size: 15px;}
+
+    /*land_bid_list_box*/
+    .land_detail_container .land_bid_list > li > div { padding: 8px 2px; font-size: 10px; }
+
+    /*land_list_container*/
+    .land_detail_list_container > .center_inner { padding: 30px 0 50px 0; }
+    .land_detail_list_container .land_list > li > div { padding: 8px 2px; font-size: 10px; }
+    .land_detail_list_container .land_list > li > div:nth-child(1) { width: 16%; }
+    .land_detail_list_container .land_list > li > div:nth-child(2) { width: 8%; }
+    .land_detail_list_container .land_list > li > div:nth-child(3) { width: 18%; }
+    .land_detail_list_container .land_list > li > div:nth-child(4) { width: 34%; }
+    .land_detail_list_container .land_list > li > div:nth-child(5) { width: 12%; }
+    .land_detail_list_container .land_list > li > div:nth-child(6) { width: 12%; }
+
+
+
+    /* ########## Land Owned,Wish Land ########## */
+    /*photo_list_box*/
+    .photo_list_page .photo_list_box > li { width: 100%; min-width: 100%; }
+}
+
+@media all and (max-width:380px) {
+
+}
+
+
+
+
+.hide { display: none; }
+
+
+
+
+
+
+/* ########## wbs ########## */
+.wbs_wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 10px 0 50px 0; font-size: 13px; }
+.wbs_wrap h1 { padding: 20px 0; font-size: 20px; font-weight: bold;}
+.wbs_wrap p { font-weight: bold; }
+.wbs_wrap table { width: 100%; text-align: left; }
+.wbs_wrap table tr { border: 1px solid #000000; }
+.wbs_wrap table th,td { padding: 10px 5px; border-right: 1px solid #000000; }
+.wbs_wrap button { display: block; margin-bottom: 5px; padding: 5px 10px; background-color: #ececec; }
+.wbs_wrap a { width: fit-content; display: block; margin-bottom: 5px; padding: 5px 10px; background-color: #c5cbea; color: #000000; }
+
+@media all and (max-width:720px) {
+    .wbs_wrap table tr > th { display: none; }
+    .wbs_wrap table tr > th:nth-child(2) { display: block; }
+    .wbs_wrap table tr > th:nth-child(3) { display: block; }
+    .wbs_wrap table tr > td { display: none; }
+    .wbs_wrap table tr > td:nth-child(2) { display: block; }
+    .wbs_wrap table tr > td:nth-child(3) { display: block; }
+}
+/* ########## //wbs ########## */
+
+

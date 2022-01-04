@@ -9,6 +9,7 @@ import ContactPage from "../Component/Contents/ContactPage";
 import StickerPage from "../Component/Contents/StickerPage";
 import LoungePage from "../Component/Contents/LoungePage";
 import DevpiaPage from "../Component/Contents/DevpiaPage";
+import LandOwned from "../Component/Contents/LandOwned";
 
 export default function(){
 
@@ -21,6 +22,7 @@ export default function(){
                         <Route exact path="Sticker" element={<StickerPage />} />
                         <Route exact path="Contact" element={<ContactPage />} />
                         <Route exact path="Devpia" element={<DevpiaPage />} />
+                        <Route exact path="LandOwned" element={<LandOwned />} />
 
                     </Route>
                     <Route path="/Account/*" element={<AccountLayout />} >
