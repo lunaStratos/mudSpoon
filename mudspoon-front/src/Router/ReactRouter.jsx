@@ -10,6 +10,7 @@ import StickerPage from "../Component/Contents/StickerPage";
 import LoungePage from "../Component/Contents/LoungePage";
 import DevpiaPage from "../Component/Contents/DevpiaPage";
 import LandOwned from "../Component/Contents/LandOwned";
+import NotFoundPage from "../Component/Contents/Error/NotFoundPage"
 
 export default function(){
 
@@ -23,14 +24,16 @@ export default function(){
                         <Route exact path="Contact" element={<ContactPage />} />
                         <Route exact path="Devpia" element={<DevpiaPage />} />
                         <Route exact path="LandOwned" element={<LandOwned />} />
+                        {/* Not Found */}
+                        <Route exact path="*" element={<NotFoundPage />} />
 
                     </Route>
                     <Route path="/Account/*" element={<AccountLayout />} >
                         <Route path="Login" element={<LoginPage />} />
                         <Route path="My" element={<MyPage />} />
                     </Route>
-                    {/* Not Found */}
-                    <Route render={() => <Navigate  to="/" />} />
+                    {/* Not Found
+                    <Route render={() => <Navigate to="/" />} /> */}
                 </Routes>
             </BrowserRouter>
     )
