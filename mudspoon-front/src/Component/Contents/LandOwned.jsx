@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import LandOwnedListItem from "./LandOwnedListItem";
 
@@ -14,7 +14,16 @@ function onSearchMenu() {
 
 export default function LandOwned() {
 
+    //게시판 리스트
     const [list, setList] = useState([]);
+
+    //초기 실행 
+    useEffect(() => {
+        
+        return () => {
+            
+        }
+    }, [])
 
     return (
         <section className="sub_page photo_list_page">
@@ -123,8 +132,6 @@ export default function LandOwned() {
                             list.length === 0 ? "" : list.map(item => <LandOwnedListItem item={item}/>)
                         
                         }
-                        
-                        
                     </ul>
 
                     <div className="page_number_wrap">
