@@ -1,6 +1,8 @@
 import React from 'react';
 
-export default function LandOwnedListItem() {
+export default function LandOwnedListItem({item}) {
+
+
     return (
         <li>
             <div>
@@ -28,13 +30,13 @@ export default function LandOwnedListItem() {
 
                 <div className="info_wrap">
                     <div className="title">
-                        LAND Title명 표시, 칸을 넘어가면 줄임말로 표시됩니다. 칸을 넘어가면 줄임말로 표시됩니다. 칸을 넘어가면 줄임말로 표시됩니다.
+                        {item.title}
                     </div>
 
                     <div className="country">
                         <div className="country_icon">
                             <img src={require("../../Asset/Image/country_spmple_img_1.jpg").default} alt="icon"/>
-                            Seoul, Republic of KOREA
+                            {item.tag}
                         </div>
                         <div className="gps_icon">
                             <img src={require("../../Asset/Image/gps_icon.png").default} alt="icon"/>
@@ -44,15 +46,15 @@ export default function LandOwnedListItem() {
                     <div className="price">
                         <div>
                             <img src={require("../../Asset/Image/photo_list_icon_1.png").default} alt="icon"/>
-                            67
+                            {item.length}
                         </div>
                         <div>
                             <img src={require("../../Asset/Image/photo_list_icon_2.png").default} alt="icon"/>
-                            1.34
+                            {item.size}
                         </div>
                         <div>
                             <img src={require("../../Asset/Image/photo_list_icon_3.png").default} alt="icon"/>
-                            154.28
+                            {item.download_cnt}
                         </div>
                     </div>
 

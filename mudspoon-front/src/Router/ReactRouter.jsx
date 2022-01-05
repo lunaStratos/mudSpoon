@@ -12,6 +12,11 @@ import DevpiaPage from "../Component/Contents/DevpiaPage";
 import LandOwned from "../Component/Contents/LandOwned";
 import NotFoundPage from "../Component/Contents/Error/NotFoundPage"
 
+/**
+ * [Router 페이지]
+ * 
+ * 
+ */
 export default function(){
 
     return(

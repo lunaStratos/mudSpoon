@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import LandOwnedListItem from "./LandOwnedListItem";
 
@@ -13,6 +13,9 @@ function onSearchMenu() {
 }
 
 export default function LandOwned() {
+
+    const [list, setList] = useState([]);
+
     return (
         <section className="sub_page photo_list_page">
 
@@ -115,13 +118,13 @@ export default function LandOwned() {
                     </div>
 
                     <ul className="photo_list_box">
-                        <LandOwnedListItem/>
-                        <LandOwnedListItem/>
-                        <LandOwnedListItem/>
-                        <LandOwnedListItem/>
-                        <LandOwnedListItem/>
-                        <LandOwnedListItem/>
-                        <LandOwnedListItem/>
+                        {/* Todo for문 돌릴것 */}
+                        {
+                            list.length === 0 ? "" : list.map(item => <LandOwnedListItem item={item}/>)
+                        
+                        }
+                        
+                        
                     </ul>
 
                     <div className="page_number_wrap">

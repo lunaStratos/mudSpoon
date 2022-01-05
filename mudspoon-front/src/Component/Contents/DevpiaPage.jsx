@@ -1,5 +1,9 @@
 import React from 'react'
 
+/**
+ * [만든것들 모음 페이지]
+ * 
+ */
 export default () => {
     return(
         <section className="why_section layout_padding">

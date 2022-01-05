@@ -1,9 +1,14 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 
-
+/**
+ * [404 페이지] 
+ * 
+ * 404 띄우는 페이지 
+ */
 export default () => {
 
+   // 뒤로 가기 react-router-dom
    const navigate = useNavigate();
 
     return(

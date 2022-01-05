@@ -1,6 +1,8 @@
 import React from 'react';
 
-
+/**
+ * 더미페이지, 안씀
+ */
 export default () => {
     return(
         <>
