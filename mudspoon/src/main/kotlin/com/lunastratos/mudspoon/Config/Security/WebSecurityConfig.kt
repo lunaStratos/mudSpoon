@@ -1,6 +1,7 @@
 package com.lunastratos.mudspoon.Config.Security
 
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
@@ -28,6 +29,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * https://deeplify.dev/back-end/spring/configure-spring-security-rest-api
  * https://github.com/HomoEfficio/dev-tips/blob/master/Spring%20Security%EC%9D%98%20%EC%82%AC%EC%9A%A9%EC%9E%90%20%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8%20%EA%B2%80%EC%82%AC.md
  * */
+@Configuration
 @EnableWebSecurity
 class WebSecurityConfig(
     val jwtTokenProvider: JwtTokenProvider,

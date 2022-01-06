@@ -4,6 +4,7 @@ import com.lunastratos.mudspoon.Entity.StickerEntity
 import com.lunastratos.mudspoon.Service.StickerService
 import org.apache.commons.io.FilenameUtils
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 import org.springframework.web.multipart.MultipartFile
 import java.io.File
 import java.io.FileInputStream
@@ -26,6 +27,7 @@ import java.util.zip.ZipInputStream
  * @version     1.0
  * @author      LunaStratos (LunaStratos@gmail.com)
  */
+@Component
 class FileManager (){
 
     fun fileUpload(mf:MultipartFile):String{

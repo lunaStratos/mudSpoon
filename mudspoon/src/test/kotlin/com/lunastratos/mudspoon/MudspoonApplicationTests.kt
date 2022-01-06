@@ -1,17 +1,14 @@
 package com.lunastratos.mudspoon
 
-import com.lunastratos.mudspoon.Entity.MongoDB.LoungeEntity
-import com.lunastratos.mudspoon.Entity.RefreshTokenEntity
-import com.lunastratos.mudspoon.Repository.LoungeRepository
-import com.lunastratos.mudspoon.Repository.RefreshTokenRepository
-import com.lunastratos.mudspoon.Repository.TestRepository
-import com.lunastratos.mudspoon.Util.BoardPaging
-import com.querydsl.jpa.impl.JPAQueryFactory
+import com.lunastratos.mudspoon.Repository.UserRepository
+import com.lunastratos.mudspoon.Service.UserService
+import com.lunastratos.mudspoon.Util.Example.ProtoTypeSample
+import com.lunastratos.mudspoon.Util.Example.SingleTonSample
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import java.time.LocalDateTime
-import javax.persistence.EntityManager
+import org.springframework.context.ApplicationContext
+
 
 /**
  * Junit 테스트 모듈
@@ -25,21 +22,27 @@ import javax.persistence.EntityManager
  */
 @SpringBootTest
 class MudspoonApplicationTests @Autowired constructor(
-
-	val testRepo: TestRepository,
-	val entityManager: EntityManager,
-	val query: JPAQueryFactory,
-	var refRepo: RefreshTokenRepository,
-	var loungeRepo: LoungeRepository,
+	val singleTonSample : SingleTonSample,
+	val protoTypeSample : ProtoTypeSample,
+	val ctx : ApplicationContext
 
 ) {
 
 
 	@Test
-	fun contextLoads() {
+	fun singletonTest() {
+		println(ctx.getBean(singleTonSample.javaClass))
+		println(ctx.getBean(singleTonSample.javaClass))
+		println(ctx.getBean(singleTonSample.javaClass))
 
+		println(ctx.getBean(protoTypeSample.javaClass))
+		println(ctx.getBean(protoTypeSample.javaClass))
+		println(ctx.getBean(protoTypeSample.javaClass))
 
 	}
+
+	
+
 
 //	@Test
 //	fun redisConnectionTest() {
