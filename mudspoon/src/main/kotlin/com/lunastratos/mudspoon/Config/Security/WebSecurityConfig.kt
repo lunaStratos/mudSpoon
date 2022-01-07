@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 /**
  * WebSecurityConfigurerAdapter
  * desc: Spring security - 스프링 시큐리티 종합 관리 툴
+ * Configuration & Bean으로 싱글톤 적용
  *
  * History:
  *    LunaStratos, 1.0, 2021-12-15 초기작성

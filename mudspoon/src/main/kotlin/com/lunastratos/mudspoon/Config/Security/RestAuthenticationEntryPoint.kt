@@ -12,7 +12,7 @@ import kotlin.jvm.Throws
 import org.springframework.security.core.AuthenticationException
 
 /**
- * Spring security에서 Exception이 발생했을 때, 처리해줄 클래스인 RestAuthenticationEntryPoint를 정의했습니다.
+ * Spring security에서 Exception이 발생했을 때, 처리해줄 클래스인 RestAuthenticationEntryPoint를 정의
  * */
 class RestAuthenticationEntryPoint : AuthenticationEntryPoint {
 

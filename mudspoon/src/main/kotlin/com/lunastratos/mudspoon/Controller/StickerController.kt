@@ -114,8 +114,6 @@ class StickerController @Autowired constructor(
         @RequestParam("title", required = true) title : String,
         @RequestParam("tag", required = true) tag : String,
         @RequestParam("uploadFile", required = true) mf: MultipartFile
-
-
     ): ResponseEntity<*>? {
         var result = CommonUtil().getResultJson()
 

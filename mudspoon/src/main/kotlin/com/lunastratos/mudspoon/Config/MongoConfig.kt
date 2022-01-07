@@ -10,7 +10,10 @@ import org.springframework.data.mongodb.MongoDatabaseFactory
 import org.springframework.data.mongodb.MongoTransactionManager
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
-
+/**
+ * [MongoDB]
+ * Configuration & Bean으로 싱글톤 적용
+ * */
 @Configuration
 @EnableMongoRepositories(basePackages = ["com.lunastratos.mudspoon.Repository"])
 class MongoConfig : AbstractMongoClientConfiguration() {

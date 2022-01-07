@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext
 /**
  * QueryDslConfiguration
  * desc: QueryDSL config 모듈
+ * Configuration & Bean으로 싱글톤 적용
  *
  * History:
  *    LunaStratos, 1.0, 2021-12-19 초기작성
