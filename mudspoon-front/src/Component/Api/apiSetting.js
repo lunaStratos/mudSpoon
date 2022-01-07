@@ -61,3 +61,15 @@ stickerApi.interceptors.response.use(rp_onFulfilled, rp_onRejected);
 });
 loginApi.interceptors.request.use(rq_onFulfilled, rq_onRejected);
 loginApi.interceptors.response.use(rp_onFulfilled, rp_onRejected);
+
+
+/**
+ * DreamChildren Map APi
+ */
+ export const dreamChildrenApi = axios.create({
+    baseURL: `/api/dreamChlildren`,
+    headers: headers,
+    withCredentials: false,
+});
+dreamChildrenApi.interceptors.request.use(rq_onFulfilled, rq_onRejected);
+dreamChildrenApi.interceptors.response.use(rp_onFulfilled, rp_onRejected);

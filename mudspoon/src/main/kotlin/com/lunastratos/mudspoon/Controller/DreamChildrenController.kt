@@ -22,7 +22,7 @@ class DreamChildrenController @Autowired constructor(
     /**
      * [지도 검색]
      * */
-    @RequestMapping("/map/search", method = arrayOf(RequestMethod.POST))
+    @RequestMapping("/setSouce", method = arrayOf(RequestMethod.POST))
     @ResponseBody
     fun mapSearch(
         @RequestBody payLoad: String

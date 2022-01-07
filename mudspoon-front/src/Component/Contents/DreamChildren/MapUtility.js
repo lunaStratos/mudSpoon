@@ -3,16 +3,31 @@
  * json maker for Image
  * > MultiPoint
  */
- export const setGeometryJsonMultiPoint = (coordinates) =>{
-    return {
-        type: "FeatureCollection",
-        features: [{
-            type: "Feature",
-            geometry: {
-                type: "MultiPoint",
-                coordinates: coordinates
+ export const setGeometryJsonMultiPoint = (infoArray) =>{
+
+
+    const maekArr = infoArray.map(item =>{
+
+        return {
+            'type': 'Feature',
+            'properties': {
+            'description':item,
+            'icon': 'theatre-15'
             },
-        }]
+            'geometry': {
+            'type': 'Point',
+            'coordinates':  [
+                item.longitude, 
+                item.latitude]
+            }
+            }
+    });
+    return {
+        'type': 'geojson',
+        'data': {
+            'type': 'FeatureCollection',
+            'features': maekArr
+        }
     };
 }
 
@@ -72,12 +87,12 @@ export const sampleJson = () =>{
                 address: "",
                 addresLagacy : "", 
                 tel : "",
-                mainOperationStartTime :"", 
-                mainOperationEndTime :"", 
-                satOperationStartTime :"", 
-                satOperationStartTime :"", 
-                holydatOperationStartTime :"", 
-                holydayOperationStartTime :"", 
+                mainOperationStartTime :"00:00", 
+                mainOperationEndTime :"00:00", 
+                satOperationStartTime :"00:00", 
+                satOperationEndTime :"00:00", 
+                holydatOperationStartTime :"00:00", 
+                holydayOperationEndTime :"00:00",  
                 deliveryStartTime :"", 
                 deliveryEndTime :"", 
                 managementAgency :"", 
