@@ -10,7 +10,10 @@ import StickerPage from "../Component/Contents/StickerPage";
 import LoungePage from "../Component/Contents/LoungePage";
 import DevpiaPage from "../Component/Contents/DevpiaPage";
 import LandOwned from "../Component/Contents/LandOwned";
-import NotFoundPage from "../Component/Contents/Error/NotFoundPage"
+import NotFoundPage from "../Component/Contents/Error/NotFoundPage";
+import DreamChildrenPage from "../Component/Contents/DreamChildren/DreamChildrenMap";
+
+
 
 /**
  * [Router 페이지]
@@ -29,6 +32,8 @@ export default function(){
                         <Route exact path="Contact" element={<ContactPage />} />
                         <Route exact path="Devpia" element={<DevpiaPage />} />
                         <Route exact path="LandOwned" element={<LandOwned />} />
+                        <Route exact path="DreamChildren" element={<DreamChildrenPage />} />
+
                         {/* Not Found */}
                         <Route exact path="*" element={<NotFoundPage />} />
 
