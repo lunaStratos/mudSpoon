@@ -20,26 +20,30 @@ class LoungeService @Autowired constructor(
     /**
      * 게시판 리스트
      *
-     * QueryDsl을 이용해서
+     * QueryDsl을 이용해서 작동
      *
      * @param page :
      * @param title :
      * */
-    fun selectBoardList(page: Int, search:String) : List<LoungeEntity> {
-        val allCount = loungeRepo.count().toInt()
-        val startEndArray = BoardPaging(allCount, page)
-
+    fun selectBoardList(start: Long, search:String) : List<LoungeEntity> {
         var response: List<LoungeEntity>
 
-        // 검색어 있으면 검색조건 거침
+        // 검색어 있으면 검색조건 실행됨
         if(!search.equals("")){
-            val start = startEndArray.startPage
-            response = QLungeRepo.selectBoardSearchList(start.toLong(), search)
+            response = QLungeRepo.selectBoardSearchList(start, search)
         }else{
-            val start = startEndArray.startPage
-            response = QLungeRepo.selectBoardList(start.toLong())
+            response = QLungeRepo.selectBoardList(start)
         }
 
+        return response
+    }
+
+    /**
+     * 게시판 전체 리스트 갯수
+     *
+     * */
+    fun allCount() : Int{
+        val response = loungeRepo.count().toInt()
         return response
     }
 }

@@ -3,11 +3,15 @@ package com.lunastratos.mudspoon.Controller
 import com.lunastratos.mudspoon.Api.External.NaverApi
 import com.lunastratos.mudspoon.Entity.StickerEntity
 import com.lunastratos.mudspoon.Service.StickerService
+import com.lunastratos.mudspoon.Util.BoardPaging
+import com.lunastratos.mudspoon.Util.CommonUtil
 import com.lunastratos.mudspoon.Util.File.FileManager
 import org.apache.commons.io.FilenameUtils
+import org.json.JSONObject
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 
@@ -26,16 +30,81 @@ import org.springframework.web.multipart.MultipartFile
 @RestController()
 @RequestMapping("/Sticker")
 class StickerController @Autowired constructor(
-    private val naverApi: NaverApi,
     private val stickerService: StickerService,
 ){
 
     private val log: Logger = LoggerFactory.getLogger(StickerController::class.java)
 
-    @RequestMapping("/list", method = arrayOf(RequestMethod.GET))
+    /**
+     * List - 리스트
+     * desc: 페이지가 있을 경우
+     * @param page Int
+     * @param title String
+     * */
+    @RequestMapping("/board/list/{page}", method = arrayOf(RequestMethod.GET))
     @ResponseBody
-    fun list(): String {
-        return "zz"
+    fun list(
+        @PathVariable("page",  required = true) page: String,
+        @RequestParam("search",  required = true, defaultValue = "") search: String
+    ): ResponseEntity<*>? {
+
+        var result = CommonUtil().getResultJson()
+
+        try {
+
+            println("${page} ${search}")
+
+            val allCount = stickerService.allCount()
+            val startEndData = BoardPaging(allCount.toInt(), page.toInt())
+            val startPage = startEndData.startPage
+            var endPage = startEndData.endPage
+
+            val getBoardList = stickerService.selectBoardList(startPage.toLong(), search)
+            result.put("list", getBoardList)
+            result.put("startPage", startPage)
+            result.put("endPage", endPage)
+
+            return ResponseEntity.ok<Any>(result.toString())
+
+        }catch (e:Exception){
+
+            result.put("status", 9000)
+            return ResponseEntity.badRequest()
+                .body<Any>(result.toString())
+
+        }
+    }
+
+
+    /**
+     * 게시물 조회
+     * desc: 페이지가 있을 경우
+     * @param num String
+     * */
+    @RequestMapping("/board/view/{num}", method = arrayOf(RequestMethod.GET))
+    @ResponseBody
+    fun BoardNum(
+        @PathVariable("num",  required = true) num: String
+    ): ResponseEntity<*>? {
+
+        var result = CommonUtil().getResultJson()
+
+        try {
+
+            println("${num} ")
+
+            val getBoard = stickerService.selectBoardNum(num.toLong())
+            result.put("data", getBoard)
+
+            return ResponseEntity.ok<Any>(result.toString())
+
+        }catch (e:Exception){
+
+            result.put("status", 9000)
+            return ResponseEntity.badRequest()
+                .body<Any>(result.toString())
+
+        }
     }
 
 
@@ -47,46 +116,86 @@ class StickerController @Autowired constructor(
         @RequestParam("uploadFile", required = true) mf: MultipartFile
 
 
-    ): String? {
+    ): ResponseEntity<*>? {
+        var result = CommonUtil().getResultJson()
 
-        val author = ""
+        try {
+            val author = ""
 
-        val originalFileName = mf!!.originalFilename // 업로드하는 파일 name
+            val originalFileName = mf!!.originalFilename // 업로드하는 파일 name
 
-        var extensionName:String = FilenameUtils.getExtension(originalFileName)
-        var fileName:String = FilenameUtils.getName(originalFileName)
+            var extensionName:String = FilenameUtils.getExtension(originalFileName)
+            var fileName:String = FilenameUtils.getName(originalFileName)
 
-        //확장자 검사
-        var isExtension :Boolean = false
-        val fileExtension = arrayOf("7z", "zip")
-        for (item in fileExtension){
-            if(extensionName.equals(item)) isExtension = true
+            //확장자 검사
+            var isExtension :Boolean = false
+            val fileExtension = arrayOf("7z", "zip")
+            for (item in fileExtension){
+                if(extensionName.equals(item)) isExtension = true
+            }
+
+            if (isExtension){
+
+                val uploadFileName = FileManager().fileUpload(mf)
+                FileManager().unZip(uploadFileName)
+
+                // Todo : DB에 파일이름 저장
+                var stickerEntity = StickerEntity()
+                    stickerEntity.auther = author
+                    stickerEntity.contents = contents
+                    stickerEntity.file_name_zip = uploadFileName+".zip"
+                    stickerEntity.file_folder = uploadFileName
+                    stickerEntity.search_tag = tag
+                    stickerEntity.title = title
+                    stickerService.insertSticker(stickerEntity)
+
+                return ResponseEntity.ok<Any>(result.toString())
+
+            }else{
+                //지원 가능한 파일아님
+            }
+
+        }catch (e:Exception){
+
+
         }
+        result.put("status", 9000)
+        return ResponseEntity.badRequest()
+            .body<Any>(result.toString())
 
-        if (isExtension){
-
-            val uploadFileName = FileManager().fileUpload(mf)
-            FileManager().unZip(uploadFileName)
-
-            // Todo : DB에 파일이름 저장
-            var stickerEntity = StickerEntity()
-                stickerEntity.auther = author
-                stickerEntity.contents = contents
-                stickerEntity.file_name_zip = uploadFileName+".zip"
-                stickerEntity.file_folder = uploadFileName
-                stickerEntity.search_tag = tag
-                stickerEntity.title = title
-                stickerService.insertSticker(stickerEntity)
-        }else{
-            //지원 가능한 파일아님
-        }
-
-
-
-
-
-        return ""
     }
 
+
+    /**
+     * 게시물 삭제
+     * desc: 토큰 조회해서 본인만 삭제가능
+     * @param payLoad String (Json)
+     * @param num String
+     * */
+    @RequestMapping("/board/delete/{num}", method = arrayOf(RequestMethod.POST))
+    @ResponseBody
+    fun DeleteBoardNum(
+        @RequestBody payLoad: String,
+        @PathVariable("num",  required = true) num: String
+    ): ResponseEntity<*>? {
+
+        var result = CommonUtil().getResultJson()
+
+        try {
+
+            var param = JSONObject(payLoad)
+
+            val response = stickerService.deleteBoardNum(num.toLong())
+            result.put("data", response)
+            return ResponseEntity.ok<Any>(result.toString())
+
+        }catch (e:Exception){
+
+            result.put("status", 9000)
+            return ResponseEntity.badRequest()
+                .body<Any>(result.toString())
+
+        }
+    }
 
 }

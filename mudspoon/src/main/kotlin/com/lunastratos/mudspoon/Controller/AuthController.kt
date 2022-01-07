@@ -1,5 +1,6 @@
 package com.lunastratos.mudspoon.Controller
 
+import com.lunastratos.mudspoon.Api.External.NaverApi
 import com.lunastratos.mudspoon.Config.Security.JwtTokenProvider
 import com.lunastratos.mudspoon.Entity.AuthEntity
 import com.lunastratos.mudspoon.Entity.RegisterEntity
@@ -8,6 +9,7 @@ import com.lunastratos.mudspoon.Entity.UserEntity
 import com.lunastratos.mudspoon.Service.RedisService
 import com.lunastratos.mudspoon.Service.UserService
 import com.lunastratos.mudspoon.Util.CommonUtil
+import org.json.JSONObject
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
@@ -26,7 +28,9 @@ class AuthController(
     private val tokenProvider: JwtTokenProvider,
     private val userService: UserService,
     private val passwordEncoder: PasswordEncoder,
-    private val redisService: RedisService
+    private val redisService: RedisService,
+    private val naverApi: NaverApi
+
 ) {
     private val log: Logger = LoggerFactory.getLogger(AuthController::class.java)
 
@@ -227,6 +231,45 @@ class AuthController(
         return ""
 
 
+    }
+
+
+    /**
+     * 네이버 로그인 창 : 나중에 프론트로 뺌.
+     * @param
+     * @return
+     * */
+    @RequestMapping("/registerBtnNaver", method = arrayOf(RequestMethod.GET))
+    @ResponseBody
+    fun registerBtnNaver(): String {
+        val allData = naverApi.getSocialLoginAutherize()
+        var value =  allData.toString()
+        log.info(value)
+        return value
+    }
+
+    /**
+     * 네이버 로그인 callback
+     * @param
+     * @return
+     * */
+    @RequestMapping("/registerBtnNaverCallback", method = arrayOf(RequestMethod.GET))
+    @ResponseBody
+    fun registerBtnNaverCallback(@RequestParam(value = "code") code : String,
+                                 @RequestParam(value = "state") state : String): String {
+
+        val getToken = naverApi.getSocialLoginToken(code, state)
+        val getTokenJson : JSONObject = JSONObject(getToken)
+
+        val access_token = getTokenJson.getString("access_token")
+        val refresh_token = getTokenJson.getString("refresh_token")
+        val expires_in = getTokenJson.getString("expires_in")
+
+        var value = naverApi.getSocialLoginMeInfo(access_token)
+        log.info(value.toString())
+
+
+        return value.toString()
     }
 
 

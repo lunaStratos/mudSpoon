@@ -3,6 +3,7 @@ package com.lunastratos.mudspoon.Controller
 import com.lunastratos.mudspoon.Api.External.NaverApi
 import com.lunastratos.mudspoon.Entity.LoungeEntity
 import com.lunastratos.mudspoon.Service.LoungeService
+import com.lunastratos.mudspoon.Util.BoardPaging
 import com.lunastratos.mudspoon.Util.CommonUtil
 import org.json.JSONObject
 import org.slf4j.Logger
@@ -25,19 +26,18 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/lounge")
 class LoungeController @Autowired constructor(
-    private val loungeService: LoungeService
+    private val loungeService: LoungeService,
+    private val naverApi: NaverApi
     ){
 
     private val log: Logger = LoggerFactory.getLogger(LoungeController::class.java)
 
-    @Autowired
-    private lateinit var naverApi: NaverApi
 
     /**
      * List - 리스트
-     * desc: 페이지가 있을 경우
+     * desc: search가 있을 경우 검색 작동
      * @param page Int
-     * @param title String
+     * @param search String
      * */
     @RequestMapping("/list/{page}", method = arrayOf(RequestMethod.GET))
     @ResponseBody
@@ -45,22 +45,36 @@ class LoungeController @Autowired constructor(
         @PathVariable("page",  required = true) page: String,
         @RequestParam("search",  required = true, defaultValue = "") search: String
     ): ResponseEntity<*>? {
-
-        println("${page} ${search}")
-        var startPage = 1
-        var endPage = 1
-        var boardList = {}
-
-        val getBoardList = loungeService.selectBoardList(page.toInt(), search)
         var result = CommonUtil().getResultJson()
-        result.put("list", getBoardList)
 
-        return ResponseEntity.ok<Any>(result.toString())
+        try {
+
+            println("${page} ${search}")
+
+            val allCount = loungeService.allCount()
+            val startEndData = BoardPaging(allCount, page.toInt())
+            val startPage = startEndData.startPage
+
+            var endPage = startEndData.endPage
+            var boardList = {}
+
+            val getBoardList = loungeService.selectBoardList(startPage.toLong(), search)
+            result.put("list", getBoardList)
+            result.put("startPage", startPage)
+            result.put("endPage", endPage)
+
+            return ResponseEntity.ok<Any>(result.toString())
+        }catch (e:Exception){
+            result.put("status", 9000)
+            return ResponseEntity.badRequest()
+                .body<Any>(result.toString())
+        }
+
     }
 
     /**
      * write - 글쓰기
-     *
+     * desc:
      * @param
      * */
     @RequestMapping("/write", method = arrayOf(RequestMethod.POST), produces = arrayOf("application/json"))
@@ -68,6 +82,11 @@ class LoungeController @Autowired constructor(
     fun write(
         @RequestBody payLoad: String
     ): ResponseEntity<*>? {
+
+        var result = CommonUtil().getResultJson()
+
+        try {
+
         var param = JSONObject(payLoad)
         val contents = param.get("contents") as String
         println("contents ${contents}")
@@ -82,6 +101,13 @@ class LoungeController @Autowired constructor(
         var result = CommonUtil().getResultJson()
 
         return ResponseEntity.ok<Any>(result.toString())
+
+        }catch (e:Exception){
+            result.put("status", 9000)
+            return ResponseEntity.badRequest()
+                .body<Any>(result.toString())
+
+        }
     }
 
 }
