@@ -14,6 +14,12 @@ class QUserRepository (
     val entityManager: EntityManager,
     val query: JPAQueryFactory
 ) {
+
+    /**
+     * 유저조회 : 테스트용!
+     *
+     * @param username String
+     * */
     fun selectUserByEmailAndPw(username: String): List<UserEntity> {
         val userQEM = QUserEntity.userEntity
         val userEntity : List<UserEntity> = query.selectFrom(userQEM)
@@ -22,6 +28,11 @@ class QUserRepository (
         return userEntity
     }
 
+    /**
+     * 이메일로 유저조회
+     *
+     * @param username String
+     * */
     fun selectUserByEmail(username: String): List<UserEntity> {
         val userQEM = QUserEntity.userEntity
         val userEntity : List<UserEntity> = query.selectFrom(userQEM)
@@ -30,6 +41,11 @@ class QUserRepository (
         return userEntity
     }
 
+    /**
+     * 유저 존재여부
+     *
+     * @param email String
+     * */
     fun isExist(email:String) : Long {
         val userQEM = QUserEntity.userEntity
         val value = query.selectFrom(userQEM).where(

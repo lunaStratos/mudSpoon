@@ -14,6 +14,10 @@ class StickerService  @Autowired constructor(
     private val qZzalRepo: QStickerRepository
 ){
 
+    /**
+     * 글쓰기
+     * @param stickerEntity Object
+     * */
     @Transactional
     fun insertSticker(stickerEntity: StickerEntity) {
         qZzalRepo?.insertSticker(stickerEntity)
@@ -21,6 +25,7 @@ class StickerService  @Autowired constructor(
 
     /**
      * 게시물 조회
+     * @param stickerEntity Object
      * */
     fun selectBoardNum(boardNum: Long) : List<StickerEntity> {
         return qZzalRepo?.selectBoardNum(boardNum)
@@ -28,18 +33,18 @@ class StickerService  @Autowired constructor(
 
     /**
      * 게시물 삭제
+     * @param boardNum Long
      * */
+    @Transactional
     fun deleteBoardNum(boardNum: Long) :Long{
         return qZzalRepo?.deleteBoardNum(boardNum)
     }
 
     /**
-     * 게시판 리스트
+     * 게시판 리스트 조회
      *
-     * QueryDsl을 이용해서 작동
-     *
-     * @param page :
-     * @param title :
+     * @param start Long
+     * @param search String
      * */
     fun selectBoardList(start: Long, search:String) : List<StickerEntity> {
         var response: List<StickerEntity>

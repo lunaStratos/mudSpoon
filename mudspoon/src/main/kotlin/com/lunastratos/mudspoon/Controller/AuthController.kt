@@ -84,36 +84,45 @@ class AuthController(
     @PostMapping("/register")
     fun Register(@RequestBody param: RegisterEntity): ResponseEntity<*>? {
         var result = CommonUtil().getResultJson()
-        
-        if (!userService.selectUserByEmail(param.email!!).isEmpty()) {
+
+        try {
+
+
+            if (!userService.selectUserByEmail(param.email!!).isEmpty()) {
+                result.put("status", 9000)
+                return ResponseEntity
+                    .badRequest()
+                    .body<Any>(result.toString())
+            }
+
+            val isExist =  userService.isExist(param.email)
+
+            // 이미 존재하는 아이디
+            if(isExist > 0){
+                result.put("status", 2000)
+                return ResponseEntity.ok<Any>(result.toString())
+            }
+
+            val createUser = UserEntity(
+                null,
+                param.email,
+                passwordEncoder.encode(param.password),
+                param.name,
+                RoleType.ROLE_USER,
+                null,
+                null
+            )
+
+            // 회원가입
+            userService.save(createUser)
+
+            return ResponseEntity.ok<Any>(result.toString())
+        }catch (e:Exception){
             result.put("status", 9000)
-            return ResponseEntity
-                .badRequest()
+            return ResponseEntity.badRequest()
                 .body<Any>(result.toString())
         }
 
-        val isExist =  userService.isExist(param.email)
-
-        // 이미 존재하는 아이디
-        if(isExist > 0){
-            result.put("status", 2000)
-            return ResponseEntity.ok<Any>(result.toString())
-        }
-
-        val createUser = UserEntity(
-            null,
-            param.email,
-            passwordEncoder.encode(param.password),
-            param.name,
-            RoleType.ROLE_USER,
-            null,
-            null
-        )
-        
-        // 회원가입
-        userService.save(createUser)
-
-        return ResponseEntity.ok<Any>(result.toString())
     }
 
     /**
@@ -121,17 +130,25 @@ class AuthController(
      * */
     @PostMapping("/register/isExsit")
     fun isExist(@RequestBody email: String): ResponseEntity<*>? {
+
         var result = CommonUtil().getResultJson()
 
-        val isExist =  userService.isExist(email)
+        try {
 
-        // 이미 존재하는 아이디
-        if(isExist > 0){
-            result.put("status", 2000)
+            val isExist =  userService.isExist(email)
+
+            // 이미 존재하는 아이디
+            if(isExist > 0){
+                result.put("status", 2000)
+                return ResponseEntity.ok<Any>(result.toString())
+            }
+
             return ResponseEntity.ok<Any>(result.toString())
+        }catch (e:Exception){
+            result.put("status", 9000)
+            return ResponseEntity.badRequest()
+                .body<Any>(result.toString())
         }
-
-        return ResponseEntity.ok<Any>(result.toString())
     }
 
 
@@ -148,12 +165,12 @@ class AuthController(
             val token = tokenProvider.resolveTokenInfo(authorization)
             val details = tokenProvider.getUserId(token)
             println(details)
-            return  ResponseEntity.ok<Any>(result.toString())
+            return ResponseEntity.ok<Any>(result.toString())
         }catch (e:Exception){
             result.put("status", 5000)
             result.put("message", "토큰에러")
 
-            return  ResponseEntity
+            return ResponseEntity
                 .badRequest()
                 .body<Any>(result.toString())
         }
@@ -170,50 +187,58 @@ class AuthController(
                      @RequestHeader(value = "RefreshToken") refresh: String): ResponseEntity<*>? {
         val result = CommonUtil().getResultJson()
 
-        println("authorization ${authorization}")
-        println("refresh ${refresh}")
+        try{
+            println("authorization ${authorization}")
+            println("refresh ${refresh}")
 
-        val accessToken = tokenProvider.resolveTokenInfo(authorization)
-        val refreshToken = tokenProvider.resolveTokenInfo(refresh)
+            val accessToken = tokenProvider.resolveTokenInfo(authorization)
+            val refreshToken = tokenProvider.resolveTokenInfo(refresh)
 
-        // 엑세스 토큰으로 검사
-        val getTokenEmail = tokenProvider.getUserId(accessToken)
-        val getTokenLife = tokenProvider.validateToken(accessToken)
+            // 엑세스 토큰으로 검사
+            val getTokenEmail = tokenProvider.getUserId(accessToken)
+            val getTokenLife = tokenProvider.validateToken(accessToken)
 
-        println(getTokenEmail)
-        println(getTokenLife)
+            println(getTokenEmail)
+            println(getTokenLife)
 
-        //이메일로 리플레시 토큰 얻어오기
-        val redisRefreshToken = redisService.getData(getTokenEmail)!!
-        println("redisRefreshToken ${redisRefreshToken} ${redisRefreshToken.equals(refreshToken)}")
+            //이메일로 리플레시 토큰 얻어오기
+            val redisRefreshToken = redisService.getData(getTokenEmail)!!
+            println("redisRefreshToken ${redisRefreshToken} ${redisRefreshToken.equals(refreshToken)}")
 
-        //토큰이 살아있는가? => 정상로그인
-        if(getTokenLife){
+            //토큰이 살아있는가? => 정상로그인
+            if(getTokenLife){
+                return ResponseEntity.ok<Any>(result.toString())
+            }
+
+            //리플레시토큰이 없는가? => 재로그인
+            if(redisRefreshToken.isEmpty()){
+                result.put("status", 5000)
+                return ResponseEntity.ok<Any>(result.toString())
+            }
+
+            //리플레시토큰이 같지 않은가? => 재로그인
+            if(!redisRefreshToken.equals(refreshToken)){
+                result.put("status", 5000)
+                return ResponseEntity.ok<Any>(result.toString())
+            }
+
+            //RefreshToken 생성후 Redis에 저장
+            val newRefreshToken = tokenProvider.createRefreshToken()
+            val newAccessToken = tokenProvider.createToken(getTokenEmail)
+            redisService.setDataExpired(getTokenEmail, newRefreshToken)
+
+            result.put("status" , 1010) // 재갱신
+            result.put("accessToken" , newAccessToken)
+            result.put("refreshToken" , newRefreshToken)
+
             return ResponseEntity.ok<Any>(result.toString())
+
+        }catch (e:Exception){
+            result.put("status", 9000)
+            return ResponseEntity.badRequest()
+                .body<Any>(result.toString())
         }
 
-        //리플레시토큰이 없는가? => 재로그인
-        if(redisRefreshToken.isEmpty()){
-            result.put("status", 5000)
-            return ResponseEntity.ok<Any>(result.toString())
-        }
-
-        //리플레시토큰이 같지 않은가? => 재로그인
-        if(!redisRefreshToken.equals(refreshToken)){
-            result.put("status", 5000)
-            return ResponseEntity.ok<Any>(result.toString())
-        }
-
-        //RefreshToken 생성후 Redis에 저장
-        val newRefreshToken = tokenProvider.createRefreshToken()
-        val newAccessToken = tokenProvider.createToken(getTokenEmail)
-        redisService.setDataExpired(getTokenEmail, newRefreshToken)
-
-        result.put("status" , 1010) // 재갱신
-        result.put("accessToken" , newAccessToken)
-        result.put("refreshToken" , newRefreshToken)
-
-        return ResponseEntity.ok<Any>(result.toString())
 
     }
 
@@ -223,13 +248,22 @@ class AuthController(
      * 토큰 삭제
      * */
     @PostMapping("/logout")
-    fun Logout(@RequestHeader(value = "Authorization") authorization: String ): String {
-        println(authorization)
-        val token = tokenProvider.resolveTokenInfo(authorization)
-        val details = tokenProvider.getUserId(token)
-        println(details)
-        return ""
+    fun Logout(@RequestHeader(value = "Authorization") authorization: String ): ResponseEntity<*>? {
+        val result = CommonUtil().getResultJson()
 
+        try {
+
+            println(authorization)
+            val token = tokenProvider.resolveTokenInfo(authorization)
+            val details = tokenProvider.getUserId(token)
+            println(details)
+            return ResponseEntity.ok<Any>(result.toString())
+
+        }catch (e:Exception){
+            result.put("status", 9000)
+            return ResponseEntity.badRequest()
+                .body<Any>(result.toString())
+        }
 
     }
 

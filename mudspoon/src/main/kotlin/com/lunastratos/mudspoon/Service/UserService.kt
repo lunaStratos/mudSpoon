@@ -15,14 +15,29 @@ class UserService @Autowired constructor (
     private val userRepo: UserRepository,
 ){
 
+    /**
+     * 이메일로 유저조회
+     *
+     * @param username String
+     * */
     fun selectUserByEmail(email:String):List<UserEntity> {
         return qUserRepo.selectUserByEmail(email)
     }
 
+    /**
+     * 유저 존재여부
+     *
+     * @param email String
+     * */
     fun isExist(email:String):Long {
         return qUserRepo.isExist(email)
     }
 
+    /**
+     * 회원가입
+     *
+     * @param userEntity Object
+     * */
     fun save(userEntity: UserEntity){
         userRepo.save(userEntity)
     }
