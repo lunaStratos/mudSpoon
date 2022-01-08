@@ -31,7 +31,7 @@ interface DreamChildrenMapRepository : JpaRepository<DreamChildrenMapEntity?, Lo
             AND A.latitude < :latitude + 10 / (69.1/1.61)
             AND A.longitude > :longitude - 10 / (53/1.61)
             AND A.longitude < :longitude + 10 / (53/1.61)
-            HAVING distance < 5
+            HAVING distance < 1
             order by distance asc
         
     """, nativeQuery = true)

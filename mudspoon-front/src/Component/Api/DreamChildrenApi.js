@@ -1,6 +1,9 @@
 import { dreamChildrenApi } from './apiSetting.js';
 
-
+/**
+ * [꿈의 아이들]
+ * 
+ */
 export default class DreamChildrenApi {
 
     /**
@@ -12,7 +15,7 @@ export default class DreamChildrenApi {
             "lng"         : lng,
             "lat"         : lat
         };
-        return await dreamChildrenApi.post(`/map/search/`, params);
+        return await dreamChildrenApi.post(`/searchStore/`, params);
     }
 
 

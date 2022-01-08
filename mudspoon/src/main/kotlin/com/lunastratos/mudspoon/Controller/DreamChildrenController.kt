@@ -10,6 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
+/**
+ * Controller
+ * 꿈의아이들 지도 담당
+ *
+ * History:
+ *    LunaStratos, 1.0, 2022-01-09 초기작성
+ *
+ * @date        2022-01-09
+ * @version     1.0
+ * @author      LunaStratos (LunaStratos@gmail.com)
+ */
 @RestController
 @RequestMapping("/dreamChildren")
 class DreamChildrenController @Autowired constructor(
@@ -21,8 +32,10 @@ class DreamChildrenController @Autowired constructor(
 
     /**
      * [지도 검색]
+     *
+     * @param payLoad String
      * */
-    @RequestMapping("/setSouce", method = arrayOf(RequestMethod.POST))
+    @RequestMapping("/searchStore", method = arrayOf(RequestMethod.POST))
     @ResponseBody
     fun mapSearch(
         @RequestBody payLoad: String
@@ -40,6 +53,27 @@ class DreamChildrenController @Autowired constructor(
             // Todo 위경도 검사 쿼리
             val searchResult = dcService.selectSearchStore(longitude, latitude);
             result.put("data", searchResult)
+
+            return ResponseEntity.ok<Any>(result.toString())
+        }catch (e:Exception){
+
+            result.put("status", 9000)
+            return ResponseEntity.badRequest().body<Any>(result.toString())
+        }
+    }
+
+    /**
+     * [지도 검색]
+     *
+     * @param payLoad String
+     * */
+    @RequestMapping("/test", method = arrayOf(RequestMethod.GET))
+    @ResponseBody
+    fun test(): ResponseEntity<*>? {
+
+        var result = CommonUtil().getResultJson()
+
+        try {
 
             return ResponseEntity.ok<Any>(result.toString())
         }catch (e:Exception){

@@ -40,6 +40,7 @@ class RedisService @Autowired constructor(
         valueOperations.set(key, value, expireDuration)
     }
 
+    //시간 지정됨
     fun setDataExpired(key: String, value: String) {
         val valueOperations = stringRedisTemplate!!.opsForValue()
         val expireDuration: Duration = Duration.ofSeconds(refeshTokenValidTime.toLong())

@@ -20,7 +20,16 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.bind.annotation.*
 
-
+/**
+ * 계점 담당 Controller
+ *
+ * History:
+ *    LunaStratos, 1.0, 2022-01-09 초기작성
+ *
+ * @date        2022-01-09
+ * @version     1.0
+ * @author      LunaStratos (LunaStratos@gmail.com)
+ */
 @RestController
 @RequestMapping("/account")
 class AuthController(

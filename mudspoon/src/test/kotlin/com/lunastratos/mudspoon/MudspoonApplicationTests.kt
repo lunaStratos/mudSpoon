@@ -1,6 +1,7 @@
 package com.lunastratos.mudspoon
 
 import com.lunastratos.mudspoon.Repository.UserRepository
+import com.lunastratos.mudspoon.Service.RedisService
 import com.lunastratos.mudspoon.Service.UserService
 import com.lunastratos.mudspoon.Util.Example.ProtoTypeSample
 import com.lunastratos.mudspoon.Util.Example.SingleTonSample
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.ApplicationContext
+import java.time.Duration
 
 
 /**
@@ -24,11 +26,15 @@ import org.springframework.context.ApplicationContext
 class MudspoonApplicationTests @Autowired constructor(
 	val singleTonSample : SingleTonSample,
 	val protoTypeSample : ProtoTypeSample,
-	val ctx : ApplicationContext
+	val ctx : ApplicationContext,
+	val redisService: RedisService
 
 ) {
 
 
+	/**
+	 * 싱글톤 프로토타입 테스트
+	 * */
 	@Test
 	fun singletonTest() {
 		println(ctx.getBean(singleTonSample.javaClass))
@@ -44,12 +50,11 @@ class MudspoonApplicationTests @Autowired constructor(
 	
 
 
-//	@Test
-//	fun redisConnectionTest() {
-//		val ref = RefreshTokenEntity("1", "2")
-//		refRepo.save(ref)
-//		val findPerson = refRepo.findById("1")
-//		println("${findPerson.get().key} ${findPerson.get().value}")
+	@Test
+	fun redisConnectionTest() {
+		val expireDuration: Duration = Duration.ofSeconds(10)
+		redisService.setDataExpire("test1", "111", 10)
+	}
 //
 //
 //	}

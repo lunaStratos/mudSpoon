@@ -10,7 +10,7 @@ mapboxgl.accessToken = "pk.eyJ1IjoibHVuYXN0cmF0b3MiLCJhIjoiY2tybXM2MXZnMm5wcjMxb
 
 export default function(){
 
-    const [lngLat, setlngLat] = useState([127.146493, 37.529473]);
+    const [lngLat, setlngLat] = useState([126.97704062365108, 37.56937237862446]);
     const [zoomLevel, setZoomLevel] = useState(16);
     const [storeInfo, setStoreInfo] = useState({
       storeName : "가게이름",
@@ -53,75 +53,98 @@ export default function(){
             maxZoom: 16.5
         });
 
-        map.current.on('load',async () => {
+        /**
+         * [자도 로딩후 이벤트]
+         */
+        map.current.on('load',async (event) => {
+            console.log(map.current.getZoom());
 
-            
-            map.current.addSource('places', sampleJson() );
+            /**
+             * [마우스 클릭 이벤트]
+             */
+            map.current.on("click", 'places', (e) => {
+              if(map.current.getZoom() < 15) return;
 
-            map.current.addLayer({
-            'id': 'places',
-            'type': 'symbol',
-            'source': 'places',
-            layout: {
-                'icon-image': "storeImage",
-                'icon-size': 0.1,
-                'icon-allow-overlap': true, // zoomLevel 17.18정도일때 합쳐짐 방지
-              },
-              paint: {
-                'icon-opacity': 1
+              const coordinates = e.features[0].geometry.coordinates.slice();
+              const description = e.features[0].properties.description;
+                  
+              const latLng = e.lngLat;
+              const lng = latLng.lng, lat = latLng.lat;
+              
+              while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+              coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
               }
-            });
-              
-            // When a click event occurs on a feature in the places layer, open a popup at the
-            // location of the feature, with description HTML from its properties.
-            map.current.on('click', 'places', (e) => {
-            // Copy coordinates array.
-            const coordinates = e.features[0].geometry.coordinates.slice();
-            const description = e.features[0].properties.description;
                 
-            const latLng = e.lngLat;
-            const lng = latLng.lng, lat = latLng.lat;
-            
-            // Ensure that if the map is zoomed out such that multiple
-            // copies of the feature are visible, the popup appears
-            // over the copy being pointed to.
-            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-            }
-              
-            console.log(description);
-            setStoreInfo(description);
+              setStoreInfo(JSON.parse(description));
+
             });
               
             /**
              * [마우스 움직임 이후 Drag]
              */
             map.current.on("mousemove",  async (event) => {
+              if(map.current.getZoom() < 15) return;
+
                 map.current.once('mouseup', onUp);
             });
+            
         });
     }
 
+    /**
+     *[ 마우스 드래그 후 이벤트]
+     */
     async function onUp(e) {
         
         //브라우져 지도의 남서쪽, 북동쪽 좌표
         const ne = map.current.getBounds().getNorthEast();
         const sw = map.current.getBounds().getSouthWest();
-        const center =  map.current.getBounds().getCenter();
+        const center = map.current.getBounds().getCenter();
         
         console.log(center);
-        // Todo : 위경도 값으로 부르기 
+        console.log(map.current.getZoom());
 
         const lng = center.lng;
         const lat = center.lat;
+
         const res = await DreamChildrenApi.searchStore({lng: lng, lat: lat});
 
-        if(res.code === 200){
-          const dataList = res.data;
+        console.log(res)
+        if(res.status === 200){
+
+          const dataList = res.data.data;          
+          const features = setGeometryJsonMultiPoint(dataList);
           setStoreList(dataList);
+
+          if(map.current.getSource("places") !== undefined){
+
+            map.current.getSource("places").setData(features);
+
+          } else {
+
+            map.current.addSource('places', {
+              "type": "geojson",
+              "data": features
+              }
+            );
           
-          const features = setGeometryJsonMultiPoint(dataList)
-          map.current.getSource("places").setData(features);
+            map.current.addLayer({
+              'id': 'places',
+              'type': 'symbol',
+              'source': 'places',
+              "layout": {
+                  'icon-image': "storeImage",
+                  'icon-size': 0.1,
+                  'icon-allow-overlap': true, // zoomLevel 17.18정도일때 합쳐짐 방지
+                },
+              "paint": {
+                  'icon-opacity': 1
+                },
+              "minzoom" : 15
+            });
+
+          }
+
         }
         
 
@@ -147,11 +170,12 @@ export default function(){
   }
     
     /**
-     * [최초 실행시 시자]
+     * [최초 실행시 시작]
      */
     useEffect( async() => {
         await initMap();
         await _setFlagImage();
+        await onUp(); // DB 지도 부르기 
     }, []);
 
     return(

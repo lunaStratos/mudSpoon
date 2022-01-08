@@ -13,7 +13,7 @@ import javax.persistence.*
         @Column(name="store_name")
         val storeName :String = "",    // 가게이름
         @Column(name="store_code")
-        val stoteCode :String = "01",
+        val storeCode :String = "01",
         @Column(name="si")
         val si :String = "",
         @Column(name="gungu")
