@@ -3,15 +3,25 @@ import React,{useState, useEffect, useRef} from "react";
 import storeImage from '../../../Asset/DreamChildren/store.png';
 import DreamChildrenApi from "../../Api/DreamChildrenApi";
 import InfoBox from "./InfoBox";
-import { sampleJson, setGeometryJsonMultiPoint } from "./MapUtility";
+import {setGeometryJsonMultiPoint } from "./MapUtility";
 
+// [ENV]
 mapboxgl.accessToken = "pk.eyJ1IjoibHVuYXN0cmF0b3MiLCJhIjoiY2tybXM2MXZnMm5wcjMxbzJ4eDdwZm45diJ9.vf2FoHHxyF7IPDWQfpjgGg";             // API key
 
 
+/**
+ * [Dream Children Project]
+ * 
+ */
 export default function(){
+  const startlat = parseFloat(process.env.REACT_APP_START_LATITUDE);
+  const startlng = parseFloat(process.env.REACT_APP_START_LONGITUDE);
+  const startZoomLevel = parseInt(process.env.REACT_APP_START_ZOOMLEVEL);
+  const minZoom = parseInt(process.env.REACT_APP_VIEW_MINZOOM);
 
-    const [lngLat, setlngLat] = useState([126.97704062365108, 37.56937237862446]);
-    const [zoomLevel, setZoomLevel] = useState(16);
+
+    const [lngLat, setlngLat] = useState([startlng, startlat]);
+    const [zoomLevel, setZoomLevel] = useState(startZoomLevel);
     const [storeInfo, setStoreInfo] = useState({
       storeName : "가게이름",
       storeCode : "가게코드",
@@ -56,14 +66,13 @@ export default function(){
         /**
          * [자도 로딩후 이벤트]
          */
-        map.current.on('load',async (event) => {
-            console.log(map.current.getZoom());
+        map.current.on('load', async (event) => {
 
             /**
              * [마우스 클릭 이벤트]
              */
             map.current.on("click", 'places', (e) => {
-              if(map.current.getZoom() < 15) return;
+              if(map.current.getZoom() < minZoom) return;
 
               const coordinates = e.features[0].geometry.coordinates.slice();
               const description = e.features[0].properties.description;
@@ -83,7 +92,7 @@ export default function(){
              * [마우스 움직임 이후 Drag]
              */
             map.current.on("mousemove",  async (event) => {
-              if(map.current.getZoom() < 15) return;
+              if(map.current.getZoom() < minZoom) return;
 
                 map.current.once('mouseup', onUp);
             });
@@ -140,7 +149,7 @@ export default function(){
               "paint": {
                   'icon-opacity': 1
                 },
-              "minzoom" : 15
+              "minzoom" : parseInt(process.env.REACT_APP_PLACE_VIEW_MINZOOM)
             });
 
           }

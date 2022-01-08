@@ -52,3 +52,20 @@ PSD에 있습니다.
 
 <A href="https://stratosphere.tistory.com/category/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/Beyrouth.Plan"> 개발일지 및 노트</A>
 
+
+
+# DreamChildren 
+
+서브프로젝트로 전국아동급식정보 지도를 제작하였습니다. 
+
+ - 제작시간 : 1.5일
+ - 지도 : Mapbox
+ - React & Spring Boot
+ - DB : MariaDb + JPQL
+ - Data : 전국아동급식정보 (https://www.data.go.kr/data/15034530/standard.do)
+
+[![실제 동작 모습](http://img.youtube.com/vi/Lloa-dF7Bt0/0.jpg)](https://www.youtube.com/watch?v=Lloa-dF7Bt0)
+
+소개영상 https://www.youtube.com/watch?v=Lloa-dF7Bt0 
+
+
