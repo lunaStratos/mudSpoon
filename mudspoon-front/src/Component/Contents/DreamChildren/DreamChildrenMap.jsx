@@ -4,6 +4,7 @@ import storeImage from '../../../Asset/DreamChildren/store.png';
 import DreamChildrenApi from "../../Api/DreamChildrenApi";
 import InfoBox from "./InfoBox";
 import {setGeometryJsonMultiPoint } from "./MapUtility";
+import SearchBox from "./SearchBox";
 
 // [ENV]
 mapboxgl.accessToken = "pk.eyJ1IjoibHVuYXN0cmF0b3MiLCJhIjoiY2tybXM2MXZnMm5wcjMxbzJ4eDdwZm45diJ9.vf2FoHHxyF7IPDWQfpjgGg";             // API key
@@ -191,6 +192,7 @@ export default function(){
      <>
        <div ref={mapContainer} className="map-container" style={{height: '100vh'}} >
             <InfoBox data={storeInfo}/>
+            <SearchBox/>
         </div>
      </>   
     )
