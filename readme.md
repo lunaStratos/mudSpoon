@@ -25,7 +25,8 @@ zip 파일로 올리면 한거번에 리스트로 보여주며, 압축다운로�
  - DB: MariaDB(Mysql), MongoDB, JPA, Hibernate
  - Test : Junit
  - CI/CD : TeamCity 
- - 기타 : NaverMap, 
+ - 기타 : Mapbox
+ - Swagger
 
 각 선택이유
  - 대부분 회사들이 Spring boot + java + Junit, 다만 난 java는 많이 사용해서 간결한 kotlin
@@ -35,7 +36,9 @@ zip 파일로 올리면 한거번에 리스트로 보여주며, 압축다운로�
  - DB: MongoDB는 처음이지? JPA는 실무에서 써서. 
  - CI/CD : 이게 더 예쁘고 젠킨스 슬슬 죽는 느낌
  - Dev program : IntelliJ, fork, git, github, VSCode, notepad++, heidiSQL, Datagrip
- - NaverMap : 다른 Api를 이용해서 표현하는 형태로 사용예정 
+ - Mapbox : 다른 Api를 이용해서 표현하는 형태로 사용예정 
+ - Swagger : APi 문서 자동화 할수 있어서 
+
 
 
 ## 서비스 구성도
