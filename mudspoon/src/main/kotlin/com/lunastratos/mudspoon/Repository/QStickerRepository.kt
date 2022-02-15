@@ -82,4 +82,25 @@ class QStickerRepository  (
 
         return result
     }
+
+    fun findAll(): List<StickerEntity> {
+        val item = QStickerEntity.stickerEntity
+        val empList : List<StickerEntity> =
+            jpaQueryFactory.selectFrom(item)
+                .fetch()
+        return empList
+    }
+
+    fun findAllSolve(): List<StickerEntity> {
+        val stickerEntity = QStickerEntity.stickerEntity
+        val stickerReplyEntity = QStickerReplyEntity.stickerReplyEntity
+        val empList : List<StickerEntity> =
+            jpaQueryFactory.select(stickerEntity)
+                .from(stickerEntity)
+                .leftJoin(stickerEntity.stickerReplyList, stickerReplyEntity)
+                .fetchJoin()
+                .distinct()
+                .fetch()
+        return empList
+    }
 }

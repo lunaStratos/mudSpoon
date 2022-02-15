@@ -8,16 +8,30 @@ import javax.persistence.*
  * */
 @Entity
 @Table(name ="t_sticker_reply")
-data class StickerReplyEntity (
+ class StickerReplyEntity {
 
     @Id
-    val id : Long? = 0,
-    @Column(name="auther")
-    val auther :String? = "",
-    @Column(name="contents")
-    val contents :String? = "",
-    @Column(name="updated_at")
-    val updatedAt: LocalDateTime? = LocalDateTime.now(),
-    @Column(name="created_at")
+    @GeneratedValue
+    @Column(name = "id")
+    val id: Long? = 0
+
+    @Column(name = "sticker_id")
+    val stickerId :Long?= 0
+
+    @Column(name = "auther")
+    val auther: String? = ""
+
+    @Column(name = "contents")
+    val contents: String? = ""
+
+    @Column(name = "updated_at")
+    val updatedAt: LocalDateTime? = LocalDateTime.now()
+
+    @Column(name = "created_at")
     val createdAt: LocalDateTime? = LocalDateTime.now()
-)
+
+//    @ManyToOne
+//    @JoinColumn(name = "id", referencedColumnName = "sticker_id")
+//    private val stickerEntity: StickerEntity? = null
+
+}

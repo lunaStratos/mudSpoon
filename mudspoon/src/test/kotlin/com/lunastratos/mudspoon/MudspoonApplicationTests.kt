@@ -1,8 +1,9 @@
 package com.lunastratos.mudspoon
 
-import com.lunastratos.mudspoon.Repository.UserRepository
+import com.lunastratos.mudspoon.Repository.OrderRepository
+import com.lunastratos.mudspoon.Repository.QOrderRepository
+import com.lunastratos.mudspoon.Repository.QStickerRepository
 import com.lunastratos.mudspoon.Service.RedisService
-import com.lunastratos.mudspoon.Service.UserService
 import com.lunastratos.mudspoon.Util.Example.ProtoTypeSample
 import com.lunastratos.mudspoon.Util.Example.SingleTonSample
 import org.junit.jupiter.api.Test
@@ -27,8 +28,10 @@ class MudspoonApplicationTests @Autowired constructor(
 	val singleTonSample : SingleTonSample,
 	val protoTypeSample : ProtoTypeSample,
 	val ctx : ApplicationContext,
-	val redisService: RedisService
-
+	val redisService: RedisService,
+	val orderRepository : OrderRepository,
+	val qOrderRepo : QOrderRepository,
+	val qStickerRepository: QStickerRepository
 ) {
 
 
@@ -37,6 +40,8 @@ class MudspoonApplicationTests @Autowired constructor(
 	 * */
 	@Test
 	fun singletonTest() {
+		println("singletonTest")
+
 		println(ctx.getBean(singleTonSample.javaClass))
 		println(ctx.getBean(singleTonSample.javaClass))
 		println(ctx.getBean(singleTonSample.javaClass))
@@ -47,7 +52,36 @@ class MudspoonApplicationTests @Autowired constructor(
 
 	}
 
-	
+
+	@Test
+	fun jpa1problem(){
+		println("jpa1problem")
+		val members = orderRepository.findAll()
+		print(members)
+	}
+
+	@Test
+	fun jpa1problemSolve(){
+		println("jpa1problem Solve")
+		val members = qOrderRepo.findAllByQD()
+		print(members)
+	}
+
+
+
+	@Test
+	fun jpa1problemSticker(){
+		println("jpa1problemSticker Solve")
+		val members = qStickerRepository.findAll()
+		print(members)
+	}
+
+	@Test
+	fun jpa1problemStickerSolve(){
+		println("jpa1problemStickerSolve Solve")
+		val members = qStickerRepository.findAllSolve()
+		print(members)
+	}
 
 
 	@Test
