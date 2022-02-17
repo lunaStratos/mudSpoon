@@ -1,7 +1,6 @@
 package com.lunastratos.mudspoon
 
 import com.lunastratos.mudspoon.Repository.OrderRepository
-import com.lunastratos.mudspoon.Repository.QOrderRepository
 import com.lunastratos.mudspoon.Repository.QStickerRepository
 import com.lunastratos.mudspoon.Service.RedisService
 import com.lunastratos.mudspoon.Util.Example.ProtoTypeSample
@@ -30,7 +29,6 @@ class MudspoonApplicationTests @Autowired constructor(
 	val ctx : ApplicationContext,
 	val redisService: RedisService,
 	val orderRepository : OrderRepository,
-	val qOrderRepo : QOrderRepository,
 	val qStickerRepository: QStickerRepository
 ) {
 
@@ -60,15 +58,7 @@ class MudspoonApplicationTests @Autowired constructor(
 		print(members)
 	}
 
-	@Test
-	fun jpa1problemSolve(){
-		println("jpa1problem Solve")
-		val members = qOrderRepo.findAllByQD()
-		print(members)
-	}
-
-
-
+	//JPA N+1 문제
 	@Test
 	fun jpa1problemSticker(){
 		println("jpa1problemSticker Solve")
@@ -76,6 +66,7 @@ class MudspoonApplicationTests @Autowired constructor(
 		print(members)
 	}
 
+	//JPA N+1 해결법 fetchJoin
 	@Test
 	fun jpa1problemStickerSolve(){
 		println("jpa1problemStickerSolve Solve")
