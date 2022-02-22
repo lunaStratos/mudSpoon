@@ -86,6 +86,11 @@ dependencies {
     implementation ("io.springfox:springfox-swagger2:2.9.2")
     implementation ("io.springfox:springfox-swagger-ui:2.9.2")
 
+    // xss 방어
+    implementation("org.apache.commons:commons-text:1.9")
+
+
+
 
 }
 
