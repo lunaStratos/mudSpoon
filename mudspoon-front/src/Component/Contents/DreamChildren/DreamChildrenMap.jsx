@@ -7,20 +7,23 @@ import {setGeometryJsonMultiPoint } from "./MapUtility";
 import SearchBox from "./SearchBox";
 
 // [ENV]
-mapboxgl.accessToken = "pk.eyJ1IjoibHVuYXN0cmF0b3MiLCJhIjoiY2tybXM2MXZnMm5wcjMxbzJ4eDdwZm45diJ9.vf2FoHHxyF7IPDWQfpjgGg";             // API key
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_APIKEY;             // API key
 
 
 /**
  * [Dream Children Project]
+ *  - 꿈의 아이들 프로젝트 front
  * 
  */
 export default function(){
-  const startlat = parseFloat(process.env.REACT_APP_START_LATITUDE);
-  const startlng = parseFloat(process.env.REACT_APP_START_LONGITUDE);
-  const startZoomLevel = parseInt(process.env.REACT_APP_START_ZOOMLEVEL);
-  const minZoom = parseInt(process.env.REACT_APP_VIEW_MINZOOM);
 
+    //시작 값들 
+    const startlat = parseFloat(process.env.REACT_APP_START_LATITUDE);
+    const startlng = parseFloat(process.env.REACT_APP_START_LONGITUDE);
+    const startZoomLevel = parseInt(process.env.REACT_APP_START_ZOOMLEVEL);
+    const minZoom = parseInt(process.env.REACT_APP_VIEW_MINZOOM);
 
+    // 
     const [lngLat, setlngLat] = useState([startlng, startlat]);
     const [zoomLevel, setZoomLevel] = useState(startZoomLevel);
     const [storeInfo, setStoreInfo] = useState({
@@ -46,12 +49,16 @@ export default function(){
       latitude: "" 
     });
 
+    // 가게리스트 저장 
     const [storeList, setStoreList] = useState([])
 
+    // 지도 REF
     const map = useRef(null); 
     const mapContainer = useRef(null);
 
+    // 지도시작 
     async function initMap(){
+
         if (map.current) return;
 
         //맵 최초생성
@@ -61,7 +68,7 @@ export default function(){
             center: lngLat,
             zoom: zoomLevel,
             scrollZoom: true,
-            maxZoom: 16.5
+            maxZoom: parseInt(process.env.REACT_APP_VIEW_MAXZOOM)
         });
 
         /**
@@ -106,20 +113,17 @@ export default function(){
      */
     async function onUp(e) {
         
-        //브라우져 지도의 남서쪽, 북동쪽 좌표
+        //브라우져 지도의 남서쪽, 북동쪽 좌표 (사용안함)
         const ne = map.current.getBounds().getNorthEast();
         const sw = map.current.getBounds().getSouthWest();
-        const center = map.current.getBounds().getCenter();
-        
-        console.log(center);
-        console.log(map.current.getZoom());
 
+        // 중점좌표 
+        const center = map.current.getBounds().getCenter();
         const lng = center.lng;
         const lat = center.lat;
 
         const res = await DreamChildrenApi.searchStore({lng: lng, lat: lat});
 
-        console.log(res)
         if(res.status === 200){
 
           const dataList = res.data.data;          
@@ -183,9 +187,14 @@ export default function(){
      * [최초 실행시 시작]
      */
     useEffect( async() => {
-        await initMap();
-        await _setFlagImage();
-        await onUp(); // DB 지도 부르기 
+       
+        async function fetchAndSetUser() { 1
+          await initMap();
+          await _setFlagImage();
+          await onUp(); // DB 지도 부르기 
+        }
+        fetchAndSetUser();
+
     }, []);
 
     return(
