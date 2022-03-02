@@ -188,7 +188,7 @@ export default function(){
      */
     useEffect( async() => {
        
-        async function fetchAndSetUser() { 1
+        async function fetchAndSetUser() {
           await initMap();
           await _setFlagImage();
           await onUp(); // DB 지도 부르기 
@@ -201,7 +201,7 @@ export default function(){
      <>
        <div ref={mapContainer} className="map-container" style={{height: '100vh'}} >
             <InfoBox data={storeInfo}/>
-            <SearchBox/>
+            {/*<SearchBox/>*/}
         </div>
      </>   
     )

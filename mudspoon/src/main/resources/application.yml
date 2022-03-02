@@ -1,12 +1,13 @@
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/mudspoon_front
+    url: jdbc:mysql://dbname:3306/mudspoon_front?characterEncoding=UTF-8&serverTimezone=UTC
     username: "root"
     password: "1234"
   jpa:
     hibernate:
       ddl-auto : update
+      show-sql: true
     database-platform: org.hibernate.dialect.MariaDB103Dialect
     show-sql: true
     properties:
@@ -20,7 +21,7 @@ spring:
       enabled: always
   data:
     mongodb:
-      host: localhost
+      host: mongodbname
       port: 27017
       database: mudspoon
 

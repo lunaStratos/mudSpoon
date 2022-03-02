@@ -5,7 +5,7 @@
  */
  export const setGeometryJsonMultiPoint = (infoArray) =>{
 
-    const maekArr = infoArray.map(item =>{
+    const makekArr = infoArray.map(item =>{
         return {
             "type": "Feature",
             "properties": {
@@ -25,7 +25,7 @@
     return {
         
             "type": "FeatureCollection",
-            "features": maekArr
+            "features": makekArr
         
     };
 }
