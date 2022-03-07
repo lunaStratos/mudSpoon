@@ -21,33 +21,33 @@ services:
     container_name: mudspoon-backend
     restart: always
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mariadb://dbname:3306/mudspoon_front?useUnicode=true
+      SPRING_DATASOURCE_URL: jdbc:mariadb://rdb1.cajkxrgtuzp2.us-east-1.rds.amazonaws.com:3306/mudspoon_front?useUnicode=true
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: 1234
+      SPRING_DATASOURCE_PASSWORD: luminate1024*^#
     networks:
       - springboot-mysql-net
-    depends_on:
-      - database
+#    depends_on:
+#      - database
 
 # 데이터베이스
-  database:
-    container_name: dbname
-    image: mariadb
-    volumes:
-      - ~/docker/mariadb/etc/mysql/conf.d:/etc/mysql/conf.d:ro
-      - ~/docker/mariadb/var/lib/mysql:/var/lib/mysql
-      - ~/docker/mariadb/var/log/maria:/var/log/maria
-    environment:
-      - MYSQL_DATABASE=mudspoon_front
-      - MYSQL_ROOT_USER=root
-      - MYSQL_PASSWORD=1234
-      - MYSQL_ROOT_PASSWORD=1234
-    command: [ '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci' ]
-    ports:
-      - "3307:3306"
-    restart: always
-    networks:
-      - springboot-mysql-net
+#  database:
+#    container_name: dbname
+#    image: mariadb
+#    volumes:
+#      - ~/docker/mariadb/etc/mysql/conf.d:/etc/mysql/conf.d:ro
+#      - ~/docker/mariadb/var/lib/mysql:/var/lib/mysql
+#      - ~/docker/mariadb/var/log/maria:/var/log/maria
+#    environment:
+#      - MYSQL_DATABASE=mudspoon_front
+#      - MYSQL_ROOT_USER=root
+#      - MYSQL_PASSWORD=1234
+#      - MYSQL_ROOT_PASSWORD=1234
+#    command: [ '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci' ]
+#    ports:
+#      - "3307:3306"
+#    restart: always
+#    networks:
+#      - springboot-mysql-net
 
 #리액트
   react:
@@ -65,29 +65,30 @@ services:
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_DEBUG=true
 
 
-  redis:
-    image: redis:alpine
-    command: redis-server --port 6379
-    container_name: redis_boot
-    hostname: redis_boot
-    labels:
-      - "name=redis"
-      - "mode=standalone"
-    ports:
-      - "6379:6379"
+#  redis:
+#    image: redis:alpine
+#    command: redis-server --port 6379
+#    container_name: redis_boot
+#    hostname: redis_boot
+#    labels:
+#      - "name=redis"
+#      - "mode=standalone"
+#    ports:
+#      - "6379:6379"
 
-  mongodb:
-    image: mongo:5.0
-    container_name: mongodbname
-    ports:
-      - "27017:27017"
-    volumes:
-      - ~/apps/mongo:/data/db
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=mudspoon
-      - MONGO_INITDB_ROOT_PASSWORD=1234
+#  mongodb:
+#    image: mongo:5.0
+#    container_name: mongodbname
+#    ports:
+#      - "27017:27017"
+#    volumes:
+#      - ~/apps/mongo:/data/db
+#    environment:
+#      - MONGO_INITDB_ROOT_USERNAME=mudspoon
+#      - MONGO_INITDB_ROOT_PASSWORD=1234
 
 networks:
   springboot-mysql-net:

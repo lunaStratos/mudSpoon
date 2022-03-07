@@ -3,7 +3,7 @@ spring:
     active: prod
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mysql://dbname:3306/mudspoon_front?characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mariadb://rdb1.cajkxrgtuzp2.us-east-1.rds.amazonaws.com:3306/mudspoon_front?useUnicode=true
     username: "root"
     password: "1234"
   jpa:
@@ -21,11 +21,11 @@ spring:
   output:
     ansi:
       enabled: always
-  data:
-    mongodb:
-      host: mongodbname
-      port: 27017
-      database: mudspoon
+#  data:
+#    mongodb:
+#      host: mongodbname
+#      port: 27017
+#      database: mudspoon
 
 
 logging:
