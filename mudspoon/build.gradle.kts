@@ -58,7 +58,7 @@ dependencies {
     implementation("com.querydsl:querydsl-sql:4.4.0")
 
     // QueryDSL - mongoDB
-    implementation("com.querydsl:querydsl-mongodb:4.4.0")
+//    implementation("com.querydsl:querydsl-mongodb:4.4.0")
 
 
     // Spring Sequrity
@@ -70,8 +70,8 @@ dependencies {
     // Redis
     implementation ("org.springframework.boot:spring-boot-starter-data-redis")
 
-    // MongoDB
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+//    // MongoDB
+//    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 
     // email
     implementation ("org.springframework.boot:spring-boot-starter-mail")
@@ -100,7 +100,7 @@ sourceSets["main"].withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourc
 }
 
 allOpen { // 추가적으로 열어줄 allOpen
-    annotation("org.springframework.data.mongodb.core.mapping.Document")
+//    annotation("org.springframework.data.mongodb.core.mapping.Document")
     annotation("javax.persistence.Entity")
     annotation("javax.persistence.MappedSuperclass")
     annotation("javax.persistence.Embeddable")

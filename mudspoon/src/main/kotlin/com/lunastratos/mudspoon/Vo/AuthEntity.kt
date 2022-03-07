@@ -1,4 +1,4 @@
-package com.lunastratos.mudspoon.Entity
+package com.lunastratos.mudspoon.Vo
 
 data class AuthEntity (
     val email:String,

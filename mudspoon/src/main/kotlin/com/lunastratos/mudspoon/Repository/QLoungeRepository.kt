@@ -3,7 +3,6 @@ package com.lunastratos.mudspoon.Repository
 import com.lunastratos.mudspoon.Entity.LoungeEntity
 import com.lunastratos.mudspoon.Entity.QLoungeEntity
 import com.querydsl.jpa.impl.JPAQueryFactory
-import org.springframework.data.mongodb.core.query.where
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -12,7 +11,7 @@ class QLoungeRepository  (
 ) {
     /***/
     fun selectBoardList(startPage: Long): List<LoungeEntity> {
-        println("startPage ${startPage}")
+
         val item = QLoungeEntity.loungeEntity
         val res : List<LoungeEntity> = jpaQueryFactory.selectFrom(item)
             .orderBy(item.id.asc())

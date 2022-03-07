@@ -1,6 +1,5 @@
 package com.lunastratos.mudspoon
 
-import com.lunastratos.mudspoon.Repository.OrderRepository
 import com.lunastratos.mudspoon.Repository.QStickerRepository
 import com.lunastratos.mudspoon.Service.RedisService
 import com.lunastratos.mudspoon.Util.Example.ProtoTypeSample
@@ -28,58 +27,50 @@ class MudspoonApplicationTests @Autowired constructor(
 	val protoTypeSample : ProtoTypeSample,
 	val ctx : ApplicationContext,
 	val redisService: RedisService,
-	val orderRepository : OrderRepository,
 	val qStickerRepository: QStickerRepository
 ) {
 
-
-	/**
-	 * 싱글톤 프로토타입 테스트
-	 * */
-	@Test
-	fun singletonTest() {
-		println("singletonTest")
-
-		println(ctx.getBean(singleTonSample.javaClass))
-		println(ctx.getBean(singleTonSample.javaClass))
-		println(ctx.getBean(singleTonSample.javaClass))
-
-		println(ctx.getBean(protoTypeSample.javaClass))
-		println(ctx.getBean(protoTypeSample.javaClass))
-		println(ctx.getBean(protoTypeSample.javaClass))
-
-	}
-
-
-	@Test
-	fun jpa1problem(){
-		println("jpa1problem")
-		val members = orderRepository.findAll()
-		print(members)
-	}
-
-	//JPA N+1 문제
-	@Test
-	fun jpa1problemSticker(){
-		println("jpa1problemSticker Solve")
-		val members = qStickerRepository.findAll()
-		print(members)
-	}
-
-	//JPA N+1 해결법 fetchJoin
-	@Test
-	fun jpa1problemStickerSolve(){
-		println("jpa1problemStickerSolve Solve")
-		val members = qStickerRepository.findAllSolve()
-		print(members)
-	}
-
-
-	@Test
-	fun redisConnectionTest() {
-		val expireDuration: Duration = Duration.ofSeconds(10)
-		redisService.setDataExpire("test1", "111", 10)
-	}
+//
+//	/**
+//	 * 싱글톤 프로토타입 테스트
+//	 * */
+//	@Test
+//	fun singletonTest() {
+//		println("singletonTest")
+//
+//		println(ctx.getBean(singleTonSample.javaClass))
+//		println(ctx.getBean(singleTonSample.javaClass))
+//		println(ctx.getBean(singleTonSample.javaClass))
+//
+//		println(ctx.getBean(protoTypeSample.javaClass))
+//		println(ctx.getBean(protoTypeSample.javaClass))
+//		println(ctx.getBean(protoTypeSample.javaClass))
+//
+//	}
+//
+//
+//	//JPA N+1 문제
+//	@Test
+//	fun jpa1problemSticker(){
+//		println("jpa1problemSticker Solve")
+//		val members = qStickerRepository.findAll()
+//		print(members)
+//	}
+//
+//	//JPA N+1 해결법 fetchJoin
+//	@Test
+//	fun jpa1problemStickerSolve(){
+//		println("jpa1problemStickerSolve Solve")
+//		val members = qStickerRepository.findAllSolve()
+//		print(members)
+//	}
+//
+//
+//	@Test
+//	fun redisConnectionTest() {
+//		val expireDuration: Duration = Duration.ofSeconds(10)
+//		redisService.setDataExpire("test1", "111", 10)
+//	}
 //
 //
 //	}

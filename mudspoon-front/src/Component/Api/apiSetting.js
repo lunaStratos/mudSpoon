@@ -67,8 +67,8 @@ loginApi.interceptors.response.use(rp_onFulfilled, rp_onRejected);
  * DreamChildren Map APi
  */
  export const dreamChildrenApi = axios.create({
-    baseURL: `/api/dreamChildren`,
-    headers: headers,
+    baseURL: `http://localhost:8080/api/dreamChildren`,
+    //headers: headers,
     withCredentials: false,
 });
 dreamChildrenApi.interceptors.request.use(rq_onFulfilled, rq_onRejected);

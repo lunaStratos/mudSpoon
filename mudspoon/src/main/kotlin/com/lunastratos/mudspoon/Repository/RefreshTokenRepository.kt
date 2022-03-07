@@ -6,6 +6,7 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 import java.util.*
+
 @Repository
 interface RefreshTokenRepository: CrudRepository<RefreshTokenEntity, String?> {
 }

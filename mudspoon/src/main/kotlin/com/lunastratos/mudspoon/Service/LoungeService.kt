@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 @Service
 class LoungeService @Autowired constructor(
     private val loungeRepo: LoungeRepository,
-    private val QLungeRepo: QLoungeRepository
+    private val QLoungeRepo: QLoungeRepository
 ){
 
    fun save(entity: LoungeEntity){
@@ -30,9 +30,9 @@ class LoungeService @Autowired constructor(
 
         // 검색어 있으면 검색조건 실행됨
         if(!search.equals("")){
-            response = QLungeRepo.selectBoardSearchList(start, search)
+            response = QLoungeRepo.selectBoardSearchList(start, search)
         }else{
-            response = QLungeRepo.selectBoardList(start)
+            response = QLoungeRepo.selectBoardList(start)
         }
 
         return response

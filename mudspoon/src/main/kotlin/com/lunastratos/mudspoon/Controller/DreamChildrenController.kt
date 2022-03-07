@@ -12,6 +12,7 @@ import org.json.JSONObject
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.client.HttpClientErrorException
@@ -42,18 +43,20 @@ class DreamChildrenController @Autowired constructor(
      *
      * @param payLoad String [lng: 경도, lat : 위도]
      * */
-    @RequestMapping("/searchStore", method = arrayOf(RequestMethod.POST))
+    @RequestMapping("/searchStore", method = arrayOf(RequestMethod.POST), produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     @ApiOperation(value="{lat: 37.2823, lng: 127.18940}", notes="위경도를 json 형태로 받는 곳")
     @ResponseBody
     fun mapSearch(
-        @RequestBody payLoad: LatLngDomain
-        //@ModelAttribute payLoad : LatLngDomain
+        @RequestBody payLoad: String
     ): ResponseEntity<*>? {
 
+        log.info("${payLoad}")
         var result = CommonUtil().getResultJson()
 
-        val longitude :Double = payLoad.lng
-        val latitude :Double = payLoad.lat
+        //val longitude :Double = payLoad.lng
+        //val latitude :Double = payLoad.lat
+        val longitude :Double = 37.2823
+        val latitude :Double = 127.18940
 
         val searchResult = dcService.selectSearchStore(longitude, latitude);
         result.put("data", searchResult)
@@ -68,8 +71,10 @@ class DreamChildrenController @Autowired constructor(
      * */
     @RequestMapping("/test", method = arrayOf(RequestMethod.GET))
     @ResponseBody
-    fun test(): ResponseEntity<*>? {
-
+    fun test(
+        payLoad: String
+    ): ResponseEntity<*>? {
+        println(payLoad)
         var result = CommonUtil().getResultJson()
 
         return ResponseEntity.ok<Any>(result.toString())

@@ -1,8 +1,5 @@
 package com.lunastratos.mudspoon.Entity
 
-import com.querydsl.core.annotations.QueryEntity
-import org.springframework.data.mongodb.core.mapping.Document
-import org.springframework.data.mongodb.core.mapping.Field
 import java.time.LocalDateTime
 import javax.persistence.*
 

@@ -2,7 +2,7 @@ package com.lunastratos.mudspoon.Controller
 
 import com.lunastratos.mudspoon.Api.External.NaverApi
 import com.lunastratos.mudspoon.Config.Security.JwtTokenProvider
-import com.lunastratos.mudspoon.Entity.AuthEntity
+import com.lunastratos.mudspoon.Vo.AuthEntity
 import com.lunastratos.mudspoon.Entity.RegisterEntity
 import com.lunastratos.mudspoon.Entity.RoleType
 import com.lunastratos.mudspoon.Entity.UserEntity
@@ -14,7 +14,6 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
-import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.password.PasswordEncoder
