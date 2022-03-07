@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mysql://dbname:3306/mudspoon_front?characterEncoding=UTF-8&serverTimezone=UTC
