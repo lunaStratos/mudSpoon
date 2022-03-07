@@ -117,46 +117,43 @@ class StickerController @Autowired constructor(
     ): ResponseEntity<*>? {
         var result = CommonUtil().getResultJson()
 
-        try {
-            val author = ""
 
-            val originalFileName = mf!!.originalFilename // 업로드하는 파일 name
+        val author = ""
 
-            var extensionName:String = FilenameUtils.getExtension(originalFileName)
-            var fileName:String = FilenameUtils.getName(originalFileName)
+        val originalFileName = mf!!.originalFilename // 업로드하는 파일 name
 
-            //확장자 검사
-            var isExtension :Boolean = false
-            val fileExtension = arrayOf("7z", "zip")
-            for (item in fileExtension){
-                if(extensionName.equals(item)) isExtension = true
-            }
+        var extensionName:String = FilenameUtils.getExtension(originalFileName)
+        var fileName:String = FilenameUtils.getName(originalFileName)
 
-            if (isExtension){
-
-                val uploadFileName = FileManager().fileUpload(mf)
-                FileManager().unZip(uploadFileName)
-
-                // Todo : DB에 파일이름 저장
-                var stickerEntity = StickerEntity()
-                    stickerEntity.auther = author
-                    stickerEntity.contents = contents
-                    stickerEntity.file_name_zip = uploadFileName+".zip"
-                    stickerEntity.file_folder = uploadFileName
-                    stickerEntity.search_tag = tag
-                    stickerEntity.title = title
-                    stickerService.insertSticker(stickerEntity)
-
-                return ResponseEntity.ok<Any>(result.toString())
-
-            }else{
-                //지원 가능한 파일아님
-            }
-
-        }catch (e:Exception){
-
-
+        //확장자 검사
+        var isExtension :Boolean = false
+        val fileExtension = arrayOf("7z", "zip")
+        for (item in fileExtension){
+            if(extensionName.equals(item)) isExtension = true
         }
+
+        if (isExtension){
+
+            val uploadFileName = FileManager().fileUpload(mf)
+            FileManager().unZip(uploadFileName)
+
+            // Todo : DB에 파일이름 저장
+            var stickerEntity = StickerEntity()
+                stickerEntity.auther = author
+                stickerEntity.contents = contents
+                stickerEntity.file_name_zip = uploadFileName+".zip"
+                stickerEntity.file_folder = uploadFileName
+                stickerEntity.search_tag = tag
+                stickerEntity.title = title
+                stickerService.insertSticker(stickerEntity)
+
+            return ResponseEntity.ok<Any>(result.toString())
+
+        }else{
+            //지원 가능한 파일아님
+        }
+
+
         result.put("status", 9000)
         return ResponseEntity.badRequest()
             .body<Any>(result.toString())
@@ -179,21 +176,14 @@ class StickerController @Autowired constructor(
 
         var result = CommonUtil().getResultJson()
 
-        try {
 
-            var param = JSONObject(payLoad)
 
-            val response = stickerService.deleteBoardNum(num.toLong())
-            result.put("data", response)
-            return ResponseEntity.ok<Any>(result.toString())
+        var param = JSONObject(payLoad)
 
-        }catch (e:Exception){
+        val response = stickerService.deleteBoardNum(num.toLong())
+        result.put("data", response)
+        return ResponseEntity.ok<Any>(result.toString())
 
-            result.put("status", 9000)
-            return ResponseEntity.badRequest()
-                .body<Any>(result.toString())
-
-        }
     }
 
 }

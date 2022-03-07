@@ -52,21 +52,13 @@ class DreamChildrenController @Autowired constructor(
 
         var result = CommonUtil().getResultJson()
 
-        try {
+        val longitude :Double = payLoad.lng
+        val latitude :Double = payLoad.lat
 
-            val longitude :Double = payLoad.lng
-            val latitude :Double = payLoad.lat
+        val searchResult = dcService.selectSearchStore(longitude, latitude);
+        result.put("data", searchResult)
 
-            // Todo 위경도 검사 쿼리
-            val searchResult = dcService.selectSearchStore(longitude, latitude);
-            result.put("data", searchResult)
-
-            return ResponseEntity.ok<Any>(result.toString())
-        }catch (e:Exception){
-
-            result.put("status", 9000)
-            return ResponseEntity.badRequest().body<Any>(result.toString())
-        }
+        return ResponseEntity.ok<Any>(result.toString())
     }
 
     /**
@@ -80,14 +72,8 @@ class DreamChildrenController @Autowired constructor(
 
         var result = CommonUtil().getResultJson()
 
-        try {
+        return ResponseEntity.ok<Any>(result.toString())
 
-            return ResponseEntity.ok<Any>(result.toString())
-        }catch (e:Exception){
-
-            result.put("status", 9000)
-            return ResponseEntity.badRequest().body<Any>(result.toString())
-        }
     }
 
 
