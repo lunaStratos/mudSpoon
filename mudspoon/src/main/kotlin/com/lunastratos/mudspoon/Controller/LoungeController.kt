@@ -85,8 +85,6 @@ class LoungeController @Autowired constructor(
 
         var result = CommonUtil().getResultJson()
 
-        try {
-
         var param = JSONObject(payLoad)
         val contents = param.get("contents") as String
         println("contents ${contents}")
@@ -98,16 +96,8 @@ class LoungeController @Autowired constructor(
 
         loungeService.save(loungeEntity)
 
-        var result = CommonUtil().getResultJson()
-
         return ResponseEntity.ok<Any>(result.toString())
 
-        }catch (e:Exception){
-            result.put("status", 9000)
-            return ResponseEntity.badRequest()
-                .body<Any>(result.toString())
-
-        }
     }
 
 }
