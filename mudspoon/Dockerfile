@@ -1,5 +1,10 @@
 FROM openjdk:11
 
+WORKDIR /app
+COPY . /app
+VOLUME /tmp
+EXPOSE 8080
+
 # `JAR_FILE` 이라는 이름으로 build 한 jar 파일을 지정합니다.
 ARG JAR_FILE=./build/libs/*.jar
 
@@ -8,4 +13,3 @@ ADD ${JAR_FILE} app.jar
 
 # app.jar 파일을 실행합니다.
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
-EXPOSE 8080

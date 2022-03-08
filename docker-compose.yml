@@ -9,6 +9,8 @@ services:
       - ./nginx/default.conf:/etc/nginx/default.conf
     depends_on:
       - spring-boot
+    networks:
+      - springboot-mysql-net
 
 # 스프링 부트
   spring-boot:
@@ -20,6 +22,12 @@ services:
       - "8080:8080"
     container_name: mudspoon-backend
     restart: always
+    volumes:
+      - $PWD:/home
+#    volumes:
+#      - ./:/app
+#      working_dir: /app
+#      command: sh run.sh
     environment:
       SPRING_DATASOURCE_URL: jdbc:mariadb://rdb1.cajkxrgtuzp2.us-east-1.rds.amazonaws.com:3306/mudspoon_front?useUnicode=true
       SPRING_DATASOURCE_USERNAME: root
@@ -66,7 +74,7 @@ services:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
       - REACT_APP_DEBUG=true
-
+    stdin_open: true
 
 #  redis:
 #    image: redis:alpine
