@@ -42,8 +42,7 @@ import javax.persistence.*
     @Column(name = "created_at")
     var createdAt: LocalDateTime? = LocalDateTime.now()
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "sticker_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "stickerEntity" , fetch = FetchType.LAZY)
     private val stickerReplyList: List<StickerReplyEntity>? = null
 
 }

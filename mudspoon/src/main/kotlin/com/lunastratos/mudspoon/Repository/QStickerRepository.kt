@@ -3,7 +3,6 @@ package com.lunastratos.mudspoon.Repository
 import com.lunastratos.mudspoon.Entity.*
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.stereotype.Repository
-import javax.persistence.EntityManager
 
 @Repository
 class QStickerRepository  (

@@ -30,8 +30,8 @@ import javax.persistence.*
     @Column(name = "created_at")
     val createdAt: LocalDateTime? = LocalDateTime.now()
 
-//    @ManyToOne
-//    @JoinColumn(name = "id", referencedColumnName = "sticker_id")
-//    private val stickerEntity: StickerEntity? = null
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sticker_entity_id")
+    private val stickerEntity: StickerEntity? = null
 
 }

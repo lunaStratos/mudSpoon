@@ -108,5 +108,12 @@ class MudspoonApplicationTests @Autowired constructor(
 //
 //	}
 
+	@Test
+	fun sqlTest(){
+		val result = qStickerRepository.findAllSolve()
+
+		println(result)
+	}
+
 
 }

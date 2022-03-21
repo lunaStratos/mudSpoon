@@ -1,11 +1,8 @@
 package com.lunastratos.mudspoon.Repository
 
-import com.lunastratos.mudspoon.Entity.QTestEntity
 import com.lunastratos.mudspoon.Entity.QUserEntity
-import com.lunastratos.mudspoon.Entity.TestEntity
 import com.lunastratos.mudspoon.Entity.UserEntity
 import com.querydsl.jpa.impl.JPAQueryFactory
-import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Repository
 import javax.persistence.EntityManager
 
